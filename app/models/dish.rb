@@ -12,4 +12,4 @@ class Dish < ApplicationRecord
    validates :name, presence: true, length: { in: 2..40 }
    validates :description, presence: true, length: { in: 2..400 }
    validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
-   validates :ingredients, presence: true, length: { in: 5
+   validates :ingredients, presence: true, length: { in: 5 }
