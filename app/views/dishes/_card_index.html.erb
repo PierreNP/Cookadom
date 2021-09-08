@@ -2,7 +2,11 @@
   <!-- card head -->
   <%= link_to dish_path(dish) do %>
     <div class="position-relative ">
-      <img class="img-fluid" src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80">
+      <% if dish.photo.attached? %>
+        <%= image_tag dish.photo.variant(resize: "400x300^", crop: '400x300+0+0') , alt: dish.name, class: "rounded-left-5" %>
+        <% else %>
+        <img class="img-fluid rounded-left-5 " src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg"> 
+      <% end %>
       <!-- tags -->
       <div class="card-tag position-absolute bottom-0 p-2">
         <% dish.tags.each do |tag| %>

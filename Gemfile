@@ -60,11 +60,11 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
-###########################
-#                         #
-#     GEMS DU GROUPE      #
-#                         #
-###########################
+######################
+#                    #
+#    TEAM'S GEMS     #
+#                    #
+######################
 
 gem 'activerecord-reset-pk-sequence'
 gem 'table_print'
@@ -73,7 +73,7 @@ gem 'devise'
 gem 'aws-sdk-s3'
 gem 'image_processing', '~> 1.2'
 gem 'mini_magick', '~>4.9'
-gem 'dotenv-rails'
+gem 'dotenv-rails', groups: [:development, :test]
 gem 'letter_opener'
 
 ###########################
