@@ -9,8 +9,7 @@ class CartsController < ApplicationController
       flash[:success] = "cart saved"
     else
       puts @cook.errors.messages
-      flash[:error] "cart not saved"
-      redirect_to root_path
+      redirect_to root_path, flash[:error] "cart not saved"
     end
 
   end
@@ -26,8 +25,7 @@ class CartsController < ApplicationController
       flash[:success] = "cart updated"
     else
       puts @cart.errors.messages
-      flash[:error] = "cart not updated"
-      redirect_to root_path
+      redirect_to root_path, flash[:error] = "cart not updated"
     end
 
     if @cart.status == 1
