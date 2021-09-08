@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
     def show
+        if !current_user.is_cook?
+            @user = User.find(params[:id])
+            @user_dishes = Dish.where(cook_id:@user.id)
+        else 
+            @user = current_user
     end
   
     def edit
