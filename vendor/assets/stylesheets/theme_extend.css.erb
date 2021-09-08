@@ -1,10 +1,8 @@
+/*********************/
+/* bootstrap  extend */
+/*********************/
 a {
   text-decoration: none;
-}
-
-.btn-tag {
-  font-size: 0.6rem !important;
-  padding: 0.3em 0.6em !important;
 }
 
 .rounded-x {
@@ -17,6 +15,15 @@ a {
 
 .rounded-5 {
   border-radius: 14px !important;
+}
+
+.rounded-left-5 {
+  border-top-left-radius: 14px ;
+  border-bottom-left-radius: 14px ;
+}
+.rounded-right-5 {
+  border-top-right-radius: 14px ;
+  border-bottom-right-radius: 14px ;
 }
 
 .rounded-6 {
@@ -43,63 +50,6 @@ a {
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-.w-quantity-input {
-  width: 1rem;
-}
-
-.line-h-quantity {
-  position: relative;
-  bottom: 0.150rem;
-}
-
-.d-flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.position-btn-close {
-  position: absolute;
-  padding: 0 !important;
-  margin: 0 !important;
-  top: 0;
-  right: 0;
-}
-
-.ts-wrapper.multi .ts-control>div {
-  background-color: orange;
-  color: white;
-  border-radius: 1rem;
-}
-
-.carousel-indicators {
-  background-color: white !important;
-  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%) !important;
-  padding-left: 4px !important;
-  margin-bottom: 0 !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  width: 10em !important;
-}
-
-.carousel-indicators [data-bs-target] {
-  background-color: orange !important;
-  width: 10px !important;
-  height: 10px !important;
-  border-radius: 100% !important;
-}
-
-.carousel-indicators .active {
-  margin-top: 10px !important;
-  width: 30px !important;
-  height: 10px !important;
-  cursor: pointer !important;
-  background-color: orange !important;
-  border: 0 !important;
-  opacity: 1 !important;
-  transition: opacity .3s ease !important;
-  border-radius: 1em !important;
-}
 
 .fs-7 {
   font-size: 0.9rem !important;
@@ -137,14 +87,62 @@ a {
   font-size: 0.1rem !important;
 }
 
-.btn-dash {
+.w-quantity-input {
+  width: 1rem;
+}
+
+.w-quantity-input-2 {
+  width: 1.7rem;
+}
+
+.line-h-quantity {
+  position: relative;
+  bottom: 0.150rem;
+}
+
+.d-flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 6px;
-  padding: 0.3rem 1rem;
-  color: var(--bs-white);
-  font-size: 0.8rem !important;
+}
+
+/**********************/
+/* bootstrap  rewrite */
+/**********************/
+
+.ts-wrapper.multi .ts-control>div {
+  background-color: orange;
+  color: white;
+  border-radius: 1rem;
+}
+
+.carousel-indicators {
+  background-color: white !important;
+  clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%) !important;
+  padding-left: 4px !important;
+  margin-bottom: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 10em !important;
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: orange !important;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 100% !important;
+}
+
+.carousel-indicators .active {
+  margin-top: 10px !important;
+  width: 30px !important;
+  height: 10px !important;
+  cursor: pointer !important;
+  background-color: orange !important;
+  border: 0 !important;
+  opacity: 1 !important;
+  transition: opacity .3s ease !important;
+  border-radius: 1em !important;
 }
 
 .accordion-button:focus {
@@ -157,6 +155,32 @@ a {
   background-color: var(--bs-white);
 }
 
+/****************/
+/* News buttons */
+/****************/
+
+.btn-tag {
+  font-size: 0.6rem !important;
+  padding: 0.3em 0.6em !important;
+}
+
+.position-btn-close {
+  position: absolute;
+  padding: 0 !important;
+  margin: 0 !important;
+  top: 0;
+  right: 0;
+}
+
+.btn-dash {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  padding: 0.3rem 1rem;
+  color: var(--bs-white);
+  font-size: 0.8rem !important;
+}
 
 /* ANTHO */
 
@@ -170,18 +194,6 @@ a {
 
 .nav-gradient {
   background: linear-gradient(90deg, rgba(250, 100, 0, 1) 0%, rgba(246, 115, 42, 1) 100%);
-}
-
-main {
-  margin-top: -68px;
-}
-
-.btn-primary {
-  background-color: rgba(250, 100, 0, 1);
-}
-
-.bg-primary {
-  background-color: rgba(250, 100, 0, 1);
 }
 
 #logo {
@@ -228,3 +240,25 @@ main {
 
 
 /* SIDEBAR MENU */
+
+
+
+/* Cards Dishes show */
+.section-bg {
+  position: absolute;
+  width:106%;
+  height: 106%;
+  z-index: -1;
+  top: -3%;
+  left: -3%;
+  transform: rotate(3deg);
+}
+.section-bg-2{
+  position: absolute;
+  width:108%;
+  height: 108%;
+  z-index: -1;
+  top: -4%;
+  left: -4%;
+  transform: rotate(-3deg);
+}
