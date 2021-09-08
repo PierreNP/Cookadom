@@ -1,2 +1,312 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<main>
+  <div class="p-5 mb-4 bg_static top-0 start-0 ">
+    <div class="container py-5 text-center">
+      <div class="row">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="display-6 mt-5 fw-bold">Vos plats prêts à savourez.</h1>
+          <p class="fs-4">Envie d’une pause originale et parfumée pour votre déjeuner ou de passer une soirée entre amis autour de vos plats favoris ? Nous serons heureux de vous faire découvrir les delicieux plats de nos cuisiniers.</p>
+          <a class="btn btn-warning text-light m-2 btn-lg rounded-6">Découvrir</a>
+          <a class="btn btn-primary m-2 btn-lg rounded-6">S'inscrire</a>
+        </div>
+      </div>
+    </div>
+    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-5 d-none d-md-block"><a class="btn btn-warning mt-3 btn-lg rounded-6 text-light" href="#quality"><i class="fas fa-arrow-down"></i></a></div>
+  </div>
+  <section class="bg-quality bg-light py-5 px-5 shadow" id="quality">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-xs-12">
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <%= image_tag("dish1.png", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
+              </div>
+              <div class="carousel-item">
+                <%= image_tag("dish2.png", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
+              </div>
+              <div class="carousel-item">
+                <%= image_tag("dish3.png", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-xs-12 py-5 px-5 mb-3">
+          <h2 class="mb-3">Qu'est ce qui rend vos plats si<span class="fw-bolder text-warning"> Uniques</span></h2>
+          <p class="lead">Le poisson ne se fait pas frire dans la cuisine et les haricots ne brûlent pas sur le gril. Il a fallu tout un tas d'essais juste pour gravir cette colline. Montez à bord vous attendait. Aimez la récompense la plus douce de la
+            vie Laissez-la couler, elle flotte vers vous.</p>
+          <p>Here he comes Here comes Speed Racer. He's a demon on wheels. Believe it or not I'm walking on air. I never thought I could feel so free. Flying away on a wing and a prayer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="how-it-work" class="pt-5 mb-5">
+      <div class="container mt-5 pb-5">
+          <div class="row text-center">
+              <h1 class="p-4 text-center">Comment ça marche</h1>
+              <div class="col-md-3 col-sm-12 col-xs-12">
+                <%= image_tag("image_choice.jpg", :alt => "illutration choix", class:"img-fluid img-howitworks") %>
+                <p class="fw-bolder">Choissez vos plats<br/>
+                  <span class="fw-normal">frais et variés</span>
+                </p>
+              </div>
+              <div class="col-md-3 col-sm-12 col-xs-12">
+                <%= image_tag("chef.jpg", :alt => "illutration chef", class:"img-fluid img-howitworks") %>
+                <p class="fw-bolder">Un cuisiniez prépare<br/>
+                  <span class="fw-normal">vos plats préferés</span>
+                </p>
+              </div>
+              <div class="col-md-3 col-sm-12 col-xs-12">
+                <%= image_tag("8309.jpg", :alt => "illutration livraison", class:"img-fluid img-howitworks") %>
+                <p class="fw-bolder">Receptionnez vos plats<br/>
+                  <span class="fw-normal">frais et équilibrés</span>
+                </p>
+              </div>
+              <div class="col-md-3 col-sm-12 col-xs-12">
+                <%= image_tag("image_happy_eat.jpg", :alt => "illutration plaisir", class:"img-fluid img-howitworks") %>
+                <p class="fw-bolder ">Détendez vous<br/>
+                  <span class="fw-normal">et régalez vous</span>
+                </p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="container-fluid">
+      <div class="row">
+          <div class="p-5 mb-4 bg_section top-0 bg-gradient-cookadom start-0">
+              <div class="container py-5 text-center">
+                  <h1 class="display-5 text-light fw-bold">Commandez, Savourez</h1>
+                  <p class="fs-4 text-light">Commandez vos plats préferés, livrés chez vous.</p>
+              </div>
+          </div>
+          <div class="bg-divider"></div>
+      </div>
+  </section>
+
+  <div class="container list-dish pb-5" id="dish">
+      <!-- FIRST ROW -->
+      <div class="row p-4 ">
+          <!--* card start -->
+          <div class="card border-0 overflow-hidden rounded-5 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+              <!-- card head -->
+              <div class="position-relative ">
+                  <img class="img-fluid" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
+                  <!-- tags -->
+                  <div class="card-tag position-absolute bottom-0 p-2">
+                      <a class="btn btn-tag rounded-x btn-secondary">Japonais</a>
+                      <a class="btn btn-tag rounded-x btn-secondary">Décoré</a>
+                  </div>
+              </div>
+              <!-- card body -->
+              <div class="card-body p-2">
+                  <div class=" d-flex justify-content-between">
+                      <h6 class="card-title"> Miaouuuuuu !</h6>
+                      <p class="card-text">25€</p>
+                  </div>
+                  <p class="fs-9"><i class="fas fa-star text-primary"></i> 4.8</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-primary fs-9 rounded-x"><i class="fas fa-shopping-bag me-1"></i> Ajouter au panier</a>
+                  </div>
+              </div>
+          </div>
+          <!--* Card end -->
+
+          <!--* card start -->
+          <div class="card border-0 overflow-hidden rounded-5 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+              <!-- card head -->
+              <div class="position-relative ">
+                <img class="img-fluid " src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80">
+                <!-- tags -->
+                  <div class="card-tag position-absolute bottom-0 p-2">
+                  <a class="btn btn-tag rounded-x btn-secondary">Japonais</a>
+                  <a class="btn btn-tag rounded-x btn-secondary">Décoré</a>
+                </div>
+              </div>
+              <!-- card body -->
+              <div class="card-body p-2">
+                  <div class=" d-flex justify-content-between">
+                      <h6 class="card-title"> Miaouuuuuu !</h6>
+                      <p class="card-text">25€</p>
+                  </div>
+
+                  <p class="fs-9"><i class="fas fa-star text-primary"></i> 4.8</p>
+
+                  <div class="d-flex justify-content-between align-items-center">
+                      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-primary fs-9 rounded-x"><i class="fas fa-shopping-bag me-1"></i> Ajouter au panier</a>
+                  </div>
+              </div>
+          </div>
+          <!--* Card end -->
+          <!--* card start -->
+          <div class="card border-0 overflow-hidden rounded-5 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+              <!-- card head -->
+              <div class="position-relative ">
+                <%= image_tag("home-slider2.jpg", :alt => "illutration plaisir", class:"img-fluid") %>
+                <!-- tags -->
+                <div class="card-tag position-absolute bottom-0 p-2">
+                    <a class="btn btn-tag rounded-x btn-secondary">Japonais</a>
+                    <a class="btn btn-tag rounded-x btn-secondary">Décoré</a>
+                </div>
+              </div>
+              <!-- card body -->
+              <div class="card-body p-2">
+                  <div class=" d-flex justify-content-between">
+                    <h6 class="card-title"> Miaouuuuuu !</h6>
+                    <p class="card-text">25€</p>
+                  </div>
+                  <p class="fs-9"><i class="fas fa-star text-primary"></i> 4.8</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-primary fs-9 rounded-x"><i class="fas fa-shopping-bag me-1"></i> Ajouter au panier</a>
+                  </div>
+              </div>
+          </div>
+          <!--* Card end -->
+          <!--* card start -->
+          <div class="card border-0 overflow-hidden rounded-5 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+              <!-- card head -->
+              <div class="position-relative ">
+                  <img class="img-fluid " src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80">
+                  <!-- tags -->
+                  <div class="card-tag position-absolute bottom-0 p-2">
+                      <a class="btn btn-tag rounded-x btn-secondary">Japonais</a>
+                      <a class="btn btn-tag rounded-x btn-secondary">Décoré</a>
+                  </div>
+              </div>
+              <!-- card body -->
+              <div class="card-body p-2">
+                  <div class=" d-flex justify-content-between">
+                      <h6 class="card-title"> Miaouuuuuu !</h6>
+                      <p class="card-text">25€</p>
+                  </div>
+                  <p class="fs-9"><i class="fas fa-star text-primary"></i> 4.8</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-primary fs-9 rounded-x"><i class="fas fa-shopping-bag me-1"></i> Ajouter au panier</a>
+                  </div>
+              </div>
+          </div>
+          <!--* Card end -->
+      </div>
+
+</main>
+    <div class="container-fluid bg-light pt-5">
+        <div class="bg-light pt-1 ">
+            <div class="pt-4 mx-4">
+                <p class="newsletter-text">Register to our newsletter and don’t miss anything anymore. We promise we will not spam you!</p>
+                <form class="row g-3">
+                    <div class="col-auto">
+                        <label for="inputPassword2" class="visually-hidden">Email</label>
+                        <input type="password" class="form-control" id="inputPassword2" placeholder="Votre email">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary rounded-x mb-3">s'inscrire à la newsletter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Footer -->
+        <footer class="text-center text-white bg-dark ">
+            <!-- Grid container -->
+            <div class="container">
+                <!-- Section: Links -->
+                <section class="mt-5">
+                    <!-- Grid row-->
+                    <div class="row text-center d-flex justify-content-center pt-5">
+                        <!-- Grid column -->
+                        <div class="col-md-2">
+                            <h6 class="text-uppercase font-weight-bold">
+                                <a href="#!" class="text-white">About us</a>
+                            </h6>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-2">
+                            <h6 class="text-uppercase font-weight-bold">
+                                <a href="#!" class="text-white">Products</a>
+                            </h6>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-2">
+                            <h6 class="text-uppercase font-weight-bold">
+                                <a href="#!" class="text-white">Awards</a>
+                            </h6>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-2">
+                            <h6 class="text-uppercase font-weight-bold">
+                                <a href="#!" class="text-white">Help</a>
+                            </h6>
+                        </div>
+                        <!-- Grid column -->
+
+                        <!-- Grid column -->
+                        <div class="col-md-2">
+                            <h6 class="text-uppercase font-weight-bold">
+                                <a href="#!" class="text-white">Contact</a>
+                            </h6>
+                        </div>
+                        <!-- Grid column -->
+                    </div>
+                    <!-- Grid row-->
+                </section>
+                <!-- Section: Links -->
+
+
+
+                <hr class="my-5" />
+
+                <!-- Section: Text -->
+                <section class="mb-5">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-8">
+                            <p>Leo Gabriel Adam Thiméo Raphael Lucas Louis Arthur Nathan Hugo Nolane Enzo Jules Liam Ethan Noah Sacha Tom Theo Gabin
+                                <span class="fs-1">  Vos Cuisiniers  </span> Leo Gabriel Adam Thiméo Raphael Lucas Louis Arthur Nathan Hugo Nolane Enzo Jules Liam Ethan Noah Sacha Tom Theo Gabin .
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <!-- Section: Text -->
+
+                <!-- Section: Social -->
+                <section class="text-center mb-5">
+                    <a href="" class="text-white me-4">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="" class="text-white me-4">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="" class="text-white me-4">
+                        <i class="fab fa-google"></i>
+                    </a>
+                    <a href="" class="text-white me-4">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="" class="text-white me-4">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="" class="text-white me-4">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </section>
+                <!-- Section: Social -->
+            </div>
+            <!-- Grid container -->
+
+            <!-- Copyright -->
+            <div class="text-center p-3 bg-dark">
+                © 2021 Copyright: <a class="text-white" href="">Cookadom</a
+        >
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+</div>
