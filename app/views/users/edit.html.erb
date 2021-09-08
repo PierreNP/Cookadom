@@ -1,0 +1,19 @@
+<div class="container w-25 mt-5">
+  <%= form_with(model: @users, url: user_path(current_user), method: :put, local: true) do |form| %>
+    <%= form.label :Prénom %>
+    <%= form.text_field :first_name, class:"form-control"%>
+
+    <%= form.label :Nom %>
+    <%= form.text_field :last_name, class:"form-control" %>
+
+    <%= form.label :Email %>
+    <%= form.email_field :email, class:"form-control" %>
+
+    <%= form.label :Address %>
+    <%= form.text_field :address, class:"form-control" %>
+    
+    <%= form.submit "Envoyer", class: "btn btn-primary" %>
+  <% end %>
+  <%= link_to "Change password", edit_user_password_path,  class: "btn btn-primary" %>
+  <%= link_to "Effacer le profile",  user_path(current_user.slug), method: :delete %>
+</div>
