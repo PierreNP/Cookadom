@@ -5,8 +5,8 @@
         <div class="col-lg-6 col-md-8 mx-auto">
           <h1 class="display-6 mt-5 fw-bold">Vos plats prêts à savourez.</h1>
           <p class="fs-4">Envie d’une pause originale et parfumée pour votre déjeuner ou de passer une soirée entre amis autour de vos plats favoris ? Nous serons heureux de vous faire découvrir les delicieux plats de nos cuisiniers.</p>
-          <a class="btn btn-warning text-light m-2 btn-lg rounded-6">Découvrir</a>
-          <a class="btn btn-primary m-2 btn-lg rounded-6">S'inscrire</a>
+          <%= link_to "Découvrir", dishes_path, class:"btn btn-warning text-light m-2 btn-lg rounded-6" %>
+          <%= link_to "S'inscrire", new_user_registration_path, class:"btn btn-primary m-2 btn-lg rounded-6" %>
         </div>
       </div>
     </div>
