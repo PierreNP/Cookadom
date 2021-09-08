@@ -9,7 +9,7 @@ class CartsController < ApplicationController
       flash[:success] = "cart saved"
     else
       puts @cook.errors.messages
-      redirect_to root_path, flash[:error] "cart not saved"
+      redirect_to root_path, flash[:error] = "cart not saved"
     end
 
   end
