@@ -11,7 +11,7 @@ class PhotosController < ApplicationController
     if @photo.destroy
         redirect_to dishes_path, success: 'photo supprimé.'
     else
-        render :show, error: 'Erreur, impossible de supprimer l\'photo'
+        render :show, error: 'Erreur, impossible de supprimer la photo'
     end
 
   end
