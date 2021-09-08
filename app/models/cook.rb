@@ -3,6 +3,8 @@ class Cook < ApplicationRecord
    belongs_to :user
 
    has_many :dishes
+   
+   has_one_attached :avatar
 
    validates :siren, presence: true, uniqueness: true, length: { is: 9 } #, format: {with: /^(RCS )?([0-9]{3} ){2}[0-9]{3}$|^([0-9]{3} ){3}[0-9]{4}$/, message: "Numéro de SIREN invalide"}
    validates :business_name, presence: true
