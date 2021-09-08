@@ -8,7 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
       redirect_to dishes_path
     else
       flash[:error] = "cart not created with user"
-      redirect_to new_user_registration_path
+      render :new
     end
   end
 
