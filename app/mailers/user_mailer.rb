@@ -1,5 +1,4 @@
 class UserMailer < ApplicationMailer
-    default from: 'no-reply@monsite.fr'
  
     def welcome_email(user)
       #on récupère l'instance user pour ensuite pouvoir la passer à la view en @user
@@ -17,6 +16,17 @@ class UserMailer < ApplicationMailer
 
       @url  = "https://cookadom-staging.herokuapp.com/users/#{@user.id}"
 
+      mail(to: @user.email, subject: 'Commande en attente de validation !')
+
+    end
+
+    def validated_order(user, cook)
+        @user = user 
+        @cook = cook
+
+        @url  = "https://cookadom-staging.herokuapp.com/users/#{@user.id}"
+
+        mail(to: @user.email, subject: 'Commande validée !')
     end
 
 end

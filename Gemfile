@@ -70,5 +70,7 @@ gem 'activerecord-reset-pk-sequence'
 gem 'table_print'
 gem 'faker'
 gem 'devise'
+gem 'dotenv-rails'
+gem 'letter_opener'
 
 ###########################
