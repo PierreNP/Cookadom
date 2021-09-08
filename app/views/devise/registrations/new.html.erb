@@ -1,29 +1,48 @@
-<h2>Sign up</h2>
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 bg-secondary">
+      </div>
+      <div class="col-md-8 col-sm-12">
+        <div class="container my-5 mx-4">
+          <h3>S'enregistrer</h3>
+          <p class="text-muted">BLI BLA BLOOOOU</p>
+          <form>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="field col-10 col-md-6 border-top">
+              <%= f.label :email, class:"fs-6 mt-4 mb-3 text-muted" %><br/>
+              <%= f.email_field :email, autofocus: true, autocomplete: "Adresse e-mail", class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary" %>
+            </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <div class="field col-10 col-md-6 border-top">
+              <%= f.label :Mot_de_passe, class:"fs-6 mt-4 mb-3 text-muted" %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <%= f.password_field :password, autocomplete: "mot de passe", class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary" %>
+            </div>
+
+            <div class="field col-10 col-md-6 border-top">
+              <%= f.label :Confirmer_le_mot_de_passe, class:"fs-6 mt-4 mb-3 text-muted" %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "confirmer le mot de passe", class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary" %>
+            </div>
+            <div class="form-check mt-4 mx-1">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+              <label class="form-check-label" for="flexRadioDefault2">
+                Remember me 
+              </label>
+            </div>
+            <div class="actions">
+              <%= f.submit "Confirmer l'inscription", class:"actions btn btn-primary col-10 col-md-6 mt-3 p-3 rounded-6" %>
+            </div>
+            <div class="mt-4 mx-1">
+                T'as déjà un compte? Clique ici: <%= render "devise/shared/links" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</section>
