@@ -1,2 +1,10 @@
 <h1>Dishes#show</h1>
 <p>Find me in app/views/dishes/show.html.erb</p>
+
+<div class="container col-8 offset-2">
+  <p>name: <%= @dish.name %></p>
+  <p>description: <%= @dish.description %></p>
+  <p>price: <%= @dish.price %></p>
+  <p>ingredients: <%= @dish.ingredients %></p>
+  <p>cook: <%= @dish.cook.user.first_name %></p>
+</div>
