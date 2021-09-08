@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
  
   root 'static_pages#home'
+  
   resource :static_pages, only: [:home]
   
+  resources :carts, only: [:create, :update, :destroy]
+  
+  resources :dishes
   resources :cooks, except: [:index]
   
   devise_for :users
