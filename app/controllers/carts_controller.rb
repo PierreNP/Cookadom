@@ -6,26 +6,27 @@ class CartsController < ApplicationController
     @cart = Cart.new(user_id: current_user, status: 0)
 
     if @cart.save
-      puts "cart saved"
+      success: "cart saved"
     else
       puts @cook.errors.messages
-      puts "cart not saved"
+      error: "cart not saved"
       redirect_to root_path
     end
 
   end
 ##########################
   def update
+
     @order_dish = OrderDish.find_by(cart_id: @cart.id)
     @dish = Dish.find_by(id: @order_dish.id)
     @cook = Cook.find_by(id: @dish.id)
     @user = @cart.user_id
 
     if @cart.update(cart_params)
-      puts "cart updated"
+      success: "cart updated"
     else
       puts @cart.errors.messages
-      puts "cart not updated"
+      error: "cart not updated"
       redirect_to root_path
     end
 
