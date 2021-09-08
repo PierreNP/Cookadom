@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   
   resource :static_pages, only: [:home]
   
+  resources :carts, only: [:create, :update, :destroy]
   
   resources :dishes
   resources :cooks, except: [:index]
