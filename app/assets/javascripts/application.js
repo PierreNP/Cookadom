@@ -12,4 +12,4 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require bootstrap.min.js
+//= require bootstrap.min
