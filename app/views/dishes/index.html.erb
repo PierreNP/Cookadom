@@ -1,10 +1,6 @@
 <h1>Dishes index</h1>
-
-<%= link_to :nouveau, new_dish_path, class: "btn btn-primary"%>
-<div class="container col-8 offset-2">
-<% @dishes.each do |dish| %>
-  
-  <%= link_to :edit, edit_dish_path(dish), class: "btn btn-info"%>
-  <%= link_to :delete, dish_path(dish), method: :delete, class: "btn btn-danger"%>
-<% end %>
+<div class="grid-3 gap-5 mx-5">
+  <% @dishes.each do |dish| %>
+    <%= render 'card_index', dish: dish %>
+  <% end %>
 </div>
