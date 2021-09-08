@@ -7,7 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  belongs_to :city
+  belongs_to :city, optional: true
 
   has_many :addresses
   has_many :cooks
@@ -19,10 +19,10 @@ class User < ApplicationRecord
   has_many :carts
 
   validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "email adress please" }
-  validates :first_name, length: { in: 1..20 }
-  validates :last_name, length: { in: 1..20 }
+  # validates :first_name, length: { in: 1..20 }
+  # validates :last_name, length: { in: 1..20 }
   validates :status, presence: true
-  validates :phone, uniqueness: true, numericality: { only_integer: true }, length: { is: 10 }
+  # validates :phone, uniqueness: true, numericality: { only_integer: true }, length: { is: 10 }
 
   def welcome_send
     UserMailer.welcome_email(self).deliver_now

@@ -33,10 +33,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
 
       t.integer :status, default: 0
-      t.string :first_name
-      t.string :last_name
+      t.string :first_name, optional: true
+      t.string :last_name, optional: true
       t.belongs_to :city, index: true
-      t.string :phone
+      t.string :phone, optional: true
 
       t.timestamps null: false
     end
