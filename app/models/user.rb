@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :city
+
   has_many :addresses
   has_many :cooks
   has_many :comments
@@ -15,12 +16,10 @@ class User < ApplicationRecord
   has_many :dishes, through: :ratings
   has_many :carts
 
-
-
   validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "email adress please" }
-  validates :first_name, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "email adress please" }
-  validates :last_name, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "email adress please" }
-  validates :status, presence: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "email adress please" }
-  validates :phone, uniqueness: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "email adress please" }
-
+  validates :first_name, length: { in: 1..20 }
+  validates :last_name, length: { in: 1..20 }
+  validates :status, presence: true
+  validates :phone, uniqueness: true, numericality: { only_integer: true }, length: { is: 10 }
+  
 end

@@ -65,7 +65,7 @@ end
 puts "User create"
 
 10.times do 
-  Address.create(name: ["home","friend 1", "work", "friend 2", "mummy the best mom"].sample, address: Faker::Address.street_address, user_id: rand(1..10))
+  Address.create(name: ["home","friend 1", "work", "friend 2", "mummy the best mom"].sample, street_name: Faker::Address.street_name,street_number: rand(1..80), street_type: Faker::Address.street_suffix, user_id: rand(1..10))
 end
 puts "Address create"
 
