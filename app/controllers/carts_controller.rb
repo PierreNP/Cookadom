@@ -6,10 +6,10 @@ class CartsController < ApplicationController
     @cart = Cart.new(user_id: current_user, status: 0)
 
     if @cart.save
-      success: "cart saved"
+      flash[:success] = "cart saved"
     else
       puts @cook.errors.messages
-      error: "cart not saved"
+      flash[:error] "cart not saved"
       redirect_to root_path
     end
 
@@ -23,10 +23,10 @@ class CartsController < ApplicationController
     @user = @cart.user_id
 
     if @cart.update(cart_params)
-      success: "cart updated"
+      flash[:success] = "cart updated"
     else
       puts @cart.errors.messages
-      error: "cart not updated"
+      flash[:error] = "cart not updated"
       redirect_to root_path
     end
 

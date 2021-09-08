@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     end
 ############################# 
     def destroy
-      #@cart.destroy
+      @cart.destroy
       current_user.destroy
       
       respond_to do |format|
