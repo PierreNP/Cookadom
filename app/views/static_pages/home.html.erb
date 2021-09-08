@@ -5,12 +5,12 @@
         <div class="col-lg-6 col-md-8 mx-auto">
           <h1 class="display-6 mt-5 fw-bold">Vos plats prêts à savourez.</h1>
           <p class="fs-4">Envie d’une pause originale et parfumée pour votre déjeuner ou de passer une soirée entre amis autour de vos plats favoris ? Nous serons heureux de vous faire découvrir les delicieux plats de nos cuisiniers.</p>
-          <%= link_to "Découvrir", dishes_path, class:"btn btn-warning text-light m-2 btn-lg rounded-6" %>
+          <%= link_to "Découvrir", dishes_path, class:"btn btn-secondary text-light m-2 btn-lg rounded-6" %>
           <%= link_to "S'inscrire", new_user_registration_path, class:"btn btn-primary m-2 btn-lg rounded-6" %>
         </div>
       </div>
     </div>
-    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-5 d-none d-md-block"><a class="btn btn-warning mt-3 btn-lg rounded-6 text-light" href="#quality"><i class="fas fa-arrow-down"></i></a></div>
+    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-5 d-none d-md-block"><a class="btn btn-secondary mt-3 btn-lg rounded-6 text-light" href="#quality"><i class="fas fa-arrow-down"></i></a></div>
   </div>
   <section class="bg-quality bg-light py-5 px-5 shadow" id="quality">
     <div class="container">
@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="col-sm-12 col-md-6 col-xs-12 py-5 px-5 mb-3">
-          <h2 class="mb-3">Qu'est ce qui rend vos plats si<span class="fw-bolder text-warning"> Uniques</span></h2>
+          <h2 class="mb-3">Qu'est ce qui rend vos plats si<span class="fw-bolder text-primary"> Uniques</span></h2>
           <p class="lead">Le poisson ne se fait pas frire dans la cuisine et les haricots ne brûlent pas sur le gril. Il a fallu tout un tas d'essais juste pour gravir cette colline. Montez à bord vous attendait. Aimez la récompense la plus douce de la
             vie Laissez-la couler, elle flotte vers vous.</p>
           <p>Here he comes Here comes Speed Racer. He's a demon on wheels. Believe it or not I'm walking on air. I never thought I could feel so free. Flying away on a wing and a prayer.</p>
@@ -89,107 +89,10 @@
   </section>
 
   <div class="container list-dish pb-5" id="dish">
-      <!-- FIRST ROW -->
-      <div class="row p-4 ">
-          <!--* card start -->
-          <div class="card border-0 overflow-hidden rounded-5 col-lg-3 col-md-6 col-sm-12 col-xs-12">
-              <!-- card head -->
-              <div class="position-relative ">
-                  <img class="img-fluid" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
-                  <!-- tags -->
-                  <div class="card-tag position-absolute bottom-0 p-2">
-                      <a class="btn btn-tag rounded-x btn-secondary">Japonais</a>
-                      <a class="btn btn-tag rounded-x btn-secondary">Décoré</a>
-                  </div>
-              </div>
-              <!-- card body -->
-              <div class="card-body p-2">
-                  <div class=" d-flex justify-content-between">
-                      <h6 class="card-title"> Miaouuuuuu !</h6>
-                      <p class="card-text">25€</p>
-                  </div>
-                  <p class="fs-9"><i class="fas fa-star text-primary"></i> 4.8</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-primary fs-9 rounded-x"><i class="fas fa-shopping-bag me-1"></i> Ajouter au panier</a>
-                  </div>
-              </div>
-          </div>
-          <!--* Card end -->
-
-          <!--* card start -->
-          <div class="card border-0 overflow-hidden rounded-5 col-lg-3 col-md-6 col-sm-12 col-xs-12">
-              <!-- card head -->
-              <div class="position-relative ">
-                <img class="img-fluid " src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80">
-                <!-- tags -->
-                  <div class="card-tag position-absolute bottom-0 p-2">
-                  <a class="btn btn-tag rounded-x btn-secondary">Japonais</a>
-                  <a class="btn btn-tag rounded-x btn-secondary">Décoré</a>
-                </div>
-              </div>
-              <!-- card body -->
-              <div class="card-body p-2">
-                  <div class=" d-flex justify-content-between">
-                      <h6 class="card-title"> Miaouuuuuu !</h6>
-                      <p class="card-text">25€</p>
-                  </div>
-
-                  <p class="fs-9"><i class="fas fa-star text-primary"></i> 4.8</p>
-
-                  <div class="d-flex justify-content-between align-items-center">
-                      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-primary fs-9 rounded-x"><i class="fas fa-shopping-bag me-1"></i> Ajouter au panier</a>
-                  </div>
-              </div>
-          </div>
-          <!--* Card end -->
-          <!--* card start -->
-          <div class="card border-0 overflow-hidden rounded-5 col-lg-3 col-md-6 col-sm-12 col-xs-12">
-              <!-- card head -->
-              <div class="position-relative ">
-                <%= image_tag("home-slider2.jpg", :alt => "illutration plaisir", class:"img-fluid") %>
-                <!-- tags -->
-                <div class="card-tag position-absolute bottom-0 p-2">
-                    <a class="btn btn-tag rounded-x btn-secondary">Japonais</a>
-                    <a class="btn btn-tag rounded-x btn-secondary">Décoré</a>
-                </div>
-              </div>
-              <!-- card body -->
-              <div class="card-body p-2">
-                  <div class=" d-flex justify-content-between">
-                    <h6 class="card-title"> Miaouuuuuu !</h6>
-                    <p class="card-text">25€</p>
-                  </div>
-                  <p class="fs-9"><i class="fas fa-star text-primary"></i> 4.8</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-primary fs-9 rounded-x"><i class="fas fa-shopping-bag me-1"></i> Ajouter au panier</a>
-                  </div>
-              </div>
-          </div>
-          <!--* Card end -->
-          <!--* card start -->
-          <div class="card border-0 overflow-hidden rounded-5 col-lg-3 col-md-6 col-sm-12 col-xs-12">
-              <!-- card head -->
-              <div class="position-relative ">
-                  <img class="img-fluid " src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80">
-                  <!-- tags -->
-                  <div class="card-tag position-absolute bottom-0 p-2">
-                      <a class="btn btn-tag rounded-x btn-secondary">Japonais</a>
-                      <a class="btn btn-tag rounded-x btn-secondary">Décoré</a>
-                  </div>
-              </div>
-              <!-- card body -->
-              <div class="card-body p-2">
-                  <div class=" d-flex justify-content-between">
-                      <h6 class="card-title"> Miaouuuuuu !</h6>
-                      <p class="card-text">25€</p>
-                  </div>
-                  <p class="fs-9"><i class="fas fa-star text-primary"></i> 4.8</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                      <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-primary fs-9 rounded-x"><i class="fas fa-shopping-bag me-1"></i> Ajouter au panier</a>
-                  </div>
-              </div>
-          </div>
-          <!--* Card end -->
+      <div class="grid-4 gap-5">
+      <% @dishes.each do |dish| %>
+          <%= render "dishes/card_index", dish: dish %>
+      <% end %>
       </div>
 
 </main>

@@ -9,7 +9,8 @@ class CreateCooks < ActiveRecord::Migration[5.2]
       t.string :headquarter
       t.string :vat_number
       t.string :commercial_register
-
+      t.boolean :status, default: false
+      
       t.timestamps
     end
   end
