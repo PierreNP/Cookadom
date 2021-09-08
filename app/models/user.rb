@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  after_create :welcome_send
+
   enum status: [ :user, :cook, :admin ]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -21,5 +23,9 @@ class User < ApplicationRecord
   validates :last_name, length: { in: 1..20 }
   validates :status, presence: true
   validates :phone, uniqueness: true, numericality: { only_integer: true }, length: { is: 10 }
-  
+
+  def welcome_send
+    UserMailer.welcome_email(self).deliver_now
+  end
+
 end
