@@ -1,10 +1,49 @@
-<h1>Dishes#show</h1>
-<p>Find me in app/views/dishes/show.html.erb</p>
+<br />
+<br />
+<br />
+<section class="container">
+  <div class="grid-2  position-relative ">
+    <div class="section-bg bg-primary rounded-5"></div>
+    <div class="">
+      <img class="img-fluid rounded-left-5 " src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg"> 
+    </div>
+  
+    <div class="card-body bg-white rounded-right-5 text-center">
+      <h2 class="card-title text-primary border-bottom border-1 p-3 border-primary"><%= @dish.name %></h2>
+      <p class="mt-4"><%= @dish.description %></p>
+    </div>
+  </div>
 
-<div class="container col-8 offset-2">
-  <p>name: <%= @dish.name %></p>
-  <p>description: <%= @dish.description %></p>
-  <p>price: <%= @dish.price %></p>
-  <p>ingredients: <%= @dish.ingredients %></p>
-  <p>cook: <%= @dish.cook.user.first_name %></p>
-</div>
+  <br />
+  <br />
+  
+  <div class="grid-2 gap-3 p-5">
+    <div class="position-relative bg-white rounded-5 p-2 d-flex-center me-3 flex-column">
+      <div class="section-bg-2 rounded-5 bg-secondary"></div>
+      <h2 class="text-secondary border-bottom border-1 border-secondary p-3"> Ingrédients </h2>
+      <p class="p-3"><%= @dish.ingredients %></p>
+    </div>
+
+    <div class="bg-white rounded-5 d-flex flex-column ms-3 px-5 justify-content-evenly">
+      <div class="d-flex justify-content-evenly">
+        <p class="px-3 py-2 fs-2 fw-bold"><%= @dish.price %>€</p>
+         <form class="d-flex-center gap-3 " action="" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="6bm3iR5NUpurOgJ9qxDL4xYUoz+wDKzozSW5I4nLuIu9XQEU4e4nEUWGzw4DsiblLWo+nE+49rHnRKMQQzZfjg==">
+
+          <a data-remote="true" rel="nofollow" data-method="patch" href="/cart_items/52?sign=minus">
+            <i class="fas fa-minus line-h-quantity fs-4 text-white bg-primary p-1 rounded-circle"></i>
+          </a>  
+          
+          <input value="2" class=" text-center w-quantity-input-2 fs-4" type="text" name="cart_item[quantity]" id="cart_item_quantity">
+          
+          <a data-remote="true" rel="nofollow" data-method="patch" href="/cart_items/52?sign=plus">
+            <i class="fas fa-plus fs-4 text-white line-h-quantity bg-primary p-1 rounded-circle"></i>
+          </a>
+
+        </form>
+      </div>
+      <%= link_to "Ajouter au panier", dish_path(@dish), class: "btn btn-primary" %>
+    </div>
+  </div>
+
+</section>
+
