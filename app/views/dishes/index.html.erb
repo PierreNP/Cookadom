@@ -1,7 +1,10 @@
 <h1>Dishes index</h1>
 <% @dishes.each do |dish| %>
-  <p><%= dish.name %></p>
-  <p><%= dish.description %></p>
-  <p><%= dish.price %></p>
-  <p><%= dish.ingredients %></p>
+<div class="container col-8 offset-2">
+  <p>name: <%= dish.name %></p>
+  <p>description: <%= dish.description %></p>
+  <p>price: <%= dish.price %></p>
+  <p>ingredients: <%= dish.ingredients %></p>
+  <p>cook_id: <%= dish.cook_id %></p>
+</div>
 <% end %>

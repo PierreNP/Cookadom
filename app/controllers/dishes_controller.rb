@@ -2,7 +2,7 @@ class DishesController < ApplicationController
   before_action :set_dish, only: %i[show edit update destroy]
   
   def index
-    @dishs = Dish.all
+    @dishes = Dish.all
   end
 
   def show;end
@@ -27,13 +27,13 @@ class DishesController < ApplicationController
     if @dish.update
       redirect_to @dish, flash[:succes] = "Nouveau plat ajouté !"
     else
-      render :edit, flash[:error]: "Erreur : Impossible de modifier le plat."
+      render :edit, flash[:error] = "Erreur : Impossible de modifier le plat."
     end
   end
 
   def destroy
     @dish.destroy
-    redirect_to root_path, flash[:succes] "Plat supprimée"
+    redirect_to root_path, flash[:succes] = "Plat supprimée"
   end
 
   private 

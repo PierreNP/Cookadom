@@ -4,7 +4,7 @@ class Cook < ApplicationRecord
 
    has_many :dishes
 
-   validates :siren, presence: true, uniqueness: true, length: { is: 11 } #, format: {with: /^(RCS )?([0-9]{3} ){2}[0-9]{3}$|^([0-9]{3} ){3}[0-9]{4}$/, message: "Numéro de SIREN invalide"}
+   validates :siren, presence: true, uniqueness: true, length: { is: 9 } #, format: {with: /^(RCS )?([0-9]{3} ){2}[0-9]{3}$|^([0-9]{3} ){3}[0-9]{4}$/, message: "Numéro de SIREN invalide"}
    validates :business_name, presence: true
    validates :legal_status, presence: true
    validates :headquarter, presence: true
