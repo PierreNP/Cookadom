@@ -5,6 +5,9 @@ class CooksController < ApplicationController
   def new
   end
 ##########################
+  def pre_create
+  end
+##########################
   def create
 
     @cook = Cook.new(cook_params)
