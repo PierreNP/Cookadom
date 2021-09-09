@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
  
+  get 'avatars/create'
+  get 'avatars/destroy'
   get 'avatar/create'
   get 'avatar/destroy'
   get 'photos/create'

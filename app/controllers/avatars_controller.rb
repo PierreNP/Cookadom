@@ -1,4 +1,4 @@
-class AvatarController < ApplicationController
+class AvatarsController < ApplicationController
   def create
     @cook = Cook.find(params[:cook_id])
     @cook.avatar.attach(params[:avatar])
@@ -15,4 +15,5 @@ class AvatarController < ApplicationController
     end
     
   end
+
 end
