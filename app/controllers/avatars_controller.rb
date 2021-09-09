@@ -1,7 +1,7 @@
 class AvatarsController < ApplicationController
   def create
     @cook = Cook.find(params[:cook_id])
-    @cook.avatar.attach(params[:avatar])
+    @cook.avatars.attach(params[:avatar])
     redirect_to root_path, success: "Avatar créer."
   end
 

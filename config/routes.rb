@@ -15,7 +15,9 @@ Rails.application.routes.draw do
 
   resources :dishes, only: [:index, :show]
   
-  resources :cooks, only: [:new, :create, :show, :destroy]
+  resources :cooks, only: [:new, :edit, :create, :show, :destroy] do 
+    resources :avatars, only: [:create, :destroy]
+  end
   
   devise_for :users, :controllers => { registrations: :registrations }
   resources :users, only: [:show, :edit, :update, :destroy]
