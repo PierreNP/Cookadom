@@ -3,6 +3,12 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
 
     def show
+      @past_carts = Cart.where(user_id: current_user.id, status: 2)
+
+      respond_to do |format|
+        format.html {}
+        format.js {}
+      end
     end
   
     def edit
