@@ -15,5 +15,5 @@
     <%= form.submit "Envoyer", class: "btn btn-primary" %>
   <% end %>
   <%= link_to "Change password", edit_user_password_path,  class: "btn btn-primary" %>
-  <%= link_to "Effacer le profile",  user_path(current_user.slug), method: :delete %>
+  <%= link_to "Effacer le profile",  user_path(current_user.id), method: :delete %>
 </div>
