@@ -4,9 +4,11 @@
 <section class="container">
   <div class="grid-2  position-relative ">
     <div class="section-bg bg-primary rounded-5"></div>
-    <div class="">
-      <img class="img-fluid rounded-left-5 " src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg"> 
-    </div>
+      <% if @dish.photo.attached? %>
+        <%= image_tag @dish.photo.variant(resize: "400x300^", crop: '400x300+0+0') , alt: @dish.name, class: "rounded-left-5" %>
+        <% else %>
+        <img class="img-fluid rounded-left-5 " src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg"> 
+      <% end %>
   
     <div class="card-body bg-white rounded-right-5 text-center">
       <h2 class="card-title text-primary border-bottom border-1 p-3 border-primary"><%= @dish.name %></h2>

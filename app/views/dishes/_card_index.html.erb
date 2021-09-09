@@ -1,0 +1,35 @@
+<div class="card w-100 border-0 overflow-hidden rounded-5 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+  <!-- card head -->
+  <%= link_to dish_path(dish) do %>
+    <div class="position-relative ">
+      <% if dish.photo.attached? %>
+        <%= image_tag dish.photo.variant(resize: "400x300^", crop: '400x300+0+0') , alt: dish.name, class: "rounded-left-5" %>
+        <% else %>
+        <img class="img-fluid rounded-left-5 " src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg"> 
+      <% end %>
+      <!-- tags -->
+      <div class="card-tag position-absolute bottom-0 p-2">
+        <% dish.tags.each do |tag| %>
+          <%= link_to tag.label, root_path, class: "btn btn-tag rounded-x btn-secondary" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  <!-- card body -->
+  <div class="card-body p-2">
+      <div class=" d-flex justify-content-between">
+        <h6 class="card-title"> <%= dish.name %></h6>
+        <p class="card-text"><%= dish.price %>€</p>
+      </div>
+
+      <p class="fs-9"><i class="fas fa-star text-primary"></i> 4.8</p>
+
+      <div class="d-flex justify-content-between align-items-center">
+        <% if current_user %>
+          <%= link_to "Ajouter au panier", new_user_registration_path, class: "btn btn-primary rounded-x fs-9" %>
+        <% else %>
+          <%= link_to "Ajouter au panier", new_user_registration_path, class: "btn btn-primary rounded-x fs-9" %>
+        <% end %>
+      </div>
+  </div>
+</div>

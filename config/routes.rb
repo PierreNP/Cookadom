@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
  
+  get 'avatar/create'
+  get 'avatar/destroy'
+  get 'photos/create'
+  get 'photos/destroy'
   root 'static_pages#home'
   
   resource :static_pages, only: [:home]
   
   resources :carts, only: [:create, :update, :destroy]
   
-  resources :dishes
+  resources :dishes do 
+    resources :photos, only: [:create, :destroy]
+  end
   resources :cooks, except: [:index]
   
   devise_for :users, :controllers => { registrations: :registrations }
