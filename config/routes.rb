@@ -27,5 +27,11 @@ Rails.application.routes.draw do
       resources :photos, only: [:create, :destroy]
     end
   end
+
+  scope '/checkout' do
+    post 'create', to: 'checkouts#create', as: 'checkout_create'
+    get 'cancel', to: 'checkouts#cancel', as: 'checkout_cancel'
+    get 'success', to: 'checkouts#success', as: 'checkout_success'
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
