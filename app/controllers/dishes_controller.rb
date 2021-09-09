@@ -5,7 +5,9 @@ class DishesController < ApplicationController
     @dishes = Dish.search(params[:search])
   end
 
-  def show;end
+  def show
+    @dish = Dish.find(params[:id])
+  end
 
   def new
     @dish = Dish.new
@@ -21,19 +23,9 @@ class DishesController < ApplicationController
     end
   end
 
-  def edit;end
 
-  def update
-    if @dish.update(dish_params)
-      redirect_to @dish, success: "Nouveau plat ajouté !"
-    else
-      render :edit, error: "Erreur : Impossible de modifier le plat."
-    end
-  end
-
-  def destroy
-    @dish.destroy
-    redirect_to root_path, success: "Plat supprimée"
+  def index
+    @dishes = Dish.all
   end
 
   private 
@@ -45,5 +37,5 @@ class DishesController < ApplicationController
   def dish_params
     params.require(:dish).permit(:name, :description, :price, :ingredients, :cook_id)
   end
-
+ 
 end
