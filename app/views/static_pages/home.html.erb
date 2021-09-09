@@ -1,12 +1,12 @@
-<%= link_to "logout", destroy_user_session_path, method: :delete  %>
+<%= link_to "Se déconnecter", destroy_user_session_path, method: :delete  %>
 
 <main>
   <div class="p-5 mb-4 bg_static top-0 start-0 ">
     <div class="container py-5 text-center">
       <div class="row">
         <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="display-6 mt-5 fw-bold">Vos plats prêts à savourez.</h1>
-          <p class="fs-4">Envie d’une pause originale et parfumée pour votre déjeuner ou de passer une soirée entre amis autour de vos plats favoris ? Nous serons heureux de vous faire découvrir les delicieux plats de nos cuisiniers.</p>
+          <h1 class="display-6 mt-5 fw-bold">Vos plats préférés, sur le pas de votre porte !</h1>
+          <p class="fs-4">Envie d’un repas <strong>fait-maison</strong> par des professionnels, livré chez vous et à un <strong>prix abordable</strong> ? Profitez du caractère des plats proposés par Cookadom !</p>
           <%= link_to "Découvrir", dishes_path, class:"btn btn-secondary text-light m-2 btn-lg rounded-6" %>
           <%= link_to "S'inscrire", new_user_registration_path, class:"btn btn-primary m-2 btn-lg rounded-6" %>
         </div>
@@ -38,10 +38,9 @@
           </div>
         </div>
         <div class="col-sm-12 col-md-6 col-xs-12 py-5 px-5 mb-3">
-          <h2 class="mb-3">Qu'est ce qui rend vos plats si<span class="fw-bolder text-primary"> Uniques</span></h2>
-          <p class="lead">Le poisson ne se fait pas frire dans la cuisine et les haricots ne brûlent pas sur le gril. Il a fallu tout un tas d'essais juste pour gravir cette colline. Montez à bord vous attendait. Aimez la récompense la plus douce de la
-            vie Laissez-la couler, elle flotte vers vous.</p>
-          <p>Here he comes Here comes Speed Racer. He's a demon on wheels. Believe it or not I'm walking on air. I never thought I could feel so free. Flying away on a wing and a prayer.</p>
+          <h2 class="mb-3">Pourquoi<span class="fw-bolder text-primary"> Cookadom</span> ?</h2>
+          <p class="lead">Parce qu'un plat est avant tout une histoire racontée par celui ou celle qui le prépare, le caractère fait-maison des plats Cookadom vous offre plus qu'une option saine, économique et goûteuse de restauration. Venez retrouver les saveurs de votre enfance grâce aux cuisiniers Cookadom qui, de chez eux, prépareront vos plats préférés avec une authenticité que vous ne pourrez pas retrouver au restaurant.</p>
+          <p>En pouvant choisir la date et l'heure de livraison de votre commande, ne soyez plus jamais pris au dépourvu avec Cookadom !</p>
         </div>
       </div>
     </div>
@@ -49,29 +48,29 @@
   <section id="how-it-work" class="pt-5 mb-5">
       <div class="container mt-5 pb-5">
           <div class="row text-center">
-              <h1 class="p-4 text-center">Comment ça marche</h1>
+              <h1 class="p-4 text-center">Comment ça marche ?</h1>
               <div class="col-md-3 col-sm-12 col-xs-12">
                 <%= image_tag("image_choice.jpg", :alt => "illutration choix", class:"img-fluid img-howitworks") %>
-                <p class="fw-bolder">Choissez vos plats<br/>
-                  <span class="fw-normal">frais et variés</span>
+                <p class="fw-bolder">Choisissez vos plats<br/>
+                  <span class="fw-normal">ainsi que la date de livraison</span>
                 </p>
               </div>
               <div class="col-md-3 col-sm-12 col-xs-12">
                 <%= image_tag("chef.jpg", :alt => "illutration chef", class:"img-fluid img-howitworks") %>
-                <p class="fw-bolder">Un cuisiniez prépare<br/>
-                  <span class="fw-normal">vos plats préferés</span>
+                <p class="fw-bolder">Un cuisinier les prépare<br/>
+                  <span class="fw-normal">le jour de la livraison</span>
                 </p>
               </div>
               <div class="col-md-3 col-sm-12 col-xs-12">
                 <%= image_tag("8309.jpg", :alt => "illutration livraison", class:"img-fluid img-howitworks") %>
-                <p class="fw-bolder">Receptionnez vos plats<br/>
-                  <span class="fw-normal">frais et équilibrés</span>
+                <p class="fw-bolder">Recevez vos plats<br/>
+                  <span class="fw-normal">fraîchement préparés</span>
                 </p>
               </div>
               <div class="col-md-3 col-sm-12 col-xs-12">
                 <%= image_tag("image_happy_eat.jpg", :alt => "illutration plaisir", class:"img-fluid img-howitworks") %>
                 <p class="fw-bolder ">Détendez vous<br/>
-                  <span class="fw-normal">et régalez vous</span>
+                  <span class="fw-normal">et profitez !</span>
                 </p>
               </div>
           </div>
@@ -82,8 +81,8 @@
       <div class="row">
           <div class="p-5 mb-4 bg_section top-0 bg-gradient-cookadom start-0">
               <div class="container py-5 text-center">
-                  <h1 class="display-5 text-light fw-bold">Commandez, Savourez</h1>
-                  <p class="fs-4 text-light">Commandez vos plats préferés, livrés chez vous.</p>
+                  <h1 class="display-5 text-light fw-bold">Commandez, Recevez, Savourez</h1>
+                  <p class="fs-4 text-light">Choisissez vos plats préferés, livrés chez vous.</p>
               </div>
           </div>
           <div class="bg-divider"></div>
@@ -101,14 +100,14 @@
     <div class="container-fluid bg-light pt-5">
         <div class="bg-light pt-1 ">
             <div class="pt-4 mx-4">
-                <p class="newsletter-text">Register to our newsletter and don’t miss anything anymore. We promise we will not spam you!</p>
+                <p class="newsletter-text">Pour ne rater aucune nouveauté sur Cookadom, inscrivez-vous à notre newsletter (promis, on ne spamme pas) !</p>
                 <form class="row g-3">
                     <div class="col-auto">
                         <label for="inputPassword2" class="visually-hidden">Email</label>
                         <input type="password" class="form-control" id="inputPassword2" placeholder="Votre email">
                     </div>
                     <div class="col-auto">
-                        <button type="submit" class="btn btn-primary rounded-x mb-3">s'inscrire à la newsletter</button>
+                        <button type="submit" class="btn btn-primary rounded-x mb-3">S'inscrire à la newsletter</button>
                     </div>
                 </form>
             </div>
