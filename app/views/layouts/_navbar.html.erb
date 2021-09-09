@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg  navbar-light nav-transparent sticky-top " id="nav">
+        <div class="container">
+            <%= link_to  "#", class: "navbar-brand fw-bolder text-primary" do %>
+              <%= image_tag "logo.svg", alt: :logo, width: 70 %>
+            <% end %>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <%= link_to :Accueil, root_path , class: "nav-link active", aria_current: "page"%>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to "Nos plats", dishes_path ,class: "nav-link" %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to "Comment ça marche", "#how-it-work", class: "nav-link" %>
+                    </li>
+                </ul>
+                <%= link_to "S'inscire", new_user_registration_path, class: "nav-link btn-warning text-light rounded-6 m-2" %>
+                <%= link_to "Se connecter", new_user_session_path, class: "nav-link btn-primary text-light rounded-6 m-2" %>
+                
+            </div>
+        </div>
+    </nav>
