@@ -1,12 +1,73 @@
-<div>
-  <% if dish.photo.attached? %>
-    <%=image_tag(dish.photo, alt: dish.name)%>
-  <% else %>
-    <p>aucun avatar</p>
-  <% end %>
+<div id="atachement-photos">
+    <% if dish.photo.attached? %>
+        <%=image_tag(dish.photo, alt: dish.name)%>
+            <% else %>
+                <p>aucun avatar</p>
+                <% end %>
+</div>
+<div id="cnvs" class="d-none">
+    <canvas id="canvas">
+  
+          </canvas>
 </div>
 
-<%= form_tag dish_photos_path(dish), multipart: true do |f|%>
-  <%= file_field_tag :photo %>
-  <%= submit_tag "ajouter", class: "btn btn-primary" %>
-<% end %>
+<div id="result"></div>
+<a id="dlphoto" class="btn btn-info d-none">Telecharger votre image au format carré</a>
+<input type="button" id="btnCrop" value="Valider" class="btn-warning d-none" />
+<%= form_tag dish_photos_path(dish) , multipart: true do |f|%>
+    <%= file_field_tag :photo, id:"fileInput", accept:"image/*" %>
+        <%= submit_tag "ajouter", class: "btn btn-primary", id:"cropp" %>
+            <% end %>
+
+                <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+                <script src='https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.js'></script>
+                <script src='http://html2canvas.hertzen.com/dist/html2canvas.min.js'></script>
+                <script>
+                    var canvas = $("#canvas"),
+                        context = canvas.get(0).getContext("2d"),
+                        $result = $('#result');
+
+                    $('#fileInput').on('change', function() {
+                        $("#cnvs").removeClass("d-none");
+                        $("#btnCrop").removeClass("d-none");
+
+                        if (this.files && this.files[0]) {
+                            if (this.files[0].type.match(/^image\//)) {
+                                $("#atachement-photos").addClass("d-none")
+                                var reader = new FileReader();
+                                reader.onload = function(evt) {
+                                    var img = new Image();
+                                    img.onload = function() {
+                                        context.canvas.height = img.height;
+                                        context.canvas.width = img.width;
+                                        context.drawImage(img, 0, 0);
+                                        var cropper = canvas.cropper({
+                                            aspectRatio: 4 / 4
+                                        });
+                                        $('#btnCrop').click(function() {
+                                            var croppedImageDataURL = canvas.cropper('getCroppedCanvas').toDataURL("image/png");
+                                            $result.append($('<img>').attr('src', croppedImageDataURL));
+                                            $("#cnvs").addClass("d-none");
+                                            $("#dlphoto").removeClass('d-none')
+                                            $("#dlphoto").addClass('d-block')
+                                            $("#dlphoto").attr("download", "dish-<%=dish.id%>-image.png").attr("href", croppedImageDataURL);
+                                            $("#btnCrop").addClass("d-none");
+                                        });
+                                        $('#btnRestore').click(function() {
+                                            canvas.cropper('reset');
+                                            $result.empty();
+                                        });
+                                    };
+                                    img.src = evt.target.result;
+                                };
+                                console.log(reader.readAsDataURL(this.files[0]))
+
+                            } else {
+                                alert("Invalid file type! Please select an image file.");
+                            }
+                        } else {
+                            alert('No file(s) selected.');
+                        }
+                    });
+                </script>
+
