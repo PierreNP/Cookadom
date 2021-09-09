@@ -1,20 +1,9 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :update, :destroy]
+
+  before_action :authenticate_user!
+  before_action :set_cart, only: [:show, :update]
 
   def show
-    
-  end
-
-
-  def create
-    @cart = Cart.new(user_id: current_user, status: 0)
-
-    if @cart.save
-      flash[:success] = "cart saved"
-    else
-      puts @cook.errors.messages
-      redirect_to root_path, flash[:error] = "cart not saved"
-    end
   end
 
   def update
@@ -41,15 +30,6 @@ class CartsController < ApplicationController
 
     respond_to do |format|
       format.html {}
-      format.js {}
-    end
-  end
-
-  def destroy
-    @cart.destroy
-
-    respond_to do |format|
-      format.html {redirect_to root_path}
       format.js {}
     end
   end

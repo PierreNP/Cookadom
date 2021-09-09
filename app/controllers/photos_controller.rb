@@ -15,4 +15,5 @@ class PhotosController < ApplicationController
         render :show, error: 'Erreur, impossible de supprimer la photo'
     end
   end
+
 end

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   
   resource :static_pages, only: [:home]
   
-  resources :carts, only: [:show, :create, :update, :destroy]
+  resources :carts, only: [:show, :update]
 
   resources :order_dishes, only: [:create, :update, :destroy]
 
