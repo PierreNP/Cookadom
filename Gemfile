@@ -66,6 +66,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #                    #
 ######################
 
+gem 'stripe'
 gem 'activerecord-reset-pk-sequence'
 gem 'table_print'
 gem 'faker'

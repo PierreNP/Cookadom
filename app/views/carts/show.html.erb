@@ -6,3 +6,9 @@
   <%= link_to :supprimer, order_dish_path(order_dishes), method: :delete, class:"btn btn-danger" %>
 <% end %>
 <h2> total: <%= @cart.total_price %></h2>
+
+<% if @cart.total_price >= 1 %>
+  <%= link_to :Payer, checkout_create_path, method: :post, class: "btn btn-primary", remote: true %>
+<% else %>
+  <%= link_to :Parcourir_nos_plats, dishes_path, class: "btn btn-primary" %>
+<% end %>

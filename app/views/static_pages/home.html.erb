@@ -1,4 +1,6 @@
 <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete  %>
+<%= link_to("cart", cart_path(@cart), class: "nav-link btn-primary text-light rounded-6 m-2") if current_user%>
+
 
 <main>
   <div class="p-5 mb-4 bg_static top-0 start-0 ">
