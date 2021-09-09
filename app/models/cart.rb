@@ -7,4 +7,12 @@ class Cart < ApplicationRecord
   has_many :dishes, through: :order_dishes
 
   validates :status, presence: true
+
+  def total_price
+    total = 0
+    self.order_dishes.each do |order|
+       total += (order.dish.price.to_d * order.quantity)
+    end
+    total
+  end
 end

@@ -1,6 +1,10 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:update, :destroy]
-##########################
+  before_action :set_cart, only: [:show, :update, :destroy]
+
+  def show
+    
+  end
+
   def create
 
     @cart = Cart.new(user_id: current_user, status: 0)
@@ -13,7 +17,7 @@ class CartsController < ApplicationController
     end
 
   end
-##########################
+
   def update
 
     @order_dish = OrderDish.find_by(cart_id: @cart.id)
@@ -23,16 +27,16 @@ class CartsController < ApplicationController
 
     if @cart.update(cart_params)
       flash[:success] = "cart updated"
-    else
-      puts @cart.errors.messages
-      redirect_to root_path, flash[:error] = "cart not updated"
-    end
+      else
+        puts @cart.errors.messages
+        redirect_to root_path, flash[:error] = "cart not updated"
+      end
 
-    if @cart.status == 1
-      UserMailer.waiting_for_validation(@user).deliver_now
-    elsif @cart.status == 2
-      UserMailer.validated_order(@user, @cook).deliver_now
-    else
+      if @cart.status == 1
+        UserMailer.waiting_for_validation(@user).deliver_now
+      elsif @cart.status == 2
+        UserMailer.validated_order(@user, @cook).deliver_now
+      else
     end
 
     respond_to do |format|
@@ -41,7 +45,7 @@ class CartsController < ApplicationController
     end
 
   end
-##########################
+
   def destroy
 
     @cart.destroy
@@ -52,17 +56,15 @@ class CartsController < ApplicationController
     end
 
   end
-##########################
-##########################
+
   private
 
-##########################
+
   def set_cart
     @cart = Cart.find_by(id: params[:id])
   end
-##########################
+
   def cart_params
     params.permit(:status, :stripe_customer_id)
   end
-##########################
 end
