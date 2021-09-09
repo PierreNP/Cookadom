@@ -1,5 +1,8 @@
 class OrderDishesController < ApplicationController
+
+  before_action :authenticate_user!, only: [:new, :create, :destroy]
   before_action :set_order, only: [:update, :destroy]
+  
   def create
     if @cart.dishes.include?(Dish.find_by(id: params[:dish_id]))
       @order = OrderDish.find_by(dish_id: params[:dish_id], cart_id: @cart.id)
