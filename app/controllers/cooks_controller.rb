@@ -1,16 +1,13 @@
 class CooksController < ApplicationController
   before_action :set_cook, only: [:show, :edit, :update, :destroy]
-
+ 
 ##########################
   def new
   end
 ##########################
-  def pre_create
-  end
-##########################
   def create
 
-    @cook = Cook.new(cook_params)
+    @cook = Cook.new(cook_params, status: false)
 
     if @cook.save
       puts "cook saved"
