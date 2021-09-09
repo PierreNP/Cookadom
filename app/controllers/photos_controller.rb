@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
 
   def destroy
     @photo = Dish.find(params[:dish_id]).photo
-
+    
     if @photo.destroy
         redirect_to dishes_path, success: 'photo supprimé.'
     else

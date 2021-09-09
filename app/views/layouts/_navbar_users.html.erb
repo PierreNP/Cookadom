@@ -14,6 +14,9 @@
                     <li class="nav-item">
                         <%= link_to "Commander", dishes_path, class:"nav-link" %>
                     </li>
+                    <li class="nav-item">
+                        <%= link_to "cook#edit", edit_cook_path(current_user.cooks.first), class:"nav-link" %>
+                    </li>           
                 </ul>
             </div>
             <div class="nav-item dropdown">
