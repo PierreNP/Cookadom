@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   after_create :welcome_send
+  after_create :new_user_cart
 
   enum status: [ :user, :cook, :admin ]
   # Include default devise modules. Others available are:
@@ -24,8 +25,12 @@ class User < ApplicationRecord
   validates :status, presence: true
   # validates :phone, uniqueness: true, numericality: { only_integer: true }, length: { is: 10 }
 
-  def welcome_send
-    UserMailer.welcome_email(self).deliver_now
-  end
+  private
+    def welcome_send
+      UserMailer.welcome_email(self).deliver_now
+    end
 
+    def new_user_cart
+      @cart = Cart.create(user_id: self.id, status: 0)
+    end
 end
