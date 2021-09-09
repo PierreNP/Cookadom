@@ -1,5 +1,7 @@
 class Cook < ApplicationRecord
- 
+   after_create :future_cook_send_admin
+
+
    belongs_to :user
 
    has_many :dishes
@@ -12,4 +14,10 @@ class Cook < ApplicationRecord
    validates :headquarter, presence: true
    validates :vat_number, presence: true, length: { is: 11 } #, format: {with: /(?xi)^(?[0-9A-Z]{2}[0-9]{9}$)/, message: "Numéro de TVA invalide"}
    validates :commercial_register, presence: true
+
+   private
+
+   def future_cook_send_admin
+      AdminMailer.future_cook(self).deliver_now
+   end
 end
