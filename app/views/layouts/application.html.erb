@@ -16,7 +16,9 @@
   </head>
 
   <body>
-    <%= render "layouts/navbar" %>
+    <%= render "layouts/navbar_users" if current_user %>
+    <%= render "layouts/navbar" if !current_user %>
+
     <%= yield %>
     <%= render "layouts/footer" %>
     <% unless current_user %>
