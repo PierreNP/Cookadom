@@ -18,7 +18,7 @@
   <body>
     <%= render "layouts/navbar" %>
     <%= yield %>
-
+    <%= render "layouts/footer" %>
     <% unless current_user %>
       <script>
           var myNav = document.getElementById("nav");
