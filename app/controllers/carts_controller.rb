@@ -1,5 +1,10 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:update, :destroy]
+  before_action :set_cart, only: [:show, :update, :destroy]
+
+  def show
+    
+  end
+
 
   def create
     @cart = Cart.new(user_id: current_user, status: 0)
@@ -21,10 +26,10 @@ class CartsController < ApplicationController
 
     if @cart.update(cart_params)
       flash[:success] = "cart updated"
-    else
-      puts @cart.errors.messages
-      redirect_to root_path, flash[:error] = "cart not updated"
-    end
+      else
+        puts @cart.errors.messages
+        redirect_to root_path, flash[:error] = "cart not updated"
+      end
 
     if @status == 0 && @cart.status == 1
       UserMailer.waiting_for_validation(@user).deliver_now
@@ -58,5 +63,4 @@ class CartsController < ApplicationController
   def cart_params
     params.permit(:status, :stripe_customer_id)
   end
-
 end

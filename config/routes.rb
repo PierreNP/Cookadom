@@ -7,10 +7,12 @@ Rails.application.routes.draw do
   
   resource :static_pages, only: [:home]
   
-  resources :carts, only: [:create, :update, :destroy]
-  
-  resources :dishes, only: [:index, :show] 
+  resources :carts, only: [:show, :create, :update, :destroy]
 
+  resources :order_dishes, only: [:create, :update, :destroy]
+
+  resources :dishes, only: [:index, :show]
+  
   resources :cooks, only: [:new, :create, :show, :destroy]
   
   devise_for :users, :controllers => { registrations: :registrations }
