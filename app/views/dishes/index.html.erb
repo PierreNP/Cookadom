@@ -1,9 +1,12 @@
-<h1>Dishes index</h1>
-
 <section class="container">
   <div class="row">
-    <% @dishes.each do |dish| %>
-      <div class="col-md-4 col-sm-12 col-lg-3 col-xl-2 m-1">
+     <%= form_tag(dishes_path, method: :get, class:'d-flex flex-column flex-sm-row mt-3 mb-3')  do %>
+        <%= text_field_tag(:search, params[:search],placeholder:"Search Dish by name or ingredients", class:"form-control ") %>
+        <%= submit_tag ("Search") , class:"btn btn-secondary mx-1" %>
+     <% end %>
+    <%= render 'layouts/carousel' %>
+      <% @dishes.each do |dish| %>
+      <div class="col-md-4 col-sm-12 col-lg-3 col-xl-3">
         <%= render 'card_index', dish: dish %>
       </div>
     <% end %>

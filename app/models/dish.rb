@@ -16,5 +16,17 @@ class Dish < ApplicationRecord
    validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
    validates :ingredients, presence: true, length: { in: 5..1000 }
 
-   
+   def self.search(search)
+      if search
+        dish = Dish.where("name LIKE ? OR ingredients LIKE ? ","%#{search}%", "%#{search}%")
+          if dish && dish != ""
+              self.where(id:dish)
+          else
+            Dish.all
+          end
+      else
+         Dish.all
+      end
+   end
+
 end

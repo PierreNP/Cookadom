@@ -2,7 +2,7 @@ class DishesController < ApplicationController
   before_action :set_dish, only: %i[show edit update destroy]
   
   def index
-    @dishes = Dish.all
+    @dishes = Dish.search(params[:search])
   end
 
   def show;end
@@ -37,15 +37,13 @@ class DishesController < ApplicationController
   end
 
   private 
-    
+
   def set_dish
     @dish = Dish.find(params[:id])
-
   end
 
   def dish_params
     params.require(:dish).permit(:name, :description, :price, :ingredients, :cook_id)
-    
   end
 
 end
