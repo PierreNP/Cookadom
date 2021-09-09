@@ -24,6 +24,7 @@ class CartsController < ApplicationController
     @dish = Dish.find_by(id: @order_dish.id)
     @cook = Cook.find_by(id: @dish.id)
     @user = @cart.user_id
+    @status = @cart.status
 
     if @cart.update(cart_params)
       flash[:success] = "cart updated"
@@ -32,11 +33,12 @@ class CartsController < ApplicationController
         redirect_to root_path, flash[:error] = "cart not updated"
       end
 
-      if @cart.status == 1
-        UserMailer.waiting_for_validation(@user).deliver_now
-      elsif @cart.status == 2
-        UserMailer.validated_order(@user, @cook).deliver_now
-      else
+    if @status == 0 && @cart.status == 1
+      UserMailer.waiting_for_validation(@user).deliver_now
+      CookMailer.cooking_to_do(@cook).deliver_now
+    elsif @status == 1 && @cart.status == 2
+      UserMailer.validated_order(@user, @cook).deliver_now
+    else
     end
 
     respond_to do |format|

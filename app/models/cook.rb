@@ -19,5 +19,6 @@ class Cook < ApplicationRecord
 
    def future_cook_send_admin
       AdminMailer.future_cook(self).deliver_now
+      CookMailer.asking_to_become_cook(self).deliver_now
    end
 end
