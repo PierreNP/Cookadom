@@ -1,4 +1,5 @@
-<%= form_with(model: dish, local: true) do |form| %>
+
+<%= form_with(model: dish, url: cook_dish_path(dish.id), local: true, remote: false, method: :put) do |form| %>
 <!-- error messages -->
   <% if dish.errors.any? %>
     <div id="error_explanation">

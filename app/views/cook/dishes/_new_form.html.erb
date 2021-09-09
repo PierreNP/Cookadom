@@ -1,0 +1,31 @@
+
+<%= form_with(model: dish, url: cook_dishes_path, local: true, remote: false, method: :post) do |form| %>
+<!-- error messages -->
+  <% if dish.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(dish.errors.count, "error") %> Impossible de valider:</h2>
+      <ul>
+      <% dish.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+<!-- dish info -->
+  <%= form.label :nom %>
+  <%= form.text_field :name, class:"form-control"%>
+
+  <%= form.label :description %>
+  <%= form.text_field :description, class:"form-control"%>
+
+  <%= form.label :prix %>
+  <%= form.text_field :price, class:"form-control"%>
+
+  <%= form.label :ingredients %>
+  <%= form.text_field :ingredients, class:"form-control"%>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
