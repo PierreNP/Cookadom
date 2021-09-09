@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Votre demande a bien été taitée !</h1>
+
+    <% if @cook.status == true %>
+    <p>
+      Félicitations, vous êtes un cuisinier Cookadom !
+    </p>
+
+    <% else %>
+
+    <p>Navré, mais votre demande n'a pas été validée.</p>
+
+    <% end %>
+    
+    <p> À très vite sur Cookadom.fr !</p>
+  </body>
+</html>
