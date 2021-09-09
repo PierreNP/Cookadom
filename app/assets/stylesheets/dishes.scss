@@ -1,0 +1,19 @@
+#canvas {
+    height: 300px;
+    width: 300px;
+    background-color: #ffffff;
+    cursor: default;
+    border: 1px solid black;
+}
+
+div.result {
+    width: 20px;
+}
+
+.cropper-container {
+    width: 100px !important;
+}
+
+.max-w-33 {
+    max-width: 100% !important;
+}

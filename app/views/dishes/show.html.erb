@@ -43,7 +43,11 @@
 
         </form>
       </div>
-      <%= link_to "Ajouter au panier", dish_path(@dish), class: "btn btn-primary" %>
+    
+
+      <%= link_to order_dishes_path(dish_id: @dish.id), method: :post, class: "btn btn-primary btn-block text-uppercase" do %>
+        <i class="fa fa-shopping-cart"></i> ajouter au panier
+      <% end %>
     </div>
   </div>
 
