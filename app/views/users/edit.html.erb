@@ -1,74 +1,101 @@
-<div class="container ">
-<h2 class="text-center fs-1 text-primary pt-5">Mon Profil</h2>
-  <div class="d-flex vh-80">
-    <%= form_with(model: @users, url: user_path(current_user), method: :put, local: true, class: "h-100 w-100 d-flex flex-column justify-content-evenly") do |form| %>
-      
-      <div class="row gx-5 mt-5">
-        <div class="col-10 col-md-6">
-          <%= form.label :Prénom, class: "fs-6 mt-4 mb-3 text-muted" %><br />
-          <%= form.text_field :first_name, class:"fform-control form-control-lg p-3 rounded-4 border-2 border-primary", placeholder: current_user.first_name %>
+<div class="mt-5 container d-flex justify-content-center">
+<div class="col-6 me-5">
+    <div class="d-flex ">
+      <%= form_with(model: @users, url: user_path(current_user), method: :put, local: true, class: "h-100 w-100 d-flex flex-column justify-content-evenly") do |form| %>
+        
+        <div class="d-flex justify-content-between">
+          <div class="col-5">
+            <%= form.label :Prénom, class: "fs-6 mt-4 mb-3 text-muted" %><br />
+            <%= form.text_field :first_name, class:"fform-control form-control-lg p-3 rounded-4 border-2 border-primary", value: current_user.first_name %>
+          </div>
+          <div class="col-5">
+            <%= form.label :Nom, class: "fs-6 mt-4 mb-3 text-muted" %>
+            <%= form.text_field :last_name, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary", value: current_user.last_name %>
+          </div>
         </div>
-        <div class="col-10 col-md-6">
-          <%= form.label :Nom, class: "fs-6 mt-4 mb-3 text-muted" %>
-          <%= form.text_field :last_name, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary", placeholder: current_user.last_name %>
-        </div>
-      </div>
 
-      <div class="row gx-5">
-        <div class="col-10 col-md-6">
-          <%= form.label :Email, class: "fs-6 mt-4 mb-3 text-muted" %>
-          <%= form.email_field :email, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary", placeholder: current_user.email %>
+        <div class="d-flex justify-content-between">
+          <div class="col-5">
+            <%= form.label :Email, class: "fs-6 mt-4 mb-3 text-muted" %>
+            <%= form.email_field :email, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary", value: current_user.email %>
+          </div>
+          <div class="col-5">
+            <%= form.label :Téléphone, class: "fs-6 mt-4 mb-3 text-muted" %>
+            <%= form.text_field :phone, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary", value: current_user.phone%>
+          </div>
         </div>
-        <div class="col-10 col-md-6">
-          <%= form.label :Téléphone, class: "fs-6 mt-4 mb-3 text-muted" %>
-          <%= form.text_field :phone, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary", placeholder: current_user.phone%>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      
+        <div class=" mt-5 d-flex justify-content-between ">
+          <div>
+            <%= form.submit "Valider", class: "btn btn-primary" %>
+            <%= link_to "Changer le mot de passe", edit_user_password_path,  class: "btn btn-outline-primary me-5" %>
+          </div>
+          <div>
+            
+              <%= link_to "Effacer le profil",  user_path(current_user.id), method: :delete, class: "btn btn-outline-danger border-0"%>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  
+  <div class="col-5 ps-5 border-start  border-2 border-primary d-flex justify-content-center">
+    <%= form_with(model: @address, url: user_addresses_path(current_user.id), local: true) do |form| %>
+      <div>
+        <%= form.label "Nom de l'adresse", class: "fs-6 mt-4 mb-3 text-muted" %><br />
+        <% if current_user.addresses.any? %>
+          <%= form.text_field :name, class:"form-control p-3 rounded-4 border-2 border-primary", value: current_user.addresses.first.name%>
+        <% else %>
+          <%= form.text_field :name, class:"form-control p-3 rounded-4 border-2 border-primary"%>
+        <% end %>
+      </div>
+      <div class="d-flex gap-1">
+        <div class="col-2">
+          <%= form.label "Numéro", class: "fs-6 mt-4 mb-3 text-muted" %><br />
+          <% if current_user.addresses.any? %>
+            <%= form.text_field :street_number, class:"form-control  p-3 rounded-4 border-2 border-primary", value: current_user.addresses.first.street_number%>
+          <% else %>
+            <%= form.text_field :street_number, class:"form-control  p-3 rounded-4 border-2 border-primary"%>
+          <% end %>
+        </div>
+        <div class="col-4">
+          <%= form.label "Type de voie", class: "fs-6 mt-4 mb-3 text-muted" %><br />
+          <% if current_user.addresses.any? %>
+            <%= form.text_field :street_type, class:"form-control p-3 rounded-4 border-2 border-primary", value: current_user.addresses.first.street_type %>
+          <% else %>
+            <%= form.text_field :street_type, class:"form-control p-3 rounded-4 border-2 border-primary" %>
+          <%end%>
+        </div>
+        <div class="col">
+        <%= form.label "Nom de la voie", class: "fs-6 mt-4 mb-3 text-muted" %><br />
+        <% if current_user.addresses.any? %>
+          <%= form.text_field :street_name, class:"form-control p-3 rounded-4 border-2 border-primary" , value: current_user.addresses.first.street_name%>
+        <% else %>
+          <%= form.text_field :street_name, class:"form-control p-3 rounded-4 border-2 border-primary" %>
+        <%end%>
         </div>
       </div>
-      <br />
-    
-      <div class=" d-flex justify-content-between ">
-        <%= form.submit "Valider", class: "btn btn-primary" %>
-        <div>
-          <%= link_to "Changer le mot de passe", edit_user_password_path,  class: "btn btn-outline-primary me-5" %>
-          <%= link_to "Effacer le profil",  user_path(current_user.id), method: :delete, class: "btn btn-outline-danger border-0"%>
-        </div>
+      <div>
+      <%= form.label "Infos supplémentaires", class: "fs-6 mt-4 mb-3 text-muted" %><br />
+      <% if current_user.addresses.any? %>
+        <%= form.text_field :additional_info, class:"form-control p-3 rounded-4 border-2 border-primary" , value: current_user.addresses.first.additional_info%>
+      <% else %>
+        <%= form.text_field :additional_info, class:"form-control p-3 rounded-4 border-2 border-primary" %>
+      <%end%>
+      </div>
+      <div class="d-flex-center">
+        <%=  form.submit "Changer d'adresse", class:"btn btn-primary mt-5"%>
       </div>
     <% end %>
   </div>
-    <br />
-  <div>
-    <%= form_with(model: @address, url: user_addresses_path(current_user.id), local: true) do |form| %>
-      <div>
-      <%= form.label "Nom de l'adresse" %><br />
-      <%= form.text_field :name %>
-      </div>
-      <div>
-      <%= form.label "Numéro" %><br />
-      <%= form.text_field :street_number %>
-      </div>
-      <div>
-      <%= form.label "Type de voie" %><br />
-      <%= form.text_field :street_type %>
-      </div>
-      <div>
-      <%= form.label "Nom de la voie" %><br />
-      <%= form.text_field :street_name %>
-      </div>
-      <div>
-      <%= form.label "Infos supplémentaires" %><br />
-      <%= form.text_field :additional_info %>
-      </div>
-
-
-      <%=  form.submit :Valider, class:"btn btn-primary"%>
-
-
-    <% end %>
-
 
 
 </div>
-<br />
-<br />
-<br />
+  <br /><br /><br />
   

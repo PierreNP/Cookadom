@@ -29,6 +29,18 @@ class User < ApplicationRecord
      first_name + " " + last_name
   end
 
+  def status_cook?
+    status == "cook"
+  end
+  def status_user?
+    status == "user"
+  end
+
+  def status_admin?
+    status == "admin"
+  end
+
+
   private
     def welcome_send
       UserMailer.welcome_email(self).deliver_now
