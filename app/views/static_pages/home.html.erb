@@ -94,7 +94,7 @@
   <div class="container list-dish pb-5" id="dish">
       <div class="grid-4 gap-5">
       <% @dishes.each do |dish| %>
-          <%= render "dishes/card_index", dish: dish %>
+          <%= render "layouts/dishes/card_index", dish: dish %>
       <% end %>
       </div>
 

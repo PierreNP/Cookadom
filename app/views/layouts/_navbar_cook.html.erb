@@ -1,0 +1,49 @@
+<header class="header" id="header">
+        <a class="header_toggle "><i class="fas fa-bars bx bx-menu" id="header-toggle"></i></a>
+        <div class="dropstart">
+            <li>
+                <%= link_to "Profil", edit_cook_path(current_user.id), class:"dropdown-item" %>
+            </li>
+            <a class="dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <img class="photo-nav-profil" src="../../dish2.jpg">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start" aria-labelledby="dropdownMenuButton1">
+                <li>
+                    <%= link_to "Profil", cook_path(current_user.cooks.first.id), class:"dropdown-item" %>
+                </li>
+                <li>
+                    <%= link_to "Editer profil", edit_cook_path(current_user.cooks.first.id), class:"dropdown-item" %>
+                </li>
+                <hr class="dropdown-divider">
+                </li>
+                <li>
+                    <%= link_to "Se deconnecter", destroy_user_session_path, method: :delete,class:"dropdown-item" %>
+                </li>
+            </ul>
+        </div>
+</header>
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="#" class="nav_logo"><img class="img-logo bx bx-layer nav_logo-icon" src="../logo_cook.svg" alt="logo cookadom"><span class="nav_logo-name">COOKADOM</span> </a>
+                <div class="nav_list">
+                 <li>
+                    <%= link_to "Dashboard", cook_dishes_path,class:"dropdown-item" %>
+                </li>    
+                <li>
+                    <%= link_to "Profil", cook_path(current_user.cooks.first.id),class:"dropdown-item" %>
+                </li>
+                    <a href="#" class="nav_link disabled"><i class="fas fa-bell"></i><span class="nav_name">Notifications</span></a>
+                <li>
+                    <%= link_to "Vos plats", cook_dishes_path, method: :get,class:"dropdown-item" %>
+                </li>
+                    <a href="#" class="nav_link disabled"><i class="fas fa-file"></i> <span class="nav_name">Commandes</span></a>
+                </div>
+            </div>
+            <li>
+                <%= link_to "Se deconnecter", destroy_user_session_path, method: :delete,class:"nav-link" %>
+            </li>
+        </nav>
+    </div>
+
+    

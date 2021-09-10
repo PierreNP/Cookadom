@@ -2,23 +2,31 @@ class CheckoutsController < ApplicationController
   QUANTITY = 1
 
    def create
-    @total = @cart.total_price
-    @session = Stripe::Checkout::Session.create(
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          name: 'Rails.Stripe.Checkout',
-          amount: @total,
-          currency: 'eur',
-          quantity: QUANTITY      
-         }
-      ],
-    success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
-    cancel_url: checkout_cancel_url
-    )
+    puts "%"*500
+    puts current_user.addresses[0].class
+    puts "%"*500
+    if current_user.addresses[0] == nil
+      redirect_to edit_user_path(current_user.id)
+      flash[:error] = "Veuillez renseigner une adresse de livraison avant de valider votr commande."
+    else
+      @total = @cart.total_price
+      @session = Stripe::Checkout::Session.create(
+        payment_method_types: ['card'],
+        line_items: [
+          {
+            name: 'Rails.Stripe.Checkout',
+            amount: @total,
+            currency: 'eur',
+            quantity: QUANTITY      
+          }
+        ],
+      success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: checkout_cancel_url
+      )
 
-    respond_to do |format|
-      format.js
+      respond_to do |format|
+        format.js
+      end
     end
   end
 
