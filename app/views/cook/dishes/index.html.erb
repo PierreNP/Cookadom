@@ -13,15 +13,80 @@
     </div>
     <div class="col-4">
       <h1>UPDATE</h1>
-      <%= render "photo_form", dish: dish%>
-      <%= render "edit_form", dish: dish%>
+      <%= render "photo_form", dish: dish %>
+      <%= render "edit_form", dish: dish %>
     </div>
     </div>
     <% end %>
- </div>
+</div>
 
-  <div class="container col-8 offset-2">
+<div class="container col-8 offset-2">
     <h1>NEW</h1>
     <%= render "new_form", dish: @dish %>
+</div>
+
+<h1 class="text-center">COMMANDES</h1>
+
+<div class="container-fluid d-flex justify-content-around">
+  <div class="row w-100 h-100">
+
+    <div class="col-4 border">
+      <h2>En attente de validation</h2>
+      <% @carts.each do |cart|%>
+        <% if cart.status == "validation" %>
+        <div class="border border-primary m-1 p-2">
+          <% OrderDish.where(cart_id: cart.id).each do |order_dish| %>
+            <% dish = Dish.find_by(id: order_dish.dish_id) %>
+            <p>Plat: <%= dish.name %></p>
+            <p>Quantité: <%= order_dish.quantity %></p>
+            <% address = Address.find_by(user_id: User.find_by(id: cart.user_id).id) %>
+            <p>Adresse: <%= address.name %>: <%= address.street_number %> <%= address.street_type %> <%= address.street_name %></p>
+            <p>Informations complémentaires: <%= address.additional_info %></p>
+          <% end %>
+          <%= link_to "Valider la Commande", cook_cart_path(cart.id), method: :put, class: "btn btn-success" %>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-4 border">
+      <h2>Validés</h2>
+      <% @carts.each do |cart|%>
+        <% if cart.status == "post_validation" %>
+        <div class="border border-primary m-1 p-2">
+          <% OrderDish.where(cart_id: cart.id).each do |order_dish| %>
+            <% dish = Dish.find_by(id: order_dish.dish_id) %>
+            <p>Plat: <%= dish.name %></p>
+            <p>Quantité: <%= order_dish.quantity %></p>
+            <% address = Address.find_by(user_id: User.find_by(id: cart.user_id).id) %>
+            <p>Adresse: <%= address.name %>: <%= address.street_number %> <%= address.street_type %> <%= address.street_name %></p>
+            <p>Informations complémentaires: <%= address.additional_info %></p>
+          <% end %>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-4 border">
+      <h2>Payés</h2>
+      <% @carts.each do |cart|%>
+        <% if cart.status == "paid" %>
+        <div class="border border-primary m-1 p-2">
+          <% OrderDish.where(cart_id: cart.id).each do |order_dish| %>
+            <% dish = Dish.find_by(id: order_dish.dish_id) %>
+            <p>Plat: <%= dish.name %></p>
+            <p>Quantité: <%= order_dish.quantity %></p>
+            <% address = Address.find_by(user_id: User.find_by(id: cart.user_id).id) %>
+            <p>Adresse: <%= address.name %>: <%= address.street_number %> <%= address.street_type %> <%= address.street_name %></p>
+            <p>Informations complémentaires: <%= address.additional_info %></p>
+          <% end %>
+        </div>
+        <% end %>
+      <% end %>
+    </div>
+
   </div>
+</div>
+
+
 

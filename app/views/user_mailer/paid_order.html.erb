@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>La commande a bien été payée !</h1>
+
+    <p>
+      Voici les plats que vous allez recevoir : 
+      <%= @dishes.each do |dish|%>
+      <%= dish.name%>
+      <%= dish.id%>
+      <%= OrderDish.find_by(cart_id: @cart.id, dish_id: dish.id).quantity%>
+      <% end %>
+    </p>
+
+    <p>
+      Rendez-vous sur <%= @url %> pour accéder à la commande !
+    </p>
+    
+    <p> À très vite sur Cookadom.fr !</p>
+  </body>
+</html>
