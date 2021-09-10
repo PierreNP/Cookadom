@@ -26,4 +26,19 @@ class UserMailer < ApplicationMailer
         mail(to: @user.email, subject: 'Commande validée !')
     end
 
+    def paid_order(user, cart)
+      @user = user   
+      @cart = cart
+      @order_dishes = OrderDish.where(cart_id: @cart.id)
+      @dishes = []
+
+      @order_dishes.each do |order_dish|
+          @dishes << Dish.find_by(id: order_dish.dish_id)
+      end
+
+      @url  = "https://cookadom-staging.herokuapp.com/users/#{@user.id}"
+
+      mail(to: @user.email, subject: 'Commande payée !')
+    end
+
 end
