@@ -27,10 +27,14 @@
       <br />
     
       <div class=" d-flex justify-content-between ">
-        <%= form.submit "Valider", class: "btn btn-primary" %>
         <div>
+          <%= form.submit "Valider", class: "btn btn-primary" %>
           <%= link_to "Changer le mot de passe", edit_user_password_path,  class: "btn btn-outline-primary me-5" %>
-          <%= link_to "Effacer le profil",  user_path(current_user.id), method: :delete, class: "btn btn-outline-danger border-0"%>
+        </div>
+        <div>
+          
+            <%= link_to "Devenir un Cook", new_cook_path, class:"btn btn-primary" unless current_user.status_cook? %>
+            <%= link_to "Effacer le profil",  user_path(current_user.id), method: :delete, class: "btn btn-outline-danger border-0"%>
         </div>
       </div>
     <% end %>

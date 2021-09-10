@@ -22,6 +22,12 @@
                     <li class="nav-item">
                         <%= link_to "Les plats", dishes_path, class:"nav-link" %>
                     </li>       
+                    <% unless current_user.status_cook? %>
+                        <li class="nav-item">
+                            <%= link_to "Devenir un Cook", new_cook_path, class:"nav-link" %>
+                        </li>  
+                    <% end %>
+                    
                 </ul>
             </div>
             <div class="nav-item dropdown">
