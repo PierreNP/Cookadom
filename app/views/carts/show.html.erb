@@ -10,7 +10,7 @@
 <% if @cart.total_price >= 1 && current_user.addresses.first != nil && @cart.status == "post_validation" %>
   <%= link_to :Payer, checkout_create_path, method: :post, class: "btn btn-primary", remote: true %>
 <% elsif @cart.total_price >= 1 && current_user.addresses.first != nil && @cart.status == "pre_validation"%>
-  <%= link_to "Valider ma commande", cart_path(@cart.id), method: :put, class: "btn btn-primary" %>
+  <%= link_to "Valider ma commande", cart_path(@cart.id), method: :put, class: "btn btn-primary", remote: true %>
 <% elsif @cart.total_price >= 1 && current_user.addresses.first != nil && @cart.status == "validation"%>
   Votre commande est en cours de validation! Il faut maintenant attendre que le cuisinier valide votre commande!
 <% elsif current_user.addresses.first == nil %>
