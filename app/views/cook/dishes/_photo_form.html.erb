@@ -15,9 +15,10 @@
 <input type="button" id="btnCrop" value="Valider" class="btn-warning d-none" />
 
 <%= form_tag cook_dish_photos_path(dish.id) , multipart: true do |f|%>
-    <%= file_field_tag :photo, id:"fileInput", accept:"image/*" %>
-    <%= submit_tag "ajouter", class: "btn btn-primary", id:"cropp" %>
+    <p><%= file_field_tag :photo, id:"fileInput", accept:"image/*" %></p>
+    <p><%= submit_tag "ajouter", class: "btn btn-primary", id:"cropp" %></p>
 <% end %>
+
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.3/cropper.js'></script>
