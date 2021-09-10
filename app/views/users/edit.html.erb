@@ -1,3 +1,6 @@
+<div class="container p-5">
+<%= render "cooks/avatar_form", cook: current_user.cooks.first if current_user.status_cook? %>
+</div>
 <div class="mt-5 container d-flex justify-content-center">
 <div class="col-6 me-5">
     <div class="d-flex ">
