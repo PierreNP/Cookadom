@@ -1,4 +1,4 @@
-class PhotosController < ApplicationController
+class Cook::PhotosController < ApplicationController
   
   def create
     @dish = Dish.find(params[:dish_id])
