@@ -1,4 +1,30 @@
-<h1>Cooks#new</h1>
-<p>Find me in app/views/cooks/new.html.erb</p>
 
-<%= render "avatar_form", cook: @cook %>
+<%= form_with(model: @cooks, url: cooks_path, local: true, remote: false, method: :post) do |form| %>
+
+
+  <%= form.label :siren %>
+  <%= form.text_field :siren, class:"form-control"%>
+
+  <%= form.label :business_name %>
+  <%= form.text_field :business_name, class:"form-control"%>
+
+  <%= form.label :legal_status %>
+  <%= form.text_field :legal_status, class:"form-control"%>
+
+  <%= form.label :headquarter %>
+  <%= form.text_field :headquarter, class:"form-control"%>
+
+  <%= form.label :vat_number %>
+  <%= form.text_field :vat_number, class:"form-control"%>
+
+  <%= form.label :commercial_register %>
+  <%= form.text_field :commercial_register, class:"form-control"%>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+
+<%# <%= render "avatar_form", cook: @cook %>
