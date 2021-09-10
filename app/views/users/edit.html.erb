@@ -47,27 +47,47 @@
   
   <div class="col-5 ps-5 border-start  border-2 border-primary d-flex justify-content-center">
     <%= form_with(model: @address, url: user_addresses_path(current_user.id), local: true) do |form| %>
-      <div >
-      <%= form.label "Nom de l'adresse", class: "fs-6 mt-4 mb-3 text-muted" %><br />
-      <%= form.text_field :name, class:"form-control p-3 rounded-4 border-2 border-primary", value: current_user.addresses.first.name%>
+      <div>
+        <%= form.label "Nom de l'adresse", class: "fs-6 mt-4 mb-3 text-muted" %><br />
+        <% if current_user.addresses.any? %>
+          <%= form.text_field :name, class:"form-control p-3 rounded-4 border-2 border-primary", value: current_user.addresses.first.name%>
+        <% else %>
+          <%= form.text_field :name, class:"form-control p-3 rounded-4 border-2 border-primary"%>
+        <% end %>
       </div>
       <div class="d-flex gap-1">
         <div class="col-2">
-        <%= form.label "Numéro", class: "fs-6 mt-4 mb-3 text-muted" %><br />
-        <%= form.text_field :street_number, class:"form-control  p-3 rounded-4 border-2 border-primary", value: current_user.addresses.first.street_number%>
+          <%= form.label "Numéro", class: "fs-6 mt-4 mb-3 text-muted" %><br />
+          <% if current_user.addresses.any? %>
+            <%= form.text_field :street_number, class:"form-control  p-3 rounded-4 border-2 border-primary", value: current_user.addresses.first.street_number%>
+          <% else %>
+            <%= form.text_field :street_number, class:"form-control  p-3 rounded-4 border-2 border-primary"%>
+          <% end %>
         </div>
         <div class="col-4">
-        <%= form.label "Type de voie", class: "fs-6 mt-4 mb-3 text-muted" %><br />
-        <%= form.text_field :street_type, class:"form-control p-3 rounded-4 border-2 border-primary", value: current_user.addresses.first.street_type %>
+          <%= form.label "Type de voie", class: "fs-6 mt-4 mb-3 text-muted" %><br />
+          <% if current_user.addresses.any? %>
+            <%= form.text_field :street_type, class:"form-control p-3 rounded-4 border-2 border-primary", value: current_user.addresses.first.street_type %>
+          <% else %>
+            <%= form.text_field :street_type, class:"form-control p-3 rounded-4 border-2 border-primary" %>
+          <%end%>
         </div>
         <div class="col">
         <%= form.label "Nom de la voie", class: "fs-6 mt-4 mb-3 text-muted" %><br />
-        <%= form.text_field :street_name, class:"form-control p-3 rounded-4 border-2 border-primary" , value: current_user.addresses.first.street_name%>
+        <% if current_user.addresses.any? %>
+          <%= form.text_field :street_name, class:"form-control p-3 rounded-4 border-2 border-primary" , value: current_user.addresses.first.street_name%>
+        <% else %>
+          <%= form.text_field :street_name, class:"form-control p-3 rounded-4 border-2 border-primary" %>
+        <%end%>
         </div>
       </div>
       <div>
       <%= form.label "Infos supplémentaires", class: "fs-6 mt-4 mb-3 text-muted" %><br />
-      <%= form.text_field :additional_info, class:"form-control p-3 rounded-4 border-2 border-primary" , value: current_user.addresses.first.additional_info%>
+      <% if current_user.addresses.any? %>
+        <%= form.text_field :additional_info, class:"form-control p-3 rounded-4 border-2 border-primary" , value: current_user.addresses.first.additional_info%>
+      <% else %>
+        <%= form.text_field :additional_info, class:"form-control p-3 rounded-4 border-2 border-primary" %>
+      <%end%>
       </div>
       <div class="d-flex-center">
         <%=  form.submit "Changer d'adresse", class:"btn btn-primary mt-5"%>
