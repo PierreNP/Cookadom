@@ -50,21 +50,88 @@
                         <%= link_to "Se déconnecter", destroy_user_session_path, class:"dropdown-item", method: :delete  %>
                     </li>
             </div>
+            
+        <% end %>
+        <%= link_to  root_path, class: "navbar-brand fw-bolder text-primary d-none d-lg-block" do %>
+          <%= image_tag "logo.svg", alt: :logo, width: 50 %><span class="fw-bolder text-primary ms-1">COOKADOM</span>
+        <% end %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span></button>
 
-            <a class="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-shopping-cart fa-lg nav-link text-dark"></i></a>
+        <div class="collapse navbar-collapse" id="navbarText">
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            
+                <li class="nav-item">
+                    <%= link_to :Accueil,root_path,  class: "nav-link active", aria_current: "page" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "Les plats", dishes_path, class:"nav-link" %>
+                </li>       
+                <% unless current_user.status_cook? %>
+                    <li class="nav-item">
+                        <%= link_to "Devenir un Cook", new_cook_path, class:"nav-link" %>
+                    </li>  
+                <% end %>
+                
+            </ul>
         </div>
-    </nav>
+        <div class="nav-item dropdown">
+            <a class="dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user-circle fa-lg nav-link text-dark px-0"></i>
+            </a>
+            <ul class="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
+                <li>
+                <% if current_user.cooks.any? %>
+                    <%= link_to  "Profil", edit_cook_path(current_user.cooks.first.id), class:"dropdown-item" %>
+                <% else %>
+                    <%= link_to "Profil", edit_user_path(current_user.id), class:"dropdown-item" %>
+                <% end %>
+                </li>
+                <li>
+                    <%= link_to "Mes commandes", user_path(current_user.id), class:"dropdown-item" %>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li>
+                    <%= link_to "Se déconnecter", destroy_user_session_path, class:"dropdown-item", method: :delete  %>
+                </li>
+        </div>
+
+        <a class="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-shopping-cart fa-lg nav-link text-dark"></i></a>
+    </div>
+  </nav>
 
     <!-- CART SIDEBAR -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel">Panier</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Panier</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="container">
+    <% current_user.carts.last.order_dishes.each do |order_dish| %>
+    <% dish = order_dish.dish %>
+      <div class="row g-0 my-2 position-relative shadow-lg shadow-lg">
+        <img class="col-4 img-fluid rounded-4 " src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg" alt="...">
+        <div class="col-8 d-flex flex-column justify-content-around">
+          <h6 class="card-title text-center col-9 ps-1  fs-6"><%= dish.name %> x <%= order_dish.quantity %></h6>
+          <div class="row add-delete px-3">
+            <div class="col d-flex-center">
+              <div class="fw-bold fs-7"><%= dish.price %>€</div>
+            </div>
+          </div>
         </div>
-        <div class="offcanvas-body">
-            <%= link_to("Voir mon panier", cart_path(@cart), class: "nav-link btn-primary text-light rounded-6 m-2") if current_user %>
+        <div class="col-1 position-btn-close d-flex-center">
+          <%= link_to "", order_dish_path(order_dish.id), method: :delete, class:"btn-close p-00 fs-10"%>
         </div>
+      </div>
+    <% end %>
+    <div class="offcanvas-body d-flex justify-content-center">
+      <%= link_to("Voir mon panier", cart_path(@cart), class: "nav-link btn-primary text-light rounded-6 m-2 w-50") if current_user %>
     </div>
+  </div>
+ </div>
 
 
 
