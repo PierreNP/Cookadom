@@ -1,0 +1,5 @@
+<% if cook.avatar.attached? %>
+    <%= image_tag cook.avatar  , alt: "logo cookadom #{cook.business_name}", class: "rounded-circle",width: 70  %>
+<% else %>
+    <%= image_tag "logo.svg" , alt: "logo cookadom #{cook.business_name}", class: "rounded-circle",width: 70  %>
+<% end %>

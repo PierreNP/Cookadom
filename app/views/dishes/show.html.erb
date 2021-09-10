@@ -30,7 +30,7 @@
     <div class="bg-white rounded-5 d-flex flex-column ms-3 px-5 justify-content-evenly">
       <div class="d-flex justify-content-around align-items-center">
         <%= link_to cook_path(@dish.cook) do %>
-          <img src="https://cdn.programme-television.ladmedia.fr/var/premiere/storage/images/tele-7-jours/news-tv/soiree-speciale-philippe-etchebest-m6-a-la-decouverte-d-un-des-cuisiniers-les-plus-connus-du-paf-4660132/99175845-1-fre-FR/Soiree-speciale-Philippe-Etchebest-M6-a-la-decouverte-d-un-des-cuisiniers-les-plus-connus-du-PAF.jpg" class="rounded-circle my-3 " width="150px" height="150px">
+          <%= render "avatars/cook", cook: @dish.cook %>
         <% end %>
         <p class="text-center text-dark fs-6"> préparé par <br/><%= link_to @dish.cook.user.first_name, cook_path(@dish.cook) , class: "text-primary fs-3 fw-bold" %></p>
       </div>

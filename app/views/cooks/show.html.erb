@@ -5,11 +5,9 @@
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="m-2"> 
-                            <% if @cook.avatar.attached? %>
-                                <%= image_tag @cook.avatar  , alt: "logo cookadom #{@cook.business_name}", class: "rounded-circle",width: 70  %>
-                            <% else %>
-                                <%= image_tag "logo.svg" , alt: "logo cookadom #{@cook.business_name}", class: "rounded-circle",width: 70  %>
-                            <% end %>
+
+                          <%= render "avatars/cook", cook: @cook%>
+
                         </div>
                         <div class="px-4" >
                             <h1 class="card-title"><%= @cook.business_name %></h1>
