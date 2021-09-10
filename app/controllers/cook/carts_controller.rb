@@ -1,7 +1,7 @@
 class Cook::CartsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_cart, only: [:update]
+  before_action :set_cart, only: [:update, :destroy]
 
   def update
     @cook = Cook.find_by(user_id: current_user.id)
@@ -21,6 +21,11 @@ class Cook::CartsController < ApplicationController
       format.html {redirect_to cook_dishes_path}
       format.js {}
     end
+  end
+
+  def destroy
+    @cart.clean_and_destroy_cart
+    redirect_to cook_dishes_path
   end
 
   private

@@ -15,4 +15,13 @@ class Cart < ApplicationRecord
     end
     total
   end
+
+  def clean_and_destroy_cart
+    user_id = self.user_id
+    self.order_dishes.each do |order_dish|
+      order_dish.destroy
+    end
+    self.destroy
+    Cart.create(user_id: user_id, status: "pre_validation")
+  end
 end

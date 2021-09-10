@@ -61,6 +61,8 @@ puts "Tag create"
   end
   Address.create(name: ["home","friend 1", "work", "friend 2", "mummy the best mom"].sample, street_name: Faker::Address.street_name,street_number: rand(1..80), street_type: "rue", additional_info: "blabla", user_id: user.id)
   puts "Address create"
+  Cart.create(stripe_customer_id: rand(100000000..999999999).to_s, status: rand(0..2), user_id: user.id)
+  puts "Cart create"
 end
 puts "User create"
 
@@ -86,10 +88,6 @@ puts "TagDish create"
 end
 puts "Rating create"
 
-15.times do 
-  Cart.create(stripe_customer_id: rand(100000000..999999999).to_s, status: rand(0..2), user_id: rand(1..20))
-end
-puts "Cart create"
 
 15.times do 
   OrderDish.create(quantity: rand(1..3).to_s, cart_id: rand(1..15), dish_id: rand(1..20))

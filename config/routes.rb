@@ -32,7 +32,7 @@ Rails.application.routes.draw do
     resources :dishes do 
       resources :photos, only: [:create, :destroy]
     end
-    resources :carts, only: [:update]
+    resources :carts, only: [:update, :destroy]
   end
 
   scope '/checkout' do
