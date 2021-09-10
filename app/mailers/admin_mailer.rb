@@ -14,4 +14,23 @@ class AdminMailer < ApplicationMailer
 
   end
 
+  def paid_order(user, cart)
+
+    @admins = User.admin
+    @user = user   
+    @cart = cart
+    @order_dishes = OrderDish.where(cart_id: @cart_id)
+    @dishes = []
+
+    @order_dishes.each do |order_dish|
+        @dishes << Dish.where(dish_id: order_dish.dish_id)
+    end
+
+    @admins.each do |admin|
+      mail(to: admin.email, subject: "Commande payée par #{@user.email} !")      
+    end
+
+
+  end
+
 end

@@ -32,12 +32,15 @@ class CheckoutsController < ApplicationController
   end
 
   def success
-    @cart = Cart.where(user_id: current_user.id, status: 1)
+    @cart = Cart.where(user_id: current_user.id, status: "post_validation")
+    puts "%"*100
+    puts @cart
+    puts "%"*100
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
-    # UserMailer.command_confirmation_email(current_user).deliver_now
-    # AdminMailer.command_confirmation_email(current_user).deliver_now
-    @cart.update(status: 2)
+    UserMailer.paid_order(current_user, @cart).deliver_now
+    AdminMailer.paid_order(current_user, @cart).deliver_now
+    @cart.update(status: 3)
     Cart.create(user_id: current_user.id, status: 0)
     CookMailer.paid_order(@cart).deliver_now
   end

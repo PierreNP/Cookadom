@@ -1,0 +1,10 @@
+La commande a bien été payée !
+==========================================================
+
+Voici les plats que <%= @user.email%> a payés : 
+      <%= @dishes.each do |dish|%>
+      <%= dish.name%>
+      <%= OrderDish.where(cart_id: @cart.id, dish_id: @dish.id).quantity%>
+      <% end %>
+ 
+À très vite sur Cookadom.fr !

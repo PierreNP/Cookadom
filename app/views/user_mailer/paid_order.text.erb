@@ -1,0 +1,13 @@
+La commande a bien été payée !
+==========================================================
+
+Voici les plats que vous allez recevoir : 
+      <%= @dishes.each do |dish|%>
+      <%= dish.name%>
+      <%= OrderDish.where(cart_id: @cart.id, dish_id: @dish.id).quantity%>
+      <% end %>
+
+Rendez-vous sur <%= @url %> pour accéder à la commande !
+
+ 
+À très vite sur Cookadom.fr !
