@@ -1,6 +1,10 @@
   <nav class="navbar navbar-expand-lg  navbar-light navbar-light bg-light sticky-top " id="nav">
         <div class="container">
-
+            <% if current_user.cooks.any?%>
+                <a class="pe-3 fs-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
+                    <i class="fas fa-bars"></i>
+                </a>
+            <% end %>
             <%= link_to  root_path, class: "navbar-brand fw-bolder text-primary d-none d-lg-block" do %>
               <%= image_tag "logo.svg", alt: :logo, width: 50 %><span class="fw-bolder text-primary ms-1">COOKADOM</span>
             <% end %>
@@ -8,7 +12,9 @@
             <span class="navbar-toggler-icon"></span></button>
 
             <div class="collapse navbar-collapse" id="navbarText">
+   
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Accueil</a>
                     </li>
@@ -53,3 +59,8 @@
         <div class="offcanvas-body">
         </div>
     </div>
+
+    <% if current_user.cooks.any? %>
+        <%= render "layouts/start_navbar"%>
+    <% end %>
+

@@ -1,0 +1,19 @@
+
+
+        <!-- Start side bar-->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasLabel">Menu cook</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div class="nav_list">
+        <%= link_to "Dashboard", cook_dishes_path,class:"dropdown-item" %>
+        <%= link_to "Profil", cook_path(current_user.cooks.first.id),class:"dropdown-item" %>
+        <a href="#" class="nav_link disabled"><i class="fas fa-bell"></i><span class="nav_name">Notifications</span></a>
+        <%= link_to "Vos plats", cook_dishes_path, method: :get,class:"dropdown-item" %>
+        <a href="#" class="nav_link disabled"><i class="fas fa-file"></i> <span class="nav_name">Commandes</span></a>
+      </div>
+    </ul>
+  </div>
+</div>
