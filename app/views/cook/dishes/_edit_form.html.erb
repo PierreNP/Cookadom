@@ -1,7 +1,5 @@
-
-<%= form_with(model: dish, url: cook_dish_path(dish.id), local: true, remote: false, method: :put) do |form| %>
-<!-- error messages -->
-  <% if dish.errors.any? %>
+    <%= form_with(model: dish, url: cook_dish_path(dish.id), local: true, remote: false, method: :put) do |form| %>
+    <% if dish.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(dish.errors.count, "error") %> Impossible de valider:</h2>
       <ul>
@@ -11,21 +9,28 @@
       </ul>
     </div>
   <% end %>
-  
-<!-- dish info -->
-  <%= form.label :nom %>
-  <%= form.text_field :name, class:"form-control"%>
 
-  <%= form.label :description %>
-  <%= form.text_field :description, class:"form-control"%>
-
-  <%= form.label :prix %>
-  <%= form.text_field :price, class:"form-control"%>
-
-  <%= form.label :ingredients %>
-  <%= form.text_field :ingredients, class:"form-control"%>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+      <div class="row gx-5 mt-5">
+        <div class="col-10 col-md-6">
+          <%= form.label :Nom_du_plat, class:"fs-6 mt-4 mb-3 text-muted"%>
+          <%= form.text_field :name, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary", placeholder: dish.name %>
+        </div>
+        <div class="col-4 col-sm-3 col-md-2 col-xxl-1">
+          <%= form.label :Prix, class:"fs-6 mt-4 mb-3 text-muted" %>
+          <%= form.text_field :price, class:"col-1 form-control form-control-lg py-3 px-2 rounded-4 border-2 border-primary", placeholder: dish.price%>
+        </div>
+      </div>
+      <div class="row gx-5">
+        <div class="col-10 col-md-6">
+          <%= form.label :Description, class:"fs-6 mt-4 mb-3 text-muted"%>
+          <%= form.text_area :description, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary", placeholder: dish.description %>
+        </div>
+      </div>
+      <div class="row gx-5">
+        <div class="col-10 col-md-6">
+          <%= form.label :Ingrédients, class:"fs-6 mt-4 mb-3 text-muted"%>
+          <%= form.text_field :ingredients, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary", placeholder: dish.ingredients %>
+        </div> 
+      </div>
+      <%= form.submit "Valider", class:"btn btn-primary" %>
+    <%end%>

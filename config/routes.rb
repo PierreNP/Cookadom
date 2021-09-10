@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
  
+  get 'avatars/create'
+  get 'avatars/destroy'
   get 'avatar/create'
   get 'avatar/destroy'
 
@@ -7,13 +9,15 @@ Rails.application.routes.draw do
   
   resource :static_pages, only: [:home]
   
-  resources :carts, only: [:show, :create, :update, :destroy]
+  resources :carts, only: [:show, :update]
 
   resources :order_dishes, only: [:create, :update, :destroy]
 
   resources :dishes, only: [:index, :show]
   
-  resources :cooks, only: [:new, :create, :show, :destroy]
+  resources :cooks, only: [:new, :edit, :create, :show, :destroy] do 
+    resources :avatars, only: [:create, :destroy]
+  end
   
   devise_for :users, :controllers => { registrations: :registrations }
   resources :users, only: [:show, :edit, :update, :destroy]

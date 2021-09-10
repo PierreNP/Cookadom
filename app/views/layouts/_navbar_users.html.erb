@@ -9,11 +9,11 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Acceuil</a>
+                        <a class="nav-link active" aria-current="page" href="#">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <%= link_to "Commandez", dishes_path, class:"nav-link" %>
-                    </li>
+                        <%= link_to "Commander", dishes_path, class:"nav-link" %>
+                    </li>       
                 </ul>
             </div>
             <div class="nav-item dropdown">
@@ -28,7 +28,7 @@
                         <hr class="dropdown-divider">
                     </li>
                     <li>
-                        <%= link_to "Se deconnecter", destroy_user_session_path, class:"dropdown-item", method: :delete  %>
+                        <%= link_to "Se déconnecter", destroy_user_session_path, class:"dropdown-item", method: :delete  %>
                     </li>
             </div>
             <a class="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-shopping-cart fa-lg nav-link text-dark"></i></a>
