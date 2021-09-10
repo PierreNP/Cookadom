@@ -13,15 +13,44 @@
     </div>
     <div class="col-4">
       <h1>UPDATE</h1>
-      <%= render "photo_form", dish: dish%>
-      <%= render "edit_form", dish: dish%>
+      <%= render "photo_form", dish: dish %>
+      <%= render "edit_form", dish: dish %>
     </div>
     </div>
     <% end %>
- </div>
+</div>
 
-  <div class="container col-8 offset-2">
+<div class="container-fluid">
+  <% @carts.each do |cart|%>
+  <% if cart.status == "validation" %>
+  <div class="border border-primary m-1 p-2">
+    <% OrderDish.where(cart_id: cart.id).each do |order_dish| %>
+      <% dish = Dish.find_by(id: order_dish.dish_id) %>
+      <%= dish.name %>
+      <%= order_dish.quantity %>
+    <% end %>
+    <%= link_to "Valider la Commande", cook_cart_path(cart.id), method: :put, class: "btn btn-success" %>
+  </div>
+  <% end %>
+  <% end %>
+</div>
+
+<div class="container-fluid">
+  <% @carts.each do |cart|%>
+    <% if cart.status == "post_validation" %>
+    <div class="border border-primary m-1 p-2">
+      <% OrderDish.where(cart_id: cart.id).each do |order_dish| %>
+        <% dish = Dish.find_by(id: order_dish.dish_id) %>
+        <%= dish.name %>
+        <%= order_dish.quantity %>
+      <% end %>
+    </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="container col-8 offset-2">
     <h1>NEW</h1>
     <%= render "new_form", dish: @dish %>
-  </div>
+</div>
 
