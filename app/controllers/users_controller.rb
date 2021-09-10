@@ -12,6 +12,8 @@ class UsersController < ApplicationController
     end
   
     def edit
+      @address = Address.new
+      
     end
   
     def update

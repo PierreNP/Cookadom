@@ -20,7 +20,9 @@ Rails.application.routes.draw do
   end
   
   devise_for :users, :controllers => { registrations: :registrations }
-  resources :users, only: [:show, :edit, :update, :destroy]
+  resources :users, only: [:show, :edit, :update, :destroy] do 
+    resources :addresses, only: [:create, :update, :destroy]
+  end
 
   namespace :admin, only: [:index, :update, :destroy] do
     resources :cooks, :users
@@ -30,6 +32,7 @@ Rails.application.routes.draw do
     resources :dishes do 
       resources :photos, only: [:create, :destroy]
     end
+    resources :carts, only: [:update]
   end
 
   scope '/checkout' do

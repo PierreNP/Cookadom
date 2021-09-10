@@ -1,5 +1,5 @@
 class Cart < ApplicationRecord
-  enum status: [ :pre_validation, :validation, :post_validation ]
+  enum status: [ :pre_validation, :validation, :post_validation, :paid ]
 
   belongs_to :user, optional: true
 

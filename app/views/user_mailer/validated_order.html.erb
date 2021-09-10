@@ -6,11 +6,13 @@
   <body>
     <h1>Commande validée !</h1>
     <p>
-      Ton plat a été validé par le cook suivant : <%= @cook.email %>.
+      Ton plat a été validé par le cook suivant : <%= @user.email %>.
     </p>
     <p>
-      Pour accéder à ton espace client, connecte-toi via : <%= @url %>.
+     Il ne te reste plus qu'à payer pour recevoir tes plats!
     </p>
+    <p>
+      Pour régler ta commande tu peux accéder à ton panier via: <%= @url %>.
     <p> À très vite sur Cookadom.fr !
   </body>
 </html>
