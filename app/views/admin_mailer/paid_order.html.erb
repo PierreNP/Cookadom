@@ -10,7 +10,7 @@
       Voici les plats que <%= @user.email%> a payés :  
       <%= @dishes.each do |dish|%>
       <%= dish.name%>
-      <%= OrderDish.where(cart_id: @cart.id, dish_id: @dish.id).quantity%>
+      <%= OrderDish.find_by(cart_id: @cart.id, dish_id: dish.id).quantity%>
       <% end %>
     </p>
     

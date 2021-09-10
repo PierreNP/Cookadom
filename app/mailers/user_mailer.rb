@@ -29,11 +29,11 @@ class UserMailer < ApplicationMailer
     def paid_order(user, cart)
       @user = user   
       @cart = cart
-      @order_dishes = OrderDish.where(cart_id: @cart_id)
+      @order_dishes = OrderDish.where(cart_id: @cart.id)
       @dishes = []
 
       @order_dishes.each do |order_dish|
-          @dishes << Dish.where(dish_id: order_dish.dish_id)
+          @dishes << Dish.find_by(id: order_dish.dish_id)
       end
 
       @url  = "https://cookadom-staging.herokuapp.com/users/#{@user.id}"

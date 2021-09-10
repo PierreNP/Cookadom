@@ -19,11 +19,11 @@ class AdminMailer < ApplicationMailer
     @admins = User.admin
     @user = user   
     @cart = cart
-    @order_dishes = OrderDish.where(cart_id: @cart_id)
+    @order_dishes = OrderDish.where(cart_id: @cart.id)
     @dishes = []
-
+    
     @order_dishes.each do |order_dish|
-        @dishes << Dish.where(dish_id: order_dish.dish_id)
+      @dishes << Dish.find_by(id: order_dish.dish_id)
     end
 
     @admins.each do |admin|

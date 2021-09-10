@@ -7,9 +7,9 @@
 <% end %>
 <h2> total: <%= @cart.total_price %></h2>
 
-<% if @cart.total_price >= 1 && current_user.addresses[0] != nil%>
+<% if @cart.total_price >= 1 && current_user.addresses.first != nil && @cart.status == "post_validation" %>
   <%= link_to :Payer, checkout_create_path, method: :post, class: "btn btn-primary", remote: true %>
-<% elsif current_user.addresses[0] == nil %>
+<% elsif current_user.addresses.first == nil %>
   Veuillez renseigner une adresse de livraison avant de valider votre commande:
   <%= link_to "Ajouter une addresse", edit_user_path(current_user.id), method: :get, class: "btn btn-primary"%>
 <% else %>

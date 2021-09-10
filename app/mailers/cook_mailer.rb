@@ -36,24 +36,18 @@ class CookMailer < ApplicationMailer
     def paid_order(cart)
         
         @cart = cart
-        @order_dishes = OrderDish.where(cart_id: @cart_id)
+        @order_dishes = OrderDish.where(cart_id: @cart.id)
         @dishes = []
 
         @order_dishes.each do |order_dish|
-            @dishes << Dish.where(dish_id: order_dish.dish_id)
+            @dishes << Dish.find_by(id: order_dish.dish_id)
         end
-        puts "/"*200
-        puts @dishes
-        puts "/"*200
-        puts @cart
-        puts "/"*200
-        puts @order_dishes
-        puts "/"*200
-        @cook = Cook.where(cook_id: @dishes[0].cook_id)
+        
+        @cook = Cook.find_by(id: @dishes[0].cook_id)
 
         @url  = 'https://cookadom-staging.herokuapp.com/cook/dishes'
 
-        mail(to: @cook.email, subject: 'La commande a été réglée, à vos fourneaux !')
+        mail(to: @cook.user.email, subject: 'La commande a été réglée, à vos fourneaux !')
         
     end
 end
