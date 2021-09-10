@@ -1,10 +1,16 @@
 class CooksController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :create, :destroy]
-  before_action :set_cook, only: [:show, :destroy]
+  before_action :authenticate_user!
+  before_action :set_cook, only: [:show, :edit, :update, :destroy]
  
 
+  def show
+    @dishes = @cook.dishes
+    @addresses = @cook.user.addresses
+  end
+
   def new
+    @cook = Cook.new
   end
 
   def create
@@ -24,10 +30,13 @@ class CooksController < ApplicationController
     end
   end
 
-  def show
-    @dishes = @cook.dishes
-    @addresses = @cook.user.addresses
+  def edit
   end
+
+  def update
+    @cook.update(cook_params)
+  end
+  
 
   def destroy
     @cook.destroy
@@ -41,7 +50,7 @@ class CooksController < ApplicationController
   private 
   
   def cook_params
-    return params.permit(:user_id, :siren, :business_name, :legal_status, :headquarter, :vat_number, :commercial_register)
+    return params.permit(:user_id, :siren, :business_name, :legal_status, :headquarter, :vat_number, :commercial_register, :avatars)
   end
 
   def set_cook

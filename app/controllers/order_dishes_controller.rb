@@ -1,5 +1,8 @@
 class OrderDishesController < ApplicationController
+
+  before_action :authenticate_user!, only: [:new, :create, :destroy]
   before_action :set_order, only: [:update, :destroy]
+  
   def create
     if @cart.dishes.include?(Dish.find_by(id: params[:dish_id]))
       @order = OrderDish.find_by(dish_id: params[:dish_id], cart_id: @cart.id)
@@ -8,7 +11,7 @@ class OrderDishesController < ApplicationController
       order = OrderDish.new(dish_id: params[:dish_id], cart_id: @cart.id, quantity: 1)
       
       if order.save
-        flash[:sucess] = "Plat ajouté au panier"
+        flash[:success] = "Plat ajouté au panier"
       else
         flash[:error] = "Impossible d'ajouter la plat au panier"  
       end
