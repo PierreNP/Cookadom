@@ -1,28 +1,35 @@
 
 
 
-<div class="container-fluid d-flex flex-wrap justify-content-center">    
+<div class="container border my-5">    
     <% @dishes.each do |dish|%>
-    <div class="container row border-bottom d-flex flex-row align-items-center justify-content-center">
-    <div class="col-6">
-      <h1><%= dish.name %></h1>  
-      <p>description: <%= dish.description %></p> 
-      <p>price: <%= dish.price %></p>
-      <p>ingredients: <%= dish.ingredients %></p>  
-      <p><%= link_to "Delete Dish", cook_dish_path(dish.id), method: :delete, class: "btn btn-danger" %></p>
+
+    <div class="row border-bottom">
+      <div class="col-sm-12 col-md-12 col-lg-6">
+        <div class="container my-2">
+          <h1 class="my-4"><%= dish.name %>         <%= link_to "Delete Dish", cook_dish_path(dish.id), method: :delete, class: "btn mx-2 btn-danger" %></h1> 
+          <p>description: <%= dish.description %></p> 
+          <p>price: <%= dish.price %></p>
+          <p>ingredients: <%= dish.ingredients %></p>  
+          <div class="container"><%= render "photo_form", dish: dish %></div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-12 col-lg-6 border-start ">
+        <h1 class="my-4 text-center">Editer votre plat</h1>
+        <div class="container-fluid my-2"><%= render "edit_form", dish: dish %></div>
+      </div>
     </div>
-    <div class="col-4">
-      <h1>UPDATE</h1>
-      <%= render "photo_form", dish: dish %>
-      <%= render "edit_form", dish: dish %>
-    </div>
-    </div>
+
     <% end %>
 </div>
 
-<div class="container col-8 offset-2">
-    <h1>NEW</h1>
-    <%= render "new_form", dish: @dish %>
+
+<div class="container d-flex justify-content-center">
+  <div class="col-8">
+      <h1>NEW</h1>
+      <%= render "new_form", dish: @dish %>
+  </div>
 </div>
 
 <h1 class="text-center">COMMANDES</h1>
