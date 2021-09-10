@@ -32,6 +32,9 @@ class User < ApplicationRecord
   def status_cook?
     status == "cook"
   end
+  def status_user?
+    status == "user"
+  end
 
   def status_admin?
     status == "admin"
