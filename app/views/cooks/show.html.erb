@@ -1,2 +1,11 @@
-<h1>Cooks#show</h1>
-<p>Find me in app/views/cooks/show.html.erb</p>
+
+    <div>
+     Prénom du cuisinier : <%= @cook.user.first_name%>
+     </div>
+     <br/>
+     <div>
+     Adresse du cuisinier : <%= @addresses[0].street_number%>, <%=@addresses[0].street_type%> <%=@addresses[0].street_name %>, <%= @cook.user.city.zip_code%>  <%= @cook.user.city.name%>
+     </div>
+     <br/>
+    
+    <%= link_to "Voir les plats de #{@cook.user.first_name}", cook_dishes_path, class:"btn btn-primary" %>    

@@ -26,6 +26,7 @@ class CooksController < ApplicationController
 
   def show
     @dishes = @cook.dishes
+    @addresses = @cook.user.addresses
   end
 
   def destroy
