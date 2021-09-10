@@ -4,19 +4,27 @@ class OrderDishesController < ApplicationController
   before_action :set_order, only: [:update, :destroy]
   
   def create
-    if @cart.dishes.include?(Dish.find_by(id: params[:dish_id]))
-      @order = OrderDish.find_by(dish_id: params[:dish_id], cart_id: @cart.id)
-      @order.update(quantity: @order.quantity+1)
-    else
-      order = OrderDish.new(dish_id: params[:dish_id], cart_id: @cart.id, quantity: 1)
+    if @cart.dishes.empty? || @cart.dishes.last.cook ==  Dish.find_by(id: params[:dish_id]).cook
       
-      if order.save
-        flash[:success] = "Plat ajouté au panier"
+      if @cart.dishes.include?(Dish.find_by(id: params[:dish_id]))
+        @order = OrderDish.find_by(dish_id: params[:dish_id], cart_id: @cart.id)
+        if @order.update(quantity: @order.quantity+1)
+          flash[:success] = "Plat ajouté au panier"
+        else 
+          flash[:error] = "Impossible d'ajouter la plat au panier"  
+        end
       else
-        flash[:error] = "Impossible d'ajouter la plat au panier"  
+        order = OrderDish.new(dish_id: params[:dish_id], cart_id: @cart.id, quantity: 1)
+        if order.save
+          flash[:success] = "Plat ajouté au panier"
+        else
+          flash[:error] = "Impossible d'ajouter la plat au panier"  
+        end
       end
-      redirect_to dishes_path
+    else
+      flash[:error] = "Vous ne pouvez pas commander à deux cuisinier différent en même temps."
     end
+    redirect_to dishes_path
   end
 
   def update 
@@ -40,6 +48,5 @@ class OrderDishesController < ApplicationController
   def set_order
     @order = OrderDish.find(params[:id])
   end
-
 
 end
