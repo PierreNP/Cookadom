@@ -41,12 +41,4 @@ class OrderDishesController < ApplicationController
     @order = OrderDish.find(params[:id])
   end
 
-  def modify_quantity
-    if params[:sign] == "plus"
-      @cartItem.add_quantity(1)
-    else params[:sign] == "minus"
-      @cartItem.add_quantity(-1)
-    end
-  end
-
 end
