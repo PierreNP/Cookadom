@@ -5,7 +5,7 @@
   <p> quantity <%= order_dishes.quantity %></p>
   <%= link_to :supprimer, order_dish_path(order_dishes), method: :delete, class:"btn btn-danger" %>
 <% end %>
-<h2> total: <%= @cart.total_price %></h2>
+<h2> total: <%= @cart.total_price/100 %></h2>
 
 <% if @cart.total_price >= 1 && current_user.addresses[0] != nil%>
   <%= link_to :Payer, checkout_create_path, method: :post, class: "btn btn-primary", remote: true %>
