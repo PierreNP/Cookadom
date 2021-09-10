@@ -1,9 +1,10 @@
   <nav class="navbar navbar-expand-lg  navbar-light navbar-light bg-light sticky-top " id="nav">
         <div class="container">
             <% if current_user.cooks.any?%>
-                <a class="pe-3 fs-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
+                <div class="pe-3 fs-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
                     <i class="fas fa-bars"></i>
-                </a>
+                </div>
+                
             <% end %>
             <%= link_to  root_path, class: "navbar-brand fw-bolder text-primary d-none d-lg-block" do %>
               <%= image_tag "logo.svg", alt: :logo, width: 50 %><span class="fw-bolder text-primary ms-1">COOKADOM</span>
@@ -16,7 +17,7 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 
                     <li class="nav-item">
-                        <%= link_to "Accueil",root_path,  class: "nav-link active", aria_current: "page" %>
+                        <%= link_to :Accueil,root_path,  class: "nav-link active", aria_current: "page" %>
                     </li>
                     <li class="nav-item">
                         <%= link_to "Les plats", dishes_path, class:"nav-link" %>
@@ -57,8 +58,12 @@
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
+            <%= link_to("Voir mon panier", cart_path(@cart), class: "nav-link btn-primary text-light rounded-6 m-2") if current_user%>
         </div>
     </div>
+
+
+
 
     <% if current_user.cooks.any? %>
         <%= render "layouts/start_navbar"%>
