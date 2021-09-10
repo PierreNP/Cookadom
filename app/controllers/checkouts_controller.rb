@@ -5,6 +5,7 @@ class CheckoutsController < ApplicationController
     puts "%"*500
     puts current_user.addresses[0].class
     puts "%"*500
+
     if current_user.addresses[0] == nil
       redirect_to edit_user_path(current_user.id)
       flash[:error] = "Veuillez renseigner une adresse de livraison avant de valider votr commande."
@@ -31,12 +32,14 @@ class CheckoutsController < ApplicationController
   end
 
   def success
+    @cart = Cart.where(user_id: current_user.id, status: 1)
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
     # UserMailer.command_confirmation_email(current_user).deliver_now
     # AdminMailer.command_confirmation_email(current_user).deliver_now
     @cart.update(status: 2)
     Cart.create(user_id: current_user.id, status: 0)
+    CookMailer.paid_order(@cart).deliver_now
   end
 
   def cancel

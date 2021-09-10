@@ -32,4 +32,22 @@ class CookMailer < ApplicationMailer
         mail(to: @user.email, subject: 'Vous avez reçu une commande à valider')
         
     end
+
+    def paid_order(cart)
+        
+        @cart = cart
+        @order_dishes = OrderDish.where(cart_id: @cart_id)
+        @dishes = []
+
+        @order_dishes.each do |order_dish|
+            @dishes << Dish.where(dish_id: order_dish.dish_id)
+        end
+
+        @cook = Cook.where(cook_id: @dishes[0].cook_id)
+
+        @url  = 'https://cookadom-staging.herokuapp.com/cook/dishes'
+
+        mail(to: @cook.email, subject: 'La commande a été réglée, à vos fourneaux !')
+
+    end
 end
