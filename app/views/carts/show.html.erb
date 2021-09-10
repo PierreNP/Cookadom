@@ -1,0 +1,17 @@
+<% @cart.order_dishes.each do |order_dishes|%>
+  <% dish = order_dishes.dish %>
+  <p> name :<%= dish.name %></p>
+  <p> price : <%= dish.price %></p>
+  <p> quantity <%= order_dishes.quantity %></p>
+  <%= link_to :supprimer, order_dish_path(order_dishes), method: :delete, class:"btn btn-danger" %>
+<% end %>
+<h2> total: <%= @cart.total_price %></h2>
+
+<% if @cart.total_price >= 1 && current_user.addresses[0] != nil%>
+  <%= link_to :Payer, checkout_create_path, method: :post, class: "btn btn-primary", remote: true %>
+<% elsif current_user.addresses[0] == nil %>
+  Veuillez renseigner une adresse de livraison avant de valider votre commande:
+  <%= link_to "Ajouter une addresse", edit_user_path(current_user.id), method: :get, class: "btn btn-primary"%>
+<% else %>
+  <%= link_to :Parcourir_nos_plats, dishes_path, class: "btn btn-primary" %>
+<% end %>

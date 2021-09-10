@@ -1,4 +1,5 @@
-class PhotosController < ApplicationController
+class Cook::PhotosController < ApplicationController
+  
   def create
     @dish = Dish.find(params[:dish_id])
     @dish.photo.attach(params[:photo])
@@ -7,12 +8,12 @@ class PhotosController < ApplicationController
 
   def destroy
     @photo = Dish.find(params[:dish_id]).photo
-
+    
     if @photo.destroy
         redirect_to dishes_path, success: 'photo supprimé.'
     else
         render :show, error: 'Erreur, impossible de supprimer la photo'
     end
-
   end
+
 end

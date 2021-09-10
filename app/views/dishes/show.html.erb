@@ -1,7 +1,8 @@
 <br />
 <br />
 <br />
-<section class="container">
+<section class="container p-5">
+  
   <div class="grid-2  position-relative ">
     <div class="section-bg bg-primary rounded-5"></div>
       <% if @dish.photo.attached? %>
@@ -15,7 +16,7 @@
       <p class="mt-4"><%= @dish.description %></p>
     </div>
   </div>
-
+  
   <br />
   <br />
   
@@ -27,9 +28,16 @@
     </div>
 
     <div class="bg-white rounded-5 d-flex flex-column ms-3 px-5 justify-content-evenly">
+      <div class="d-flex justify-content-around align-items-center">
+        <%= link_to cook_path(@dish.cook) do %>
+          <img src="https://cdn.programme-television.ladmedia.fr/var/premiere/storage/images/tele-7-jours/news-tv/soiree-speciale-philippe-etchebest-m6-a-la-decouverte-d-un-des-cuisiniers-les-plus-connus-du-paf-4660132/99175845-1-fre-FR/Soiree-speciale-Philippe-Etchebest-M6-a-la-decouverte-d-un-des-cuisiniers-les-plus-connus-du-PAF.jpg" class="rounded-circle my-3 " width="150px" height="150px">
+        <% end %>
+        <p class="text-center text-dark fs-6"> préparé par <br/><%= link_to @dish.cook.user.first_name, cook_path(@dish.cook) , class: "text-primary fs-3 fw-bold" %></p>
+      </div>
+      
       <div class="d-flex justify-content-evenly">
         <p class="px-3 py-2 fs-2 fw-bold"><%= @dish.price %>€</p>
-         <form class="d-flex-center gap-3 " action="" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="6bm3iR5NUpurOgJ9qxDL4xYUoz+wDKzozSW5I4nLuIu9XQEU4e4nEUWGzw4DsiblLWo+nE+49rHnRKMQQzZfjg==">
+         <%# <form class="d-flex-center gap-3 " action="" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="6bm3iR5NUpurOgJ9qxDL4xYUoz+wDKzozSW5I4nLuIu9XQEU4e4nEUWGzw4DsiblLWo+nE+49rHnRKMQQzZfjg==">
 
           <a data-remote="true" rel="nofollow" data-method="patch" href="/cart_items/52?sign=minus">
             <i class="fas fa-minus line-h-quantity fs-4 text-white bg-primary p-1 rounded-circle"></i>
@@ -41,7 +49,7 @@
             <i class="fas fa-plus fs-4 text-white line-h-quantity bg-primary p-1 rounded-circle"></i>
           </a>
 
-        </form>
+        </form> %>
       </div>
     
 

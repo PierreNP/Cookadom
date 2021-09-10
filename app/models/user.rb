@@ -25,6 +25,19 @@ class User < ApplicationRecord
   validates :status, presence: true
   # validates :phone, uniqueness: true, numericality: { only_integer: true }, length: { is: 10 }
 
+  def name
+     first_name + " " + last_name
+  end
+
+  def status_cook?
+    status == "cook"
+  end
+
+  def status_admin?
+    status == "admin"
+  end
+
+
   private
     def welcome_send
       UserMailer.welcome_email(self).deliver_now

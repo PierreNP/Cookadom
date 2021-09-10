@@ -1,6 +1,9 @@
-<h1>Dishes index</h1>
-<div class="grid-3 gap-5 mx-5">
-  <% @dishes.each do |dish| %>
-    <%= render 'card_index', dish: dish %>
-  <% end %>
-</div>
+<section class="container">
+  <div class="row">
+    <% @dishes.each do |dish| %>
+      <div class="col-md-4 col-sm-12 col-lg-3 col-xl-2 m-1">
+        <%= render 'card_index', dish: dish %>
+      </div>
+    <% end %>
+  </div>
+</section>
