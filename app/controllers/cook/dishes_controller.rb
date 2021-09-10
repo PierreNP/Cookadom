@@ -8,6 +8,14 @@ class Cook::DishesController < ApplicationController
   def index
     @dish = Dish.new()
     @dishes = Dish.where(cook_id: @cook.id)
+    @carts = []
+
+    @dishes.each do |dish|
+      @order_dishes = OrderDish.where(dish_id: dish.id)
+      @order_dishes.each do |order_dish|
+        @carts.push(Cart.find_by(id: order_dish.cart_id)) unless @carts.include?(Cart.find_by(id: order_dish.cart_id))
+      end
+    end
   end
 
   def create

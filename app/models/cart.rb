@@ -1,5 +1,5 @@
 class Cart < ApplicationRecord
-  enum status: [ :pre_validation, :validation, :post_validation ]
+  enum status: [ :pre_validation, :validation, :post_validation, :paid ]
 
   belongs_to :user, optional: true
 
@@ -11,7 +11,7 @@ class Cart < ApplicationRecord
   def total_price
     total = 0
     self.order_dishes.each do |order|
-       total += (order.dish.price * order.quantity)
+       total += (order.dish.price * order.quantity * 100)
     end
     total
   end

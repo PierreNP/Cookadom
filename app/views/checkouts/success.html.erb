@@ -1,0 +1,15 @@
+
+<div class="jumbotron jumbotron-fluid bg-stripe-success p-5 d-flex justify-content-center juf row text-center">
+  <h2 class="col-12 text-primary ">Commande payé avec succès!</h2>
+  <p class="col-12 text-secondary ">Il ne vous reste plus qu'à attendre vos plats chez-vous!</p>
+
+  <div class="container row my-5 d-flex justify-content-center ">
+    <h1 class="col-12 text-primary m-5 text-center"> Merci ! </h1>
+    <p class="col-6 text-start">Voici le détail de votre commande:</p>
+  </div>
+
+  <div class="container col-5 my-5 d-flex justify-content-center">
+    <p> Montant total de la commande est de: <%=number_to_currency(@payment_intent.amount_received / 100.0, unit: '€', separator: ',', delimiter: "", format: "%n %u")%>.</p>
+    <p>Clique <%= link_to "ici", user_path(current_user.id) %> pour voir l'historique de tes commandes.</p>
+  </div>
+</div>
