@@ -1,40 +1,22 @@
-<div class="container-fluid">
-  <div class="row p-1 border vh-100 w-100 d-flex justify-content-start">
-
-    <div class="col-3 py-4 px-2 bg-light h-100 d-flex flex-column align-items-center justify-content-start border border-secondary">
-
-       
-
-        <div class="d-flex pt-4 px-4 mt-4 h-50 w-100 flex-column justify-content-end">
-
-          <div class="d-flex py-4 my-2 justify-content-center flex-grow-1  w-100">
-            <h2>Page Profil</h2>
-          </div>
-
-          <div class="d-flex border-bottom border-top justify-content-center pt-4 py-2 my-2 w-100">
-            <p>Profil</p>
-          </div>
-
-          <div class="d-flex border-bottom justify-content-center py-2 my-2 w-100">
-            <p>Commandes</p>
-          </div>
-
-          <div class="d-flex border-bottom justify-content-center py-2 my-2 w-100">
-            <p>Commentaires et notes</p>
-          </div>
+<div class="container">
+  <h1 class="text-center pb-3 text-primary"> Vos commandes : </h1>
+    <% current_user.carts.each do |cart| %> 
+      <% unless cart.status == "pre_validation"%>
+      <div class="p-5 mt-3 col-8 offset-2 border border-1 border-primary">
+        <h5 class="mb-3 text-center"> Panier du <%= cart.updated_at.to_date %></h5>
+         
+        <div class="border-bottom border-primary" > 
+          <% cart.order_dishes.each do |order| %>
+            <% dish = order.dish %>
+            <div class="d-flex justify-content-between border-top border-primary" >
+              <p class=" p-2 m-0"><%= dish.name %> x <%= order.quantity %></p>
+              <p class=" p-2 m-0"><%= dish.price %>€</p>
+            </div>
+          <% end %>
         </div>
-
-    </div>
-
-    <div class="col-9 p-4 bg-light h-100 d-flex flex-column align-items-start justify-content-start border border-secondary">
-
-      <div class="border p-4 m-2">
-        <div class="border d-flex flex-column justify-content-end p-4 m-4">
-          <h2>Profil</h2>
-          <p><%= current_user.email %></p>
-        </div>
+        <h5 class=" mt-3 text-center">TOTAL : <%= cart.total_price %>€</h5>
       </div>
-    </div>
+      <%end%>
+    <% end %>
 
-  </div>
 </div>
