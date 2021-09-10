@@ -1,9 +1,7 @@
 <section class="container">
   <div class="row">
     <% @dishes.each do |dish| %>
-      <div class="col-md-4 col-sm-12 col-lg-3 col-xl-2 m-1">
         <%= render 'card_index', dish: dish %>
-      </div>
     <% end %>
   </div>
 </section>

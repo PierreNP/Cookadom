@@ -34,6 +34,7 @@ class OrderDishesController < ApplicationController
   def destroy 
     if @order.destroy
       flash[:success] = "Plat enlevée du panier avec succès"
+      redirect_back(fallback_location: root_path)
     else
       flash[:error] = "Impossible de supprimé le plat"
     end
