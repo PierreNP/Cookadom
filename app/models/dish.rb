@@ -16,11 +16,11 @@ class Dish < ApplicationRecord
    validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
    validates :ingredients, presence: true, length: { in: 5..1000 }
 
-
    def price_euro
       money = Money.from_cents(price, "EUR").format
       currency = money.slice!(0)
-      money.insert(-1, currency)
+      money.insert(-1, " #{currency}")
    end
+  
    
 end

@@ -70,7 +70,7 @@
           <h6 class="card-title text-center col-9 ps-1  fs-6"><%= dish.name %> x <%= order_dish.quantity %></h6>
           <div class="row add-delete px-3">
             <div class="col d-flex-center">
-              <div class="fw-bold fs-7"><%= dish.price %>€</div>
+              <div class="fw-bold fs-7"><%= dish.price_euro %></div>
             </div>
           </div>
         </div>
@@ -88,7 +88,7 @@
 
 
 
-    <% if current_user.cooks.any? %>
+    <% if current_user.cook? %>
         <%= render "layouts/start_navbar"%>
     <% end %>
 

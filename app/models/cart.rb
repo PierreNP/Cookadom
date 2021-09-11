@@ -16,6 +16,14 @@ class Cart < ApplicationRecord
     total
   end
 
+
+  def total_price_euro
+    money = Money.from_cents(self.total_price, "EUR").format
+    currency = money.slice!(0)
+    money.insert(-1, " #{currency}")
+  end
+
+
   def clean_and_destroy_cart
     user_id = self.user_id
     self.order_dishes.each do |order_dish|
