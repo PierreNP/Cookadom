@@ -1,7 +1,7 @@
 <% @cart.order_dishes.each do |order_dishes|%>
   <% dish = order_dishes.dish %>
   <p> name :<%= dish.name %></p>
-  <p> price : <%= dish.price %></p>
+  <p> price : <%= dish.price_euro %></p>
   <p> quantity <%= order_dishes.quantity %></p>
   <%= link_to :supprimer, order_dish_path(order_dishes), method: :delete, class:"btn btn-danger" %>
 <% end %>
