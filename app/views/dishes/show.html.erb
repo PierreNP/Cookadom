@@ -35,27 +35,27 @@
         <p class="text-center text-dark fs-6"> préparé par <br/><%= link_to @dish.cook.user.first_name, cook_path(@dish.cook) , class: "text-primary fs-3 fw-bold" %></p>
       </div>
       
-      <div class="d-flex justify-content-evenly">
-        <p class="px-3 py-2 fs-2 fw-bold"><%= @dish.price_euro %></p>
-         <%# <form class="d-flex-center gap-3 " action="" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="6bm3iR5NUpurOgJ9qxDL4xYUoz+wDKzozSW5I4nLuIu9XQEU4e4nEUWGzw4DsiblLWo+nE+49rHnRKMQQzZfjg==">
+      <div >
+        <p class="px-3 py-2 fs-2 fw-bold text-center"><%= @dish.price_euro %></p>
+         <%= form_with model: @order_dishes, url: order_dishes_path(dish_id: @dish.id), class: "d-flex justify-content-evenly" do |form| %>
 
-          <a data-remote="true" rel="nofollow" data-method="patch" href="/cart_items/52?sign=minus">
+          <%# <a data-remote="true" rel="nofollow" data-method="patch" href="/cart_items/52?sign=minus">
             <i class="fas fa-minus line-h-quantity fs-4 text-white bg-primary p-1 rounded-circle"></i>
-          </a>  
+          </a>   %>
           
-          <input value="2" class=" text-center w-quantity-input-2 fs-4" type="text" name="cart_item[quantity]" id="cart_item_quantity">
+          <%= form.number_field :quantity , value: "1", class: "text-center col-2 fs-4" %>
           
-          <a data-remote="true" rel="nofollow" data-method="patch" href="/cart_items/52?sign=plus">
+          <%# <a data-remote="true" rel="nofollow" data-method="patch" href="/cart_items/52?sign=plus">
             <i class="fas fa-plus fs-4 text-white line-h-quantity bg-primary p-1 rounded-circle"></i>
-          </a>
+          </a> %>
 
-        </form> %>
+          <%= form.submit "Ajouter au panier" , class: "btn btn-primary btn-block text-uppercase"%>
+          
+
+        <% end %>
       </div>
     
 
-      <%= link_to order_dishes_path(dish_id: @dish.id), method: :post, class: "btn btn-primary btn-block text-uppercase" do %>
-        <i class="fa fa-shopping-cart"></i> ajouter au panier
-      <% end %>
     </div>
   </div>
 
