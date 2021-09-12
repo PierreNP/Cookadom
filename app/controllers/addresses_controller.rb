@@ -6,7 +6,7 @@ class AddressesController < ApplicationController
     end
     
     @address = Address.new(address_params)
-    @address.user_id=current_user.id
+    @address.user_id = current_user.id
     @address.save
     
       redirect_to dishes_path

@@ -1,0 +1,52 @@
+<div class="container-fluid">
+
+  <div class="row d-flex justify-content-around">
+    <div class="col-12 col-lg-3 my-4">
+      <h2 class="text-primary"> Panier en cours: </h2>
+      <% if @cart_pre_validation %>
+        
+        <% @cart_pre_validation.order_dishes.each do |order_dish| %>
+
+          <%= render "card_dishes.html.erb", order_dish: order_dish, cart: @cart_pre_validation %>
+          
+        <% end %>
+          <h5 class="my-3 text-primary"> <%= "Total: #{@cart.total_price_euro}" if @cart.total_price != 0 %></h5>
+        <% if current_user.addresses.first.nil? %>
+          <p> Il te faut une adresse pour commander! Clique <%= link_to "ici", edit_user_path(current_user.id)%> pour en ajouter une.</p>
+        <% elsif @cart_pre_validation.order_dishes.first %>
+          <%= link_to "Valider la commande", cart_path(@cart_pre_validation.id), method: :put, class:"btn btn-primary col-6 offset-3" %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-12 col-lg-3 my-4">
+      <h2 class="text-primary"> Panier en attente de validation par le cuisinier: </h2>
+      <% if @carts_validation %>
+        <% @carts_validation.each do |cart| %>
+          <% cart.order_dishes.each do |order_dish| %>
+
+            <%= render "card_dishes.html.erb", order_dish: order_dish, cart: cart %>
+
+          <% end %>
+          <h5 class="my-3 text-primary"> Total: <%= cart.total_price_euro %></h5>
+          <%= link_to "Annuler la commande", cook_cart_path(cart.id), method: :delete, class:"btn btn-danger col-6 offset-3 " %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-12 col-lg-3 my-4">
+      <h2 class="text-primary"> Panier validé:</h2>
+      <% if @carts_post_validation %>
+        <% @carts_post_validation.each do |cart| %>
+          <% cart.order_dishes.each do |order_dish| %>
+
+            <%= render "card_dishes.html.erb", order_dish: order_dish, cart: cart%>
+
+          <% end %>
+          <h5 class="my-3 text-primary"> Total: <%= cart.total_price_euro %></h5>
+          <%= link_to "Payer", checkout_create_path, method: :post, class:"btn btn-primary col-6 offset-3", remote: true%>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

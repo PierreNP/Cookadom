@@ -1,9 +1,12 @@
 class CartsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_cart, only: [:show, :update]
+  before_action :set_cart, only: [:update]
 
-  def show
+  def index
+    @cart_pre_validation = Cart.find_by(user_id: current_user.id, status: "pre_validation")
+    @carts_validation = Cart.where(user_id: current_user.id, status: "validation")
+    @carts_post_validation = Cart.where(user_id: current_user.id, status: "post_validation")
   end
 
   def update
@@ -15,6 +18,7 @@ class CartsController < ApplicationController
 
     if @cart.update(status: 1)
       flash[:success] = "cart updated"
+      Cart.create(user_id: current_user.id, status: 0)
     else
       puts @cart.errors.messages
       redirect_to root_path, flash[:error] = "cart not updated"
@@ -35,5 +39,4 @@ class CartsController < ApplicationController
   def set_cart
     @cart = Cart.find_by(id: params[:id])
   end
-
 end
