@@ -40,6 +40,17 @@ class User < ApplicationRecord
     status == "admin"
   end
 
+  def past_dishes
+    dishes = Array.new
+    self.carts.each do |cart|
+      cart.order_dishes.each do  |order|
+        dishes << order.dish unless dishes.include?(order.dish) || cart.pre_validation?
+      end
+    end
+    dishes
+  end
+        
+
 
   private
     def welcome_send
