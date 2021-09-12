@@ -2,7 +2,7 @@ class DishesController < ApplicationController
 
 
   def index
-    @dishes = Dish.all
+    @dishes = Dish.where(availability: true)
   end
 
   def show

@@ -1,11 +1,11 @@
 <% @cart.order_dishes.each do |order_dishes|%>
   <% dish = order_dishes.dish %>
   <p> name :<%= dish.name %></p>
-  <p> price : <%= dish.price %></p>
+  <p> price : <%= dish.price_euro %></p>
   <p> quantity <%= order_dishes.quantity %></p>
   <%= link_to :supprimer, order_dish_path(order_dishes), method: :delete, class:"btn btn-danger" %>
 <% end %>
-<h2> total: <%= @cart.total_price/100 %></h2>
+<h2> total: <%= @cart.total_price_euro %></h2>
 
 <% if @cart.total_price >= 1 && current_user.addresses.first != nil && @cart.status == "post_validation" %>
   <%= link_to :Payer, checkout_create_path, method: :post, class: "btn btn-primary", remote: true %>

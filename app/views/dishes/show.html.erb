@@ -14,6 +14,12 @@
     <div class="card-body bg-white rounded-right-5 text-center">
       <h2 class="card-title text-primary border-bottom border-1 p-3 border-primary"><%= @dish.name %></h2>
       <p class="mt-4"><%= @dish.description %></p>
+       <p class="mt-4"><% if @dish.availability? %>
+            <p>Disponible</p>
+            <% else %>
+            <p>Indisponible</p>
+            <% end %>
+       </p>
     </div>
   </div>
   
@@ -36,7 +42,7 @@
       </div>
       
       <div class="d-flex justify-content-evenly">
-        <p class="px-3 py-2 fs-2 fw-bold"><%= @dish.price %>€</p>
+        <p class="px-3 py-2 fs-2 fw-bold"><%= @dish.price_euro %></p>
          <%# <form class="d-flex-center gap-3 " action="" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="6bm3iR5NUpurOgJ9qxDL4xYUoz+wDKzozSW5I4nLuIu9XQEU4e4nEUWGzw4DsiblLWo+nE+49rHnRKMQQzZfjg==">
 
           <a data-remote="true" rel="nofollow" data-method="patch" href="/cart_items/52?sign=minus">

@@ -10,11 +10,11 @@
             <% dish = order.dish %>
             <div class="d-flex justify-content-between border-top border-primary" >
               <p class=" p-2 m-0"><%= dish.name %> x <%= order.quantity %></p>
-              <p class=" p-2 m-0"><%= dish.price %>€</p>
+              <p class=" p-2 m-0"><%= dish.price_euro %></p>
             </div>
           <% end %>
         </div>
-        <h5 class=" mt-3 text-center">TOTAL : <%= cart.total_price %>€</h5>
+        <h5 class=" mt-3 text-center">TOTAL : <%= cart.total_price_euro %></h5>
       </div>
       <%end%>
     <% end %>
