@@ -25,7 +25,7 @@ class Dish < ApplicationRecord
    def rating 
       rate_mean = 0
       self.ratings.each do |rating|
-         mean += rating.value
+         rate_mean += rating.value
       end
       rate_mean
    end

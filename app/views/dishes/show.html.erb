@@ -15,6 +15,7 @@
       <h2 class="card-title text-primary border-bottom border-1 p-3 border-primary"><%= @dish.name %></h2>
       <p class="mt-4"><%= @dish.description %></p>
       <p class="mt-4"><%= @dish.availability? ? "D" : "Ind" %>isponible</p>
+      <p><%= @dish.rating %>/5 <i class="fas fa-star rate-color btn btn-secondary"></i></p>
     </div>
   </div>
   
@@ -61,7 +62,6 @@
   </div>
 
 
-<%= render "ratings", dish: @dish %>
   
 </section>
 
