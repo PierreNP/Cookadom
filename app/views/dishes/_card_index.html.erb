@@ -19,7 +19,7 @@
   <div class="card-body p-2">     
     <h6 class="card-title"> <%= dish.name %></h6>
     <div class=" d-flex justify-content-between align-self-baseline">
-      <span class="text-muted fs-8"><i class="fas fa-star text-primary fs-9"></i> 4.8</span>
+      <span class="text-muted fs-8"><i class="fas fa-star text-primary fs-9"></i> <%= dish.rating if dish.ratings.any? %></span>
       <p class="card-text"><%= dish.price_euro %></p>
       <p class="card-text"><%= dish.availability? ? "D" : "Ind" %>isponible</p>
 
