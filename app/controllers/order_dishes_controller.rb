@@ -8,13 +8,15 @@ class OrderDishesController < ApplicationController
       
       if @cart.dishes.include?(Dish.find_by(id: params[:dish_id]))
         @order = OrderDish.find_by(dish_id: params[:dish_id], cart_id: @cart.id)
-        if @order.update(quantity: @order.quantity+1)
+        
+        if @order.update(quantity: @order.quantity + params[:quantity].to_i)
           flash[:success] = "Plat ajouté au panier"
         else 
           flash[:error] = "Impossible d'ajouter la plat au panier"  
         end
+
       else
-        order = OrderDish.new(dish_id: params[:dish_id], cart_id: @cart.id, quantity: 1)
+        order = OrderDish.new(dish_id: params[:dish_id], cart_id: @cart.id, quantity: params[:quantity])
         if order.save
           flash[:success] = "Plat ajouté au panier"
         else
