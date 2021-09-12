@@ -1,13 +1,5 @@
 Rails.application.routes.draw do
  
-  get 'ratings/new'
-  get 'ratings/create'
-  get 'ratings/show'
-  get 'avatars/create'
-  get 'avatars/destroy'
-  get 'avatar/create'
-  get 'avatar/destroy'
-
   root 'static_pages#home'
   
   resource :static_pages, only: [:home]
