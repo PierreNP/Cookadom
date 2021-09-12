@@ -30,7 +30,7 @@
     </div>
     <div class="d-flex justify-content-between align-items-center">
       <% if current_user %>
-        <%= link_to "Ajouter au panier", order_dishes_path(dish_id: dish.id), method: :post, class: "btn btn-primary rounded-x fs-9" %>
+        <%= link_to "Ajouter au panier", order_dishes_path(dish_id: dish.id, quantity: 1), method: :post, class: "btn btn-primary rounded-x fs-9" %>
       <% else %>
         <%= link_to "Ajouter au panier", new_user_registration_path, class: "btn btn-primary rounded-x fs-9" %>
       <% end %>
