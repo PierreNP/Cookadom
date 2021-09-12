@@ -33,6 +33,7 @@
     <% @cook.dishes.each do |dish| %>
         <div class="card border-0 overflow-hidden rounded-5 col-lg-3 col-md-6 col-sm-12 col-xs-12">
   <!-- card head -->
+  <% if dish.availability?%>
   <%= link_to dish_path(dish) do %>
     <div class="position-relative ">
       <% if dish.photo.attached? %>
@@ -48,8 +49,11 @@
       </div>
     </div>
   <% end %>
+  <% else %>
+  <% end %>
   <!-- card body -->
   <div class="card-body p-2">
+  <% if dish.availability?%>
       <div class=" d-flex justify-content-between">
         <h6 class="card-title"> <%= dish.name %></h6>
         <p class="card-text"><%= dish.price %>€</p>
@@ -64,6 +68,8 @@
           <%= link_to "Ajouter au panier", new_user_registration_path, class: "btn btn-primary rounded-x fs-9" %>
         <% end %>
       </div>
+  <% else %>
+  <% end %>
   </div>
 </div>
     <% end %>
