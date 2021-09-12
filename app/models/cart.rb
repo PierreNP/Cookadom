@@ -26,10 +26,11 @@ class Cart < ApplicationRecord
 
   def clean_and_destroy_cart
     user_id = self.user_id
+    user = User.find(user_id)
     self.order_dishes.each do |order_dish|
       order_dish.destroy
     end
     self.destroy
-    Cart.create(user_id: user_id, status: "pre_validation")
+    Cart.create(user_id: user_id, status: "pre_validation") unless user.carts.find_by(status: "pre_validation")
   end
 end
