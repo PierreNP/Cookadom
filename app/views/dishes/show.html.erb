@@ -64,6 +64,12 @@
 
     </div>
   </div>
-  <%= link_to "Rate", dish_ratings_path(@dish, value: 3) , method: :post, class: "btn btn-primary" %>
+
+  
+  <% (1..5).each do |rate| %>
+    <%= link_to dish_ratings_path(@dish, value: rate) , method: :post do %>
+      <i class="fas fa-star rate-color btn btn-secondary"></i>
+    <% end %>
+  <% end %>
 </section>
 
