@@ -1,7 +1,6 @@
 class RatingsController < ApplicationController
 
   def create
-    unless current_user.past_dishes.include?(Dish.find_by(dish_id: params[:dish_id]))
       if Rating.find_by(user_id: current_user.id, dish_id: params[:dish_id])
         flash[:error] = "Désolé vous avez déà noté ce plat"
       else
