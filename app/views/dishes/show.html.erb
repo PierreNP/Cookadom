@@ -14,6 +14,12 @@
     <div class="card-body bg-white rounded-right-5 text-center">
       <h2 class="card-title text-primary border-bottom border-1 p-3 border-primary"><%= @dish.name %></h2>
       <p class="mt-4"><%= @dish.description %></p>
+       <p class="mt-4"><% if @dish.availability? %>
+            <p>Disponible</p>
+            <% else %>
+            <p>Indisponible</p>
+            <% end %>
+       </p>
     </div>
   </div>
   

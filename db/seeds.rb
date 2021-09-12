@@ -72,7 +72,7 @@ end
 puts "Comment create"
 
 20.times do 
-  Dish.create(name: Faker::Food.dish.to_s, description: Faker::Lorem.sentence(word_count: rand(1..10)).to_s, price: rand(500..20000), ingredients: Faker::Food.description.to_s, cook_id: rand(1..Cook.all.length))
+  Dish.create(name: Faker::Food.dish.to_s, description: Faker::Lorem.sentence(word_count: rand(1..10)).to_s, price: rand(500..20000), ingredients: Faker::Food.description.to_s, cook_id: rand(1..Cook.all.length), availability: [true, false].sample)
 end
 puts "Dish create"
 
