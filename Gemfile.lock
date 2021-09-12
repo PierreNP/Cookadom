@@ -135,6 +135,8 @@ GEM
     mini_magick (4.11.0)
     mini_mime (1.1.1)
     minitest (5.14.4)
+    money (6.16.0)
+      i18n (>= 0.6.4, <= 2)
     msgpack (1.4.2)
     nio4r (2.5.8)
     nokogiri (1.12.4-x86_64-linux)
@@ -249,6 +251,7 @@ DEPENDENCIES
   letter_opener
   listen (>= 3.0.5, < 3.2)
   mini_magick (~> 4.9)
+  money
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.6)
