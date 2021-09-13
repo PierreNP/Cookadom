@@ -5,15 +5,11 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:update, :destroy]
 
  
-    def index
-      @users = User.user
-    end
-  
     def update
       @user.update(user_params)
   
       respond_to do |format|
-        format.html {redirect_to admin_users_path}
+        format.html {redirect_to admin_dashboard_admins_path}
         format.js {}
       end
     end
@@ -23,7 +19,7 @@ class Admin::UsersController < ApplicationController
       @user.destroy
       
       respond_to do |format|
-        format.html {redirect_to admin_users_path}
+        format.html {redirect_to admin_dashboard_admins_path}
         format.js {}
       end
     end

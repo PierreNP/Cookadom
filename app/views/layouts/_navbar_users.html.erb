@@ -1,4 +1,4 @@
-  <nav class="navbar navbar-expand-lg  navbar-light navbar-light bg-light sticky-top " id="nav">
+  <nav class="navbar navbar-expand-lg  navbar-light navbar-light bg-light sticky-top shadow-sm" id="nav">
         <div class="container">
             <% if current_user.cooks.any?%>
                 <div class="pe-3 fs-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
@@ -89,6 +89,5 @@
 
 
     <% if current_user.cook? %>
-        <%= render "layouts/start_navbar"%>
+        <%= render "layouts/start_navbar" %>
     <% end %>
-
