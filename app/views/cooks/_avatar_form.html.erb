@@ -2,7 +2,7 @@
   <% if cook.avatar.attached? %>
       <%=image_tag(cook.avatar, alt: cook.avatar.name)%>
   <% else %>
-      <p>aucun avatar</p>
+      <p>Aucun avatar</p>
   <% end %>
 </div>
 
@@ -11,7 +11,7 @@
 </div>
 
 <div id="result"></div>
-<a id="dlphoto" class="btn btn-info d-none">Telecharger votre image au format carré</a>
+<a id="dlphoto" class="btn btn-info d-none">Téléchargez votre image au format carré</a>
 <input type="button" id="btnCrop" value="Valider" class="btn-warning d-none" />
 
 <%= form_tag cook_avatars_path(cook.id) , multipart: true do |f|%>

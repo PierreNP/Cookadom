@@ -77,5 +77,5 @@ gem 'mini_magick', '~>4.9'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'letter_opener'
 gem 'money'
-
+gem 'jquery-ui-rails'
 ###########################

@@ -2,7 +2,7 @@
     <%= form_with(model: dish, url: cook_dish_path(dish.id), local: true, remote: false, method: :put) do |form| %>
       <% if dish.errors.any? %>
         <div id="error_explanation">
-          <h2><%= pluralize(dish.errors.count, "error") %> Impossible de valider:</h2>
+          <h2><%= pluralize(dish.errors.count, "error") %> Impossible de valider :</h2>
           <ul>
           <% dish.errors.full_messages.each do |message| %>
             <li><%= message %></li>

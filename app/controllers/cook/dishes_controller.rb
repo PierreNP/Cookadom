@@ -30,16 +30,20 @@ class Cook::DishesController < ApplicationController
 
   def update
     @dish.cook_id = @cook.id
-    if @dish.update(dish_params)
-      redirect_to cook_dishes_path, success: "Nouveau plat ajouté !"
+ 
+    if params[:dish][:status] == "pinned" && Dish.where(status: "pinned").any?
+        flash[:error] = "Vous ne pouvez pas avoir plusieur plat épinglés."
+    elsif @dish.update(dish_params)
+      flash[:success] = "Nouveau plat ajouté !"
     else
-      render cook_dishes_path, error: "Erreur : Impossible de modifier le plat."
+      flash[:error] = "Impossible de modifier le plat."
     end
+    redirect_to cook_dishes_path
   end
 
   def destroy
     @dish.destroy
-    redirect_to cook_dishes_path, success: "Plat supprimée"
+    redirect_to cook_dishes_path, success: "Plat supprimé."
   end
 
   def require_cook
@@ -57,7 +61,7 @@ class Cook::DishesController < ApplicationController
   end
 
   def dish_params
-    params.require(:dish).permit(:name, :description, :price, :ingredients)
+    params.require(:dish).permit(:name, :description, :price, :ingredients, :status)
   end
 
 end

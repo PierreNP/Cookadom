@@ -35,10 +35,19 @@ class UsersController < ApplicationController
       end
     end
 
+    def autocomplete
+      if params["q"].size > 2
+       result = search_adresse(params["q"])
+       found = result if result.present?
+         render :json => found
+      else
+         render :json => ['no']
+      end
+    end
+      
     private
-
+   
     def user_params
-      return params.permit(:first_name, :last_name, :phone, :city_id)
-    end 
-
+      return params.permit(:first_name, :last_name, :phone, :city_id, :name)
+    end
 end
