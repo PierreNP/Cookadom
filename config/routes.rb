@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
- 
-  get 'favorites/index'
   root 'static_pages#home'
   
   resource :static_pages, only: [:home]
@@ -42,6 +40,8 @@ Rails.application.routes.draw do
   end
   
   resources :comments, only: [:create, :update, :destroy]
+
+  resources :favorits, only: [:index]
 
   scope '/checkout' do
     post 'create', to: 'checkouts#create', as: 'checkout_create'
