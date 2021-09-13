@@ -82,7 +82,7 @@ end
 puts "TagDish create"
 
 15.times do 
-  Rating.create(rate: rand(1..5), user_id: rand(1..20), dish_id: rand(1..20))
+  Rating.create(value: rand(1..5), user_id: rand(1..20), dish_id: rand(1..20))
 end
 puts "Rating create"
 

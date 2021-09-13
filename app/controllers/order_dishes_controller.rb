@@ -16,7 +16,11 @@ class OrderDishesController < ApplicationController
         end
 
       else
-        order = OrderDish.new(dish_id: params[:dish_id], cart_id: @cart.id, quantity: params[:quantity])
+        order = OrderDish.create(dish_id: params[:dish_id], cart_id: @cart.id, quantity: params[:quantity].to_i)
+        puts "%"*500
+        puts order.errors.messages
+        puts "%"*500
+
         if order.save
           flash[:success] = "Plat ajouté au panier"
         else
