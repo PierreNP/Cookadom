@@ -9,10 +9,10 @@ class Cook::CartsController < ApplicationController
     @pre_status = @cart.status
 
     if @cart.update(status: 2)
-      flash[:success] = "cart updated"
+      flash[:success] = "Panier mis à jour."
     else
       puts @cart.errors.messages
-      redirect_to root_path, flash[:error] = "cart not updated"
+      redirect_to root_path, flash[:error] = "Panier non mis à jour."
     end
 
     UserMailer.validated_order(@user, @cook).deliver_now

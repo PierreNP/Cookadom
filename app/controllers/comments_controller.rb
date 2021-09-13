@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     if @comment.destroy
       flash[:success] = "Le commentaire a bien été supprimé !"
     else
-      flash[:error] = "Impossible de supprimé le commentaire"
+      flash[:error] = "Impossible de supprimer le commentaire."
     end
   end
 

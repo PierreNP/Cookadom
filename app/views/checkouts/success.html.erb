@@ -25,8 +25,8 @@
     <% end %>
   </div>
   <div class="container col-12 my-5 d-flex justify-content-center flex-column">
-    <p> Montant total de la commande est de: <%=number_to_currency(@payment_intent.amount_received / 100.0, unit: '€', separator: ',', delimiter: "", format: "%n %u")%>.</p>
-    <p>Clique <%= link_to "ici", user_path(current_user.id) %> pour voir l'historique de tes commandes.</p>
+    <p> Le montant total de la commande est de: <%=number_to_currency(@payment_intent.amount_received / 100.0, unit: '€', separator: ',', delimiter: "", format: "%n %u")%>.</p>
+    <p>Cliquez <%= link_to "ici", user_path(current_user.id) %> pour voir l'historique de vos commandes.</p>
   </div>
  </div>
 

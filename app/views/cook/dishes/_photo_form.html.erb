@@ -2,7 +2,7 @@
     <% if dish.photo.attached? %>
         <%=image_tag(dish.photo, alt: dish.name)%>
     <% else %>
-        <p>aucune photo</p>
+        <p>Aucune photo.</p>
     <% end %>
 </div>
 
@@ -11,7 +11,7 @@
 </div>
 
 <div id="result"></div>
-<a id="dlphoto" class="btn btn-info d-none">Telecharger votre image au format carré</a>
+<a id="dlphoto" class="btn btn-info d-none">Téléchargez votre image au format carré.</a>
 <input type="button" id="btnCrop" value="Valider" class="btn-warning d-none" />
 
 <%= form_tag cook_dish_photos_path(dish.id) , multipart: true do |f|%>

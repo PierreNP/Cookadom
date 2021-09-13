@@ -7,7 +7,6 @@
       <div class="col-md-8 col-sm-12">
         <div class="container my-5 mx-4">
           <h3>Se Connecter</h3>
-          <p class="text-muted">BLI BLA BLOOOOU</p>
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -23,15 +22,15 @@
             <div class="form-check mt-4 mx-1">
               <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
               <label class="form-check-label" for="flexRadioDefault2">
-                Remember me 
+                Rester connecté 
               </label>
             </div>
             <div class="actions">
               <%= f.submit "Confirmer l'inscription", class:"actions btn btn-primary col-10 col-md-6 mt-3 p-3 rounded-6" %>
             </div>
             <div class="mt-4 mx-1">
-                Tu n'as pas de compte? Clique ici: <%= link_to "S'inscrire", new_user_registration_path %><br/>
-                Tu as oublié ton mot de passe? Clique ici: <%= link_to "Nouveau mot de passe", new_user_password_path %>
+                Vous n'avez pas de compte? Cliquez ici: <%= link_to "S'inscrire", new_user_registration_path %><br/>
+                Vous avez oublié votre mot de passe? Cliquez ici: <%= link_to "Nouveau mot de passe", new_user_password_path %>
             </div>
           <% end %>
         </div>
