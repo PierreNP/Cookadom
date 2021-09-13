@@ -14,8 +14,6 @@ class User < ApplicationRecord
   has_many :cooks
   has_many :comments
   has_many :dishes, through: :comments
-  has_many :sent_comments, foreign_key: 'sender_id', class_name: "Comments"
-  has_many :received_comments, foreign_key: 'recipient_id', class_name: "Comments"
   has_many :ratings
   has_many :dishes, through: :ratings
   has_many :carts

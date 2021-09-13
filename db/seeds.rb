@@ -17,14 +17,14 @@ Cart.reset_pk_sequence
 Rating.destroy_all
 Rating.reset_pk_sequence
 
+Comment.destroy_all
+Comment.reset_pk_sequence
+
 TagDish.destroy_all
 TagDish.reset_pk_sequence
 
 Dish.destroy_all
 Dish.reset_pk_sequence
-
-Comment.destroy_all
-Comment.reset_pk_sequence
 
 Address.destroy_all
 Address.reset_pk_sequence
@@ -78,6 +78,11 @@ puts "Dish create"
   TagDish.create(tag_id: rand(1..20), dish_id: rand(1..20))
 end
 puts "TagDish create"
+
+15.times do 
+  Comment.create(content: Faker::Lorem.sentence(word_count: rand(1..10)).to_s, user_id: rand(1..20), dish_id: rand(1..20))
+end
+puts "Rating create"
 
 15.times do 
   Rating.create(value: rand(1..5), user_id: rand(1..20), dish_id: rand(1..20))
