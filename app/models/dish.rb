@@ -49,4 +49,17 @@ class Dish < ApplicationRecord
       end
    end
 
+   def self.search(search)
+      if search
+        dish = Dish.where("name LIKE ? OR ingredients LIKE ?","%#{search}%", "%#{search}%")
+          if dish && dish != ""
+              self.where(id:dish)
+          else
+            Dish.all
+          end
+      else
+         Dish.all
+      end
+  end
+
 end
