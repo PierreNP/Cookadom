@@ -11,7 +11,8 @@ class Dish < ApplicationRecord
    has_many :carts, through: :order_dishes
    has_many :comments
    has_many :users, through: :comments
- 
+   has_many :favorit_user, foreign_key: 'favorit_user_id', class_name: "Favorit"
+
    has_one_attached :photo
 
    validates :name, presence: true, length: { in: 2..40 }
