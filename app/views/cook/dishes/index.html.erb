@@ -13,7 +13,6 @@
           <p>ingredients: <%= dish.ingredients %></p>  
           <div class="container"><%= render "photo_form", dish: dish %></div>
           <div class="container">
-            <%= dish.status_fr %>
             <%= form_with model: dish, url: cook_dish_path(dish),local: true, method: :put do |form| %>
               <%= form.radio_button :status, :disable %>
               <%= form.label :status, :Désactivé %><br />
@@ -27,7 +26,7 @@
               <%= form.radio_button :status, :pinned %>
               <%= form.label :status, "Épinglé" %><br />
 
-              <%= form.submit :Valider %>
+              <%= form.submit :Valider, class: "btn btn-primary" %>
             <% end %>
           </div>
 
