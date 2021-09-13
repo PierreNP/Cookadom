@@ -39,25 +39,46 @@
             <%= link_to "Changer le mot de passe", edit_user_password_path,  class: "btn btn-outline-primary me-5" %>
           </div>
           <div>
-            
-              <%= link_to "Effacer le profil",  user_path(current_user.id), method: :delete, class: "btn btn-outline-danger border-0"%>
+            <%= link_to "Effacer le profil",  user_path(current_user.id), method: :delete, class: "btn btn-outline-danger border-0"%>
           </div>
         </div>
       <% end %>
     </div>
   </div>
 
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script>
+    $(document).ready(function(){
+      $("#adresse_auto").keyup(function(){
+        var text = this.value
+        if (text.length >= 2 ) {
+          $.ajax({
+            url: 'https://api-adresse.data.gouv.fr/search/?q='+text+'&type=housenumber&autocomplete=1',
+            type: "get",
+            success: function(data) {
+              data.features.forEach(element => {$("#datalistOptions")[0].innerHTML += '<option value="'+element.properties.label+'">'+element.properties.label+'</option>';});
+            }
+          });
+        }
+      });
+    });
+  </script>
+
+  <div class="col-5 ps-5 border-start border-2 border-primary d-flex justify-content-center">
+    <%= form_with(model: @address, url: user_addresses_path(current_user.id)) do |form| %>
+  <div>
+    <%= form.label "Nom de l'adresse", class: "fs-6 mt-4 mb-3 text-muted"%><br />
+    <% if current_user.addresses.any? %>
+      <%= form.text_field :name, class:"form-control p-3 rounded-4 border-2 border-primary", value: current_user.addresses.first.name, id:"adresse_auto",list:"datalistOptions" %>
+      <datalist id="datalistOptions">
+      </datalist>
+    <% else %>
+    <%= form.text_field :name, class:"form-control p-3 rounded-4 border-2 border-primary", id:"adresse_auto", autocomplete:"off", list:"datalistOptions" %>
+      <datalist id="datalistOptions">
+      </datalist>
+    <% end %>
+  </div>
   
-  <div class="col-5 ps-5 border-start  border-2 border-primary d-flex justify-content-center">
-    <%= form_with(model: @address, url: user_addresses_path(current_user.id), local: true) do |form| %>
-      <div>
-        <%= form.label "Nom de l'adresse", class: "fs-6 mt-4 mb-3 text-muted" %><br />
-        <% if current_user.addresses.any? %>
-          <%= form.text_field :name, class:"form-control p-3 rounded-4 border-2 border-primary", value: current_user.addresses.first.name%>
-        <% else %>
-          <%= form.text_field :name, class:"form-control p-3 rounded-4 border-2 border-primary"%>
-        <% end %>
-      </div>
       <div class="d-flex gap-1">
         <div class="col-2">
           <%= form.label "Numéro", class: "fs-6 mt-4 mb-3 text-muted" %><br />
