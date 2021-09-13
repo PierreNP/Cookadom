@@ -32,4 +32,19 @@ class Dish < ApplicationRecord
       rate_mean
    end
 
+   def status_fr
+      case self.status
+      when "disable"
+         "Désactivé"
+      when "unavailable"
+         "Indisponible"
+      when "available"
+         "Disponible"
+      when "pinned"
+         "Épinglé"
+      else
+         "Statut indéfini"
+      end
+   end
+
 end

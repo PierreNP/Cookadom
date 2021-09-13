@@ -7,20 +7,28 @@
     <div class="row border-bottom">
       <div class="col-sm-12 col-md-12 col-lg-6">
         <div class="container my-2">
-          <h1 class="my-4"><%= dish.name %>         <%= link_to "Delete Dish", cook_dish_path(dish.id), method: :delete, class: "btn mx-2 btn-danger" %></h1> 
+          <h1 class="my-4"><%= dish.name %><%= link_to "Delete Dish", cook_dish_path(dish.id), method: :delete, class: "btn mx-2 btn-danger" %></h1> 
           <p>description: <%= dish.description %></p> 
           <p>price: <%= dish.price %></p>
           <p>ingredients: <%= dish.ingredients %></p>  
           <div class="container"><%= render "photo_form", dish: dish %></div>
           <div class="container">
-          <%= form_with model: dish, url: cook_dish_path(dish) do |form| %>
-
-            <%= form.collection_radio_buttons :status, Dish.statuses, :second, :first do |radio| %>
-              <%= radio.label { radio.radio_button + radio.text } %><br />
+            <%= dish.status_fr %>
+            <%= form_with model: dish, url: cook_dish_path(dish),local: true, method: :put do |form| %>
+              <%= form.radio_button :status, :disable %>
+              <%= form.label :status, :Désactivé %><br />
               
+              <%= form.radio_button :status, :unavailable %>
+              <%= form.label :status, :Indisponible %><br />
+
+              <%= form.radio_button :status, :available %>
+              <%= form.label :status, :Disponible %><br />
+
+              <%= form.radio_button :status, :pinned %>
+              <%= form.label :status, "Épinglé" %><br />
+
+              <%= form.submit :Valider %>
             <% end %>
-            <%= form.submit :Valider %>
-          <% end %>
           </div>
 
         </div>
