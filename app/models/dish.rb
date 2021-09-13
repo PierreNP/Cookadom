@@ -1,4 +1,5 @@
 class Dish < ApplicationRecord
+   enum status: [ :disabled, :unavailable, :available, :pinned ]
  
    belongs_to :cook
 
@@ -15,6 +16,7 @@ class Dish < ApplicationRecord
    validates :description, presence: true, length: { in: 2..400 }
    validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
    validates :ingredients, presence: true, length: { in: 5..1000 }
+   validates :status, presence: true
 
    def price_euro
       money = Money.from_cents(price, "EUR").format

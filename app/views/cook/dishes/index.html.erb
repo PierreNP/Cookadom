@@ -12,6 +12,17 @@
           <p>price: <%= dish.price %></p>
           <p>ingredients: <%= dish.ingredients %></p>  
           <div class="container"><%= render "photo_form", dish: dish %></div>
+          <div class="container">
+          <%= form_with model: dish, url: cook_dish_path(dish) do |form| %>
+
+            <%= form.collection_radio_buttons :status, Dish.statuses, :second, :first do |radio| %>
+              <%= radio.label { radio.radio_button + radio.text } %><br />
+              
+            <% end %>
+            <%= form.submit :Valider %>
+          <% end %>
+          </div>
+
         </div>
       </div>
 
