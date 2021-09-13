@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :cooks, :users, only: [:update, :destroy]
     resources :dashboard_admins, only: [:index]
+    resources :admin_dishes, only: [:destroy]
+    resources :admin_comments, only: [:destroy]
   end
 
   namespace :cook, only: [:index, :create, :update, :destroy] do

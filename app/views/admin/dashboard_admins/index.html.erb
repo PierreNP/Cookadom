@@ -1,18 +1,18 @@
 
 
 
-<div class="container-fluid vh-80">
+<div class="container-fluid vh-80 ">
 <div class="row h-100">
   <div class="col-2 border-end border-bottom h-100">
     <div class="d-flex h-50 flex-column align-items-center justify-content-center">
-      <div class="btn w-100 py-3">
+      <div class="btn border w-100 py-3">
         <%= link_to admin_dashboard_admins_path(dashboard_method: 1), remote: :true, class: "d-inline-block w-100 h-100" do %>
           <i class="fas fa-award"></i>
           <span >Validations</span>
         <% end %>
       </div>
 
-      <div class="btn border w-100 py-3">
+      <div class="btn w-100 py-3">
         <%= link_to admin_dashboard_admins_path(dashboard_method: 2), remote: :true, class: "d-inline-block w-100 h-100" do %>
           <i class="fas fa-utensils"></i>
           <span >Cooks</span>
@@ -43,7 +43,7 @@
       </div>
     </div>
   </div>
-  <div class="col-10 bg-light right-column-block">
+  <div class="col-10 h-100 bg-light right-column-block overflow-auto">
     <div class="validation-method-block">
       <div class="accordion accordion-flush mt-5  shadow-sm" id="accordionFlushExample">
         <div class="accordion-item">
@@ -117,9 +117,3 @@
 </div>
 </div>
 
-<div class="user-method-block">
-  <% @users.each do |user|%>
-    <p>user id: <%= user.email %></p>  
-    <p><%= link_to "Delete User", admin_user_path(user.id), method: :delete, class: "btn btn-danger" %></p>
-  <% end %>
-</div>

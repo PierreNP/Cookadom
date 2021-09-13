@@ -5,7 +5,7 @@ if (<%= params[:dashboard_method].to_i == 1 %>) {
   }
   else {
     document.querySelector("div.right-column-block").children[0].remove();
-    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'validation_method' %>")
+    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'validation_method' %>");
   }
 }
 else if (<%= params[:dashboard_method].to_i == 2 %>) {
@@ -13,7 +13,7 @@ else if (<%= params[:dashboard_method].to_i == 2 %>) {
   }
   else {
     document.querySelector("div.right-column-block").children[0].remove();
-    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'cook_method' %>")
+    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'cook_method' %>");
   }
 }
 else if (<%= params[:dashboard_method].to_i == 3 %>) {
@@ -21,6 +21,7 @@ else if (<%= params[:dashboard_method].to_i == 3 %>) {
   }
   else {
     document.querySelector("div.right-column-block").children[0].remove();
+    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'user_method' %>");
   }
 }
 else if (<%= params[:dashboard_method].to_i == 4 %>) {
@@ -28,6 +29,7 @@ else if (<%= params[:dashboard_method].to_i == 4 %>) {
   }
   else {
     document.querySelector("div.right-column-block").children[0].remove();
+    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'stats_method' %>");
   }
 }
 else {

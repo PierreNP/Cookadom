@@ -1,0 +1,52 @@
+<div class="user-method-block">
+  <% @users.each do |user|%>
+  <div class="d-flex w-100 flex-column align-items-center">
+    <div class="w-100 d-flex flex-row p-2 pt-3 my-1 bg-white shadow-sm justify-content-around align-items-center">
+      <div>
+      <p>Id Utilisateur: <%= user.id %></p>
+      <p>Mail: <%= user.email %></p>
+      </div>
+      <%= link_to admin_user_path(user.id), method: :delete, class: "btn btn-danger" do %>
+        <i class="fas fa-times"></i>
+        <span> Détruire l'Utilisateur</span>
+      <% end %>
+      <%= link_to admin_user_path(user.id), method: :put, class: "btn btn-warning" do %>
+        <i class="fas fa-user-cog"></i>
+        <span> Passer Administrateur</span>
+      <% end %>
+    </div>
+    <div class="w-100">
+      <div class="accordion accordion-flush mb-5 shadow-sm" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id=<%="flush-#{user.id}"%>>
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target=<%="#flush-collapse#{user.id}"%> aria-expanded="false" aria-controls=<%="flush-#{user.id}"%>>
+              <h2 class="text-center col">Ses Comments</h2>
+            </button>
+          </h2>
+          <div id=<%="flush-collapse#{user.id}"%> class="accordion-collapse collapse" aria-labelledby=<%="flush-#{user.id}"%> data-bs-parent="#accordionFlushExample" style="">
+            <div class="accordion-body">
+                <!-- Item start -->
+              <% comments = Comment.where(sender_id: user.id)%>
+              <% comments.each do |comment|%>
+              <div class="text-center mb-3 row d-flex align-items-center">
+                <div class="col-2">
+                  <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
+                </div>
+                <p class=" mb-0 col-6 "><%= comment.comment %></p>
+                <p class=" mb-0 col-2 "><%= comment.updated_at %></p>
+
+                <div class="col-1 grid-2 gap-1">
+                  <%= link_to admin_admin_comment_path(comment.id), method: :delete, class: "btn btn-danger" do %>
+                    <i class="fas fa-times"></i>
+                  <% end %>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

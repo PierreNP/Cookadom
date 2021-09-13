@@ -6,7 +6,7 @@ class Admin::UsersController < ApplicationController
 
  
     def update
-      @user.update(user_params)
+      @user.update(status: 3)
   
       respond_to do |format|
         format.html {redirect_to admin_dashboard_admins_path}
@@ -35,7 +35,7 @@ class Admin::UsersController < ApplicationController
 
     
     def user_params
-      return params.permit(:first_name, :last_name, :status, :phone, :city_id)
+      return params.permit(:status)
     end 
     
     def set_user

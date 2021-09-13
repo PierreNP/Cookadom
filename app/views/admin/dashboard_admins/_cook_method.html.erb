@@ -1,23 +1,25 @@
 <div class="cook-method-block">
   <% @cooks.each do |cook|%>
   <div class="d-flex w-100 flex-column align-items-center">
-    <div class="w-100">
-      <p>user id: <%= cook.user_id %></p>
-      <p><%= cook.business_name %></p>
-      <p><%= cook.status %></p>
+    <div class="w-100 d-flex flex-row p-2 pt-3 my-1 bg-white shadow-sm justify-content-around align-items-center">
+      <div>
+      <p>Id Utilisateur: <%= cook.user_id %></p>
+      <p>Nom: <%= cook.business_name %></p>
+      <p>Status: <%= cook.status %></p>
+      </div>
       <%= link_to admin_cook_path(cook.id), method: :delete, class: "btn btn-danger" do %>
         <i class="fas fa-times"></i>
       <% end %>
     </div>
     <div class="w-100">
-      <div class="accordion accordion-flush mt-5  shadow-sm" id="accordionFlushExample">
+      <div class="accordion accordion-flush mb-5 shadow-sm" id="accordionFlushExample">
         <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+          <h2 class="accordion-header" id=<%="flush-#{cook.id}"%>>
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target=<%="#flush-collapse#{cook.id}"%> aria-expanded="false" aria-controls=<%="flush-#{cook.id}"%>>
               <h2 class="text-center  col">Ses Plats</h2>
             </button>
           </h2>
-          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
+          <div id=<%="flush-collapse#{cook.id}"%> class="accordion-collapse collapse" aria-labelledby=<%="flush-#{cook.id}"%> data-bs-parent="#accordionFlushExample" style="">
             <div class="accordion-body">
                 <!-- Item start -->
               <% cook.dishes.each do |dish|%>
@@ -25,17 +27,12 @@
                 <div class="col-2">
                   <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
                 </div>
-                <p class=" mb-0 col-1 "><%= dish.name %></p>
-                <p class=" mb-0 col-5 "><%= cook.business_name %></p>
-                <p class=" mb-0 fs-6  col-2 "><%= cook.created_at %></p>
-                <p class=" mb-0 col-1 "><%= cook.status %></p>
+                <p class=" mb-0 col-2 "><%= dish.name %></p>
+                <p class=" mb-0 col-5 "><%= dish.price %>€</p>
+                <p class=" mb-0 col-1 "><%= dish.status %></p>
                 <div class="col-1 grid-2 gap-1">
-                  <%= link_to admin_cook_path(cook.id), method: :delete, class: "btn btn-danger" do %>
+                  <%= link_to admin_admin_dish_path(dish.id), method: :delete, class: "btn btn-danger" do %>
                     <i class="fas fa-times"></i>
-                  <% end %>
-
-                  <%= link_to admin_cook_path(cook.id), method: :put, class: "btn btn-success" do %>
-                    <i class="fas fa-check"></i>
                   <% end %>
                 </div>
               </div>
