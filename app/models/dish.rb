@@ -21,6 +21,5 @@ class Dish < ApplicationRecord
       currency = money.slice!(0)
       money.insert(-1, " #{currency}")
    end
-  
    
 end
