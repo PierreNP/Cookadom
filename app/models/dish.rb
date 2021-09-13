@@ -1,5 +1,5 @@
 class Dish < ApplicationRecord
-   enum status: [ :disabled, :unavailable, :available, :pinned ]
+   enum status: [  :available, :unavailable, :disabled, :pinned ]
  
    belongs_to :cook
 

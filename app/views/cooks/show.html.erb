@@ -31,7 +31,7 @@
 
     <div class="d-flex gap-5 flex-wrap" >
       <% @cook.dishes.each do |dish| %>
-        <%= render "dishes/card_index", dish: dish if dish.availability?%>
+        <%= render "dishes/card_index", dish: dish unless dish.disabled?%>
       <% end %>
     </div>
 </section>

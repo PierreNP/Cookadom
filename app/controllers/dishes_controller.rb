@@ -2,7 +2,7 @@ class DishesController < ApplicationController
 
 
   def index
-    @dishes = Dish.where(availability: true)
+    @dishes = Dish.where.not(status: "disabled")
   end
 
   def show
