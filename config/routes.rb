@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
  
-  get 'avatars/create'
-  get 'avatars/destroy'
-  get 'avatar/create'
-  get 'avatar/destroy'
-
   root 'static_pages#home'
   
   resource :static_pages, only: [:home]
@@ -13,7 +8,9 @@ Rails.application.routes.draw do
 
   resources :order_dishes, only: [:create, :update, :destroy]
 
-  resources :dishes, only: [:index, :show]
+  resources :dishes, only: [:index, :show] do 
+    resources :ratings, only: [:new, :create, :show]
+  end
   
   resources :cooks, only: [:new, :edit, :create, :show, :destroy] do 
     resources :avatars, only: [:create, :destroy]

@@ -15,10 +15,20 @@ class Cook < ApplicationRecord
    validates :vat_number, presence: true, length: { is: 11 } #, format: {with: /(?xi)^(?[0-9A-Z]{2}[0-9]{9}$)/, message: "Numéro de TVA invalide"}
    validates :commercial_register, presence: true
 
+   def rating 
+      rating = 0
+      self.dishes.each do |dish|
+         rating += dish.rating
+      end
+      rating / self.dishes.length
+   end
+   
    private
 
    def future_cook_send_admin
       AdminMailer.future_cook(self).deliver_now
       CookMailer.asking_to_become_cook(self).deliver_now
    end
+
+  
 end

@@ -24,5 +24,12 @@ class Dish < ApplicationRecord
       money.insert(-1, " #{currency}")
    end
   
-   
+   def rating 
+      rate_mean = 0
+      self.ratings.each do |rating|
+         rate_mean += rating.value
+      end
+      rate_mean
+   end
+
 end
