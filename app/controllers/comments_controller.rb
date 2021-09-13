@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
 
     if @comment.save
       flash[:success] = "Le commentaire a bien été ajouté !"
+      redirect_back(fallback_location: root_path)
     else
       flash[:error] = "#{ @comment.errors.messages }"
     end
@@ -32,6 +33,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:user_id, :dish_id, :content)
+    return {:user_id => current_user.id, :dish_id => params[:format], :content => params[:comment][:content]}
   end
 end

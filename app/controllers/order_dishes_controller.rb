@@ -12,7 +12,7 @@ class OrderDishesController < ApplicationController
         if @order.update(quantity: @order.quantity + params[:quantity].to_i)
           flash[:success] = "Plat ajouté au panier"
         else 
-          flash[:error] = "Impossible d'ajouter la plat au panier"  
+          flash[:error] = "Impossible d'ajouter le plat au panier"  
         end
 
       else
@@ -24,11 +24,11 @@ class OrderDishesController < ApplicationController
         if order.save
           flash[:success] = "Plat ajouté au panier"
         else
-          flash[:error] = "Impossible d'ajouter la plat au panier"  
+          flash[:error] = "Impossible d'ajouter le plat au panier"  
         end
       end
     else
-      flash[:error] = "Vous ne pouvez pas commander à deux cuisinier différent en même temps."
+      flash[:error] = "Vous ne pouvez pas commander à deux cuisiniers différents en même temps."
     end
     redirect_to dishes_path
   end
@@ -39,10 +39,10 @@ class OrderDishesController < ApplicationController
 
   def destroy 
     if @order.destroy
-      flash[:success] = "Plat enlevée du panier avec succès"
+      flash[:success] = "Plat enlevé du panier avec succès"
       redirect_back(fallback_location: root_path)
     else
-      flash[:error] = "Impossible de supprimé le plat"
+      flash[:error] = "Impossible de supprimer le plat"
     end
   end
   

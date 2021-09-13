@@ -39,7 +39,7 @@ class Cook::DishesController < ApplicationController
 
   def destroy
     @dish.destroy
-    redirect_to cook_dishes_path, success: "Plat supprimée"
+    redirect_to cook_dishes_path, success: "Plat supprimé"
   end
 
   def require_cook
