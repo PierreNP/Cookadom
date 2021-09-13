@@ -9,6 +9,8 @@ class Dish < ApplicationRecord
    has_many :users, through: :ratings
    has_many :order_dishes
    has_many :carts, through: :order_dishes
+   has_many :comments
+   has_many :users, through: :comments
  
    has_one_attached :photo
 

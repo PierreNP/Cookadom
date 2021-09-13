@@ -17,11 +17,11 @@ class CartsController < ApplicationController
     @pre_status = @cart.status
 
     if @cart.update(status: 1)
-      flash[:success] = "cart updated"
+      flash[:success] = "Panier mis à jour."
       Cart.create(user_id: current_user.id, status: 0)
     else
       puts @cart.errors.messages
-      redirect_to root_path, flash[:error] = "cart not updated"
+      redirect_to root_path, flash[:error] = "Panier non mis à jour."
     end
 
     UserMailer.waiting_for_validation(@user).deliver_now

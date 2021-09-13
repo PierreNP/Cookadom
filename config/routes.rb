@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     resources :carts, only: [:update, :destroy]
   end
 
+  resources :comments, only: [:create, :update, :destroy]
+
   scope '/checkout' do
     post 'create', to: 'checkouts#create', as: 'checkout_create'
     get 'cancel', to: 'checkouts#cancel', as: 'checkout_cancel'

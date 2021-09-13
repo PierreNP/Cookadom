@@ -18,11 +18,11 @@ class CooksController < ApplicationController
     @cook.user_id = current_user.id
 
     if @cook.save
-      puts "cook saved"
+      puts "Profil de Cook mis à jour."
       redirect_to root_path
     else
       puts @cook.errors.messages
-      puts "cook not saved"
+      puts "Profil de Cook non mis à jour."
       render new_cook_path
     end
   end

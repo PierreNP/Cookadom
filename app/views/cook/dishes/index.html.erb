@@ -34,7 +34,7 @@
       </div>
 
       <div class="col-sm-12 col-md-12 col-lg-6 border-start ">
-        <h1 class="my-4 text-center">Editer votre plat</h1>
+        <h1 class="my-4 text-center">Éditer votre plat</h1>
         <div class="container-fluid my-2"><%= render "edit_form", dish: dish %></div>
       </div>
     </div>
@@ -45,7 +45,7 @@
 
 <div class="container d-flex justify-content-center">
   <div class="col-8">
-      <h1>NEW</h1>
+      <h1>Nouveau plat</h1>
       <%= render "new_form", dish: @dish %>
   </div>
 </div>
@@ -76,7 +76,7 @@
     </div>
 
     <div class="col-4 border">
-      <h2>Validés</h2>
+      <h2>Validées</h2>
       <% @carts.each do |cart|%>
         <% if cart.status == "post_validation" %>
         <div class="border border-primary m-1 p-2">
@@ -94,7 +94,7 @@
     </div>
 
     <div class="col-4 border">
-      <h2>Payés</h2>
+      <h2>Payées</h2>
       <% @carts.each do |cart|%>
         <% if cart.status == "paid" %>
         <div class="border border-primary m-1 p-2">

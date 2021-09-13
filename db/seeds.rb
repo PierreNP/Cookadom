@@ -64,13 +64,6 @@ puts "Tag create"
 end
 puts "User create"
 
-
-
-20.times do 
-  Comment.create(comment: Faker::Lorem.sentence(word_count: rand(1..10)), sender_id: rand(1..10), recipient_id: rand(1..10))
-end
-puts "Comment create"
-
 20.times do 
   Dish.create(name: Faker::Food.dish.to_s, description: Faker::Lorem.sentence(word_count: rand(1..10)).to_s, price: rand(500..20000), ingredients: Faker::Food.description.to_s, cook_id: rand(1..Cook.all.length), status: rand(0..2))
 end
