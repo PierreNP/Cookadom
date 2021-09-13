@@ -1,9 +1,9 @@
 class CreateComments < ActiveRecord::Migration[5.2]
   def change
-    create_table :comments do |t|
-      t.string :comment
-      t.belongs_to :sender, index: true
-      t.belongs_to :recipient, index: true
+    create_table :coments do |t|
+      t.text :content
+      t.belongs_to :user, index: true
+      t.belongs_to :dish, index: true
    
       t.timestamps
     end
