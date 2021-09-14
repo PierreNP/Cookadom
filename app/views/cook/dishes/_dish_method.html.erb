@@ -1,18 +1,18 @@
 <section class="container bg-light dish-method-block">
   <div class="row">
     <% @dishes.each do |dish|%>
-      <div class="col-md-6 col-sm-12 col-lg-4 col-xl-3 m-1">
+      <div class="col-md-12 col-sm-12 col-lg-6 col-xl-3 m-1">
         <div class="mt-5 shadow-sm shadow-sm row">
-          <div class="col-md-5 col-sm-12 col-lg-4 ">
-            <div id="atachement-photos" class="my-1 d-sm-none d-md-block rounded">
+          <div class="col-md-12 col-sm-12 col-lg-4 ">
+            <div id="atachement-photos" class="my-1 rounded img-fluid">
               <% if dish.photo.attached? %>
-                <%=image_tag(dish.photo.variant(resize: "100x100^", crop: '100x100+0+0'), alt: dish.name)%>
+                <%=image_tag(dish.photo.variant(resize: "95x95^", crop: '100x100+0+0'), alt: dish.name)%>
               <% else %>
                 <small>Aucune photo.</small>
               <% end %>
             </div>
           </div>
-          <div class="col-md-7 col-sm-12 col-lg-8  ">
+          <div class="col-md-12 col-sm-12 col-lg-8 px-5">
             <p class="card-title" ><%= dish.name %></p>
             <span class="card-title fw-light" ><%= dish.status %></p>
 
@@ -20,7 +20,7 @@
               <p class="text-muted pe-3"><%= dish.price_euro %></p>
             </div>
             <div class="mb-2">
-              <%= link_to "Delete Dish", cook_dish_path(dish.id), method: :delete, class: "btn btn-sm btn-danger" %>
+              <%= link_to "supprimer", cook_dish_path(dish.id), method: :delete, class: "btn btn-sm btn-danger" %>
               <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal-<%= dish.id %>">editer</button>
             </div>
           </div>
