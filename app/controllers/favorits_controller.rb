@@ -15,13 +15,8 @@ class FavoritsController < ApplicationController
 
   def destroy
     @favorit = Favorit.find_by(favorit_user_id: current_user.id, favorit_dish_id: params[:id])
-    puts "%"*500
-    puts @favorit
-    puts current_user.id
-    puts params[:dish_id]
-    puts "%"*500
-
-    @favorit.destroy
+    if @favorit.destroy
     redirect_back(fallback_location: root_path)
+    end
   end
 end

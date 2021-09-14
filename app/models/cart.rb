@@ -16,6 +16,9 @@ class Cart < ApplicationRecord
     total
   end
 
+  def show_date
+    self.delivery_date.strftime("%m/%d/%Y à %I:%M ") if self.delivery_date
+  end
 
   def total_price_euro
     money = Money.from_cents(self.total_price, "EUR").format
