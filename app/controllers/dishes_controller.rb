@@ -1,6 +1,5 @@
 class DishesController < ApplicationController
 
-
   def index
     if current_user && @cart.dishes.any?
       @dishes = @cart.cook.dishes

@@ -3872,11 +3872,11 @@ textarea.form-control-lg {
   .alert-warning .alert-link {
     color: #36205d; }
 
-.alert-danger {
+.alert-error {
   color: #82322f;
   background-color: #f7dddc;
   border-color: #f4cbca; }
-  .alert-danger .alert-link {
+  .alert-error .alert-link {
     color: #682826; }
 
 .alert-light {
