@@ -12,7 +12,14 @@
               <div class="px-4" >
                 <h1 class="card-title"><%= @cook.business_name %></h1>
                   <div class=" d-flex justify-content-between">
-                    <span class=text-muted><%= @cook.rating %>/5 <i class="fas fa-star text-primary"></i></span> 
+                    <span class=text-muted>
+                      <%= @cook.rating %>/5 (<%= @cook_votes %>)
+                      <% if @cook_votes == 0 %>
+                        <i class="fas fa-star text-muted"></i>
+                      <% else %>
+                        <i class="fas fa-star text-primary"></i>
+                      <% end %>
+                    </span> 
                     <p class="card-text"><%= @cook.user.city.name %></p>
                   </div>
               </div>

@@ -22,6 +22,16 @@ class Cook < ApplicationRecord
       end
       rating / self.dishes.length
    end
+
+   def count_cook_total_number_of_votes
+      votes = 0
+      self.dishes.each do |dish|
+         if Rating.where(dish_id: dish.id)
+           votes += Rating.where(dish_id: dish.id).length
+         end
+      end
+      return votes
+   end
    
    private
 
