@@ -41,4 +41,13 @@ class UserMailer < ApplicationMailer
       mail(to: @user.email, subject: 'Commande payée !')
     end
 
+    def delivery_day(user, cook)
+      @user = user 
+      @cook = cook
+      @cart = user.cart.find_by(status: 3)
+      @url  = "https://cookadom-staging.herokuapp.com/cart/#{@cart.id}"
+
+      mail(to: @user.email, subject: 'Votre commande arrive dans la journée !')
+  end
+
 end
