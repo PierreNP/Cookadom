@@ -21,3 +21,11 @@ div.result {
 .rate-color:hover {
     background: var(--bs-primary) !important;
 }
+
+.unavailable {
+    filter: grayscale(1);
+}
+
+.avoid-clicks {
+    pointer-events: none;
+}

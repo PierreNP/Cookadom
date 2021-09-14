@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
-  
-  resource :static_pages, only: [:home]
+  get "/static_pages/home_cook" => "static_pages#home_cook"
+  resource :static_pages, only: [:home, :home_cook]
   
   resources :carts, only: [:index, :update]
 

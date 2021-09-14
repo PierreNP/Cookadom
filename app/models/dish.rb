@@ -12,9 +12,10 @@ class Dish < ApplicationRecord
    has_many :comments
    has_many :users, through: :comments
    has_many :favorit_users, foreign_key: 'favorit_dish_id', class_name: "Favorit"
-
+   
    has_one_attached :photo
-
+   
+   validates_length_of :tag_dishes, maximum: 3
    validates :name, presence: true, length: { in: 2..40 }
    validates :description, presence: true, length: { in: 2..400 }
    validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1 }
@@ -34,6 +35,10 @@ class Dish < ApplicationRecord
          rate_mean += rating.value
       end
       rate_mean / self.ratings.length 
+   end
+
+   def count_dish_total_number_of_votes
+      return self.ratings.length
    end
 
    def status_fr
