@@ -1,94 +1,136 @@
-
-
-
-<div class="container border my-5">    
-    <% @dishes.each do |dish|%>
-
-    <div class="row border-bottom">
-      <div class="col-sm-12 col-md-12 col-lg-6">
-        <div class="container my-2">
-          <h1 class="my-4"><%= dish.name %><%= link_to "Delete Dish", cook_dish_path(dish.id), method: :delete, class: "btn mx-2 btn-danger" %></h1> 
-          <p>description: <%= dish.description %></p> 
-          <p>price: <%= dish.price %></p>
-          <p>ingredients: <%= dish.ingredients %></p>  
-          <div class="container"><%= render "photo_form", dish: dish %></div>
-          <div class="container">
-            <%= form_with model: dish, url: cook_dish_path(dish),local: true, method: :put do |form| %>
-              <%= form.radio_button :status, :disable %>
-              <%= form.label :status, :Désactivé %><br />
-              
-              <%= form.radio_button :status, :unavailable %>
-              <%= form.label :status, :Indisponible %><br />
-
-              <%= form.radio_button :status, :available %>
-              <%= form.label :status, :Disponible %><br />
-
-              <%= form.radio_button :status, :pinned %>
-              <%= form.label :status, "Épinglé" %><br />
-
-              <%= form.submit :Valider, class: "btn btn-primary" %>
-            <% end %>
-          </div>
-
-        </div>
+<div class="container my-5">
+  <!-- Button trigger modal -->
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Ajouter un nouveau plat</button>
+</div>
+<!-- Modal New dish -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nouveau plat</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-
-      <div class="col-sm-12 col-md-12 col-lg-6 border-start ">
-        <h1 class="my-4 text-center">Éditer votre plat</h1>
-        <div class="container-fluid my-2"><%= render "edit_form", dish: dish %></div>
+      <div class="modal-body">
+            <div class="col-8">
+      <h1>Nouveau plat</h1>
+      <%=render "new_form", dish: @dish %>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
-
-    <% end %>
+  </div>
 </div>
+<section class="container">
+<div class="row">
+  <% @dishes.each do |dish|%>
+    <div class="col-sm-12 col-md-5 col-lg-6">
 
+<div class="row g-0 mt-3 position-relative shadow-sm shadow-sm border-top">
 
-<div class="container d-flex justify-content-center">
-  <div class="col-8">
-      <h1>Nouveau plat</h1>
-      <%= render "new_form", dish: @dish %>
+<div class="d-grid gap-2 d-md-block">
+  <div id="atachement-photos">
+    <% if dish.photo.attached? %>
+        <%=image_tag(dish.photo.variant(resize: "100x100^", crop: '100x100+0+0'), alt: dish.name)%>
+    <% else %>
+        <small>Aucune photo.</small>
+    <% end %>
+  </div>
+  <div>
+    <%= dish.name %>
+    <%= dish.description %>
+    <%= dish.price_euro %>
+  </div>
+  <div>
+    <%= link_to "Delete Dish", cook_dish_path(dish.id), method: :delete, class: "btn mx-2 btn-danger" %>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-<%= dish.id %>">editer</button>
   </div>
 </div>
 
-<h1 class="text-center">COMMANDES</h1>
+       <!-- Modal -->
+      <div class="modal fade" id="modal-<%= dish.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Editer <%=dish.name%></h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="container-fluid my-2">
+                <%= render "edit_form", dish: dish %>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+</section>
 
+<h1 class="text-center">COMMANDES</h1>
 <div class="container-fluid d-flex justify-content-around">
   <div class="row w-100 h-100">
-
     <div class="col-4 border">
       <h2>En attente de validation</h2>
       <% @carts.each do |cart|%>
-        <% if cart.status == "validation" %>
-        <div class="border border-primary m-1 p-2">
-          <% OrderDish.where(cart_id: cart.id).each do |order_dish| %>
-            <% dish = Dish.find_by(id: order_dish.dish_id) %>
-            <p>Plat: <%= dish.name %></p>
-            <p>Quantité: <%= order_dish.quantity %></p>
-            <% address = Address.find_by(user_id: User.find_by(id: cart.user_id).id) %>
-            <p>Adresse: <%= address.name %>: <%= address.street_number %> <%= address.street_type %> <%= address.street_name %></p>
-            <p>Informations complémentaires: <%= address.additional_info %></p>
-          <% end %>
-          <%= link_to "Valider la Commande", cook_cart_path(cart.id), method: :put, class: "btn btn-success" %>
-          <%= link_to "Refuser la Commande", cook_cart_path(cart.id), method: :delete, class: "btn btn-success" %>
-        </div>
+        <% if cart.status=="validation" %>
+          <div class="border border-primary m-1 p-2">
+            <% OrderDish.where(cart_id: cart.id).each do |order_dish| %>
+              <% dish = Dish.find_by(id: order_dish.dish_id) %>
+              <p>Plat:
+                <%= dish.name %>
+              </p>
+              <p>Quantité:
+                <%= order_dish.quantity %>
+              </p>
+              <% address = Address.find_by(user_id: User.find_by(id: cart.user_id).id) %>
+              <p>Adresse:
+                <%= address.name %>:
+                <%= address.street_number %>
+                <%= address.street_type %>
+                <%= address.street_name %>
+              </p>
+              <p>Informations complémentaires:
+                <%= address.additional_info %>
+              </p>
+            <% end %>
+            <%= link_to "Valider la Commande", cook_cart_path(cart.id), method: :put, class: "btn btn-success" %>
+            <%= link_to "Refuser la Commande", cook_cart_path(cart.id), method: :delete, class: "btn btn-success" %>
+          </div>
         <% end %>
       <% end %>
     </div>
-
     <div class="col-4 border">
       <h2>Validées</h2>
       <% @carts.each do |cart|%>
-        <% if cart.status == "post_validation" %>
-        <div class="border border-primary m-1 p-2">
-          <% OrderDish.where(cart_id: cart.id).each do |order_dish| %>
-            <% dish = Dish.find_by(id: order_dish.dish_id) %>
-            <p>Plat: <%= dish.name %></p>
-            <p>Quantité: <%= order_dish.quantity %></p>
-            <% address = Address.find_by(user_id: User.find_by(id: cart.user_id).id) %>
-            <p>Adresse: <%= address.name %>: <%= address.street_number %> <%= address.street_type %> <%= address.street_name %></p>
-            <p>Informations complémentaires: <%= address.additional_info %></p>
-          <% end %>
-        </div>
+        <% if cart.status=="post_validation" %>
+          <div class="border border-primary m-1 p-2">
+            <% OrderDish.where(cart_id: cart.id).each do |order_dish| %>
+              <% dish = Dish.find_by(id: order_dish.dish_id) %>
+                <p>Plat:
+                  <%= dish.name %>
+                </p>
+                <p>Quantité:
+                  <%= order_dish.quantity %>
+                </p>
+                <% address = Address.find_by(user_id: User.find_by(id: cart.user_id).id) %>
+                <p>Adresse:
+                  <%= address.name %>:
+                  <%= address.street_number %>
+                  <%= address.street_type %>
+                  <%= address.street_name %>
+                </p>
+                <p>Informations complémentaires:
+                  <%= address.additional_info %>
+                </p>
+              <% end %>
+          </div>
         <% end %>
       <% end %>
     </div>
@@ -96,23 +138,30 @@
     <div class="col-4 border">
       <h2>Payées</h2>
       <% @carts.each do |cart|%>
-        <% if cart.status == "paid" %>
-        <div class="border border-primary m-1 p-2">
-          <% OrderDish.where(cart_id: cart.id).each do |order_dish| %>
-            <% dish = Dish.find_by(id: order_dish.dish_id) %>
-            <p>Plat: <%= dish.name %></p>
-            <p>Quantité: <%= order_dish.quantity %></p>
-            <% address = Address.find_by(user_id: User.find_by(id: cart.user_id).id) %>
-            <p>Adresse: <%= address.name %>: <%= address.street_number %> <%= address.street_type %> <%= address.street_name %></p>
-            <p>Informations complémentaires: <%= address.additional_info %></p>
+        <% if cart.status=="paid" %>
+          <div class="border border-primary m-1 p-2">
+            <% OrderDish.where(cart_id: cart.id).each do |order_dish| %>
+              <% dish = Dish.find_by(id: order_dish.dish_id) %>
+                <p>Plat:
+                  <%= dish.name %>
+                </p>
+                <p>Quantité:
+                  <%= order_dish.quantity %>
+                </p>
+                <% address= Address.find_by(user_id: User.find_by(id: cart.user_id).id) %>
+                <p>Adresse:
+                  <%= address.name %>:
+                  <%= address.street_number %>
+                  <%= address.street_type %>
+                  <%= address.street_name %>
+                </p>
+                <p>Informations complémentaires:
+                  <%= address.additional_info %>
+                </p>
+            <% end %>
+          </div>
           <% end %>
-        </div>
-        <% end %>
       <% end %>
     </div>
-
   </div>
 </div>
-
-
-

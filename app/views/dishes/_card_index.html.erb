@@ -2,7 +2,7 @@
   <%= link_to dish_path(dish) do %>
     <div class="position-relative ">
       <% if dish.photo.attached? %>
-        <%= image_tag dish.photo.variant(resize: "400x300^", crop: '400x300+0+0') , alt: dish.name, class: "rounded-top img-fluid" %>
+        <%= image_tag dish.photo.variant(resize: "400x300^", crop: '300x200+50+50') , alt: dish.name, class: "rounded-top img-fluid" %>
       <% else %>
         <img class="img-fluid rounded-top " src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg"> 
       <% end %>
