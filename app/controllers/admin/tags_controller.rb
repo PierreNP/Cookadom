@@ -14,7 +14,7 @@ class Admin::TagsController < ApplicationController
 
   def update
     @tag.update(tag_params)
-
+    
     respond_to do |format|
       format.html {redirect_to admin_dashboard_admins_path}
       format.js {}
@@ -23,6 +23,11 @@ class Admin::TagsController < ApplicationController
 
   def destroy
     @tag.destroy
+
+    respond_to do |format|
+      format.html {redirect_to admin_dashboard_admins_path}
+      format.js {}
+    end
   end
 
   def require_admin

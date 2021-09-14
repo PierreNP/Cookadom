@@ -4,6 +4,11 @@ if (<%= params[:dashboard_method].to_i == 1 %>) {
   else {
     document.querySelector("div.right-column-block").children[2].remove();
     document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'command_method' %>");
+
+    document.querySelector("div.border-active").classList.remove("border");
+    document.querySelector("div.border-active").classList.remove("border-active");
+    document.querySelector("div.border-command").classList.add("border");
+    document.querySelector("div.border-command").classList.add("border-active");
   }
 }
 else if (<%= params[:dashboard_method].to_i == 2 %>) {
@@ -12,22 +17,25 @@ else if (<%= params[:dashboard_method].to_i == 2 %>) {
   else {
     document.querySelector("div.right-column-block").children[2].remove();
     document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'dish_method' %>");
+
+    document.querySelector("div.border-active").classList.remove("border");
+    document.querySelector("div.border-active").classList.remove("border-active");
+    document.querySelector("div.border-dish").classList.add("border");
+    document.querySelector("div.border-dish").classList.add("border-active");
   }
 }
+
 else if (<%= params[:dashboard_method].to_i == 3 %>) {
-  if (document.querySelector("div.new-dish-method-block")) {
-  }
-  else {
-    document.querySelector("div.right-column-block").children[2].remove();
-    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'new_dish_method' %>");
-  }
-}
-else if (<%= params[:dashboard_method].to_i == 4 %>) {
   if (document.querySelector("div.stat-method-block")) {
   }
   else {
     document.querySelector("div.right-column-block").children[2].remove();
     document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'stat_method' %>");
+
+    document.querySelector("div.border-active").classList.remove("border");
+    document.querySelector("div.border-active").classList.remove("border-active");
+    document.querySelector("div.border-stat").classList.add("border");
+    document.querySelector("div.border-stat").classList.add("border-active");
   }
 }
 else {
