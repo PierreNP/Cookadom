@@ -14,3 +14,4 @@ class DishesController < ApplicationController
     @comments = Comment.new
   end
 end
+

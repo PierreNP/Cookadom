@@ -49,7 +49,7 @@ class OrderDishesController < ApplicationController
   private
 
   def order_params
-    params.require(:order_dishes).permit(:quantity, :dish_id, :cart_id)
+    params.permit(:quantity, :dish_id, :cart_id)
   end
 
   def set_order
