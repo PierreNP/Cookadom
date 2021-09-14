@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
- 
   root 'static_pages#home'
   
   resource :static_pages, only: [:home]
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
   end
   
   devise_for :users, :controllers => { registrations: :registrations }
+
   resources :users, only: [:show, :edit, :update, :destroy] do 
     resources :addresses, only: [:create, :update, :destroy]
   end
@@ -35,7 +35,13 @@ Rails.application.routes.draw do
     resources :carts, only: [:update, :destroy]
   end
 
+  namespace :user do
+    resources :dishes, only: [:index]
+  end
+  
   resources :comments, only: [:create, :update, :destroy]
+
+  resources :favorits, only: [:index, :create, :destroy]
 
   scope '/checkout' do
     post 'create', to: 'checkouts#create', as: 'checkout_create'

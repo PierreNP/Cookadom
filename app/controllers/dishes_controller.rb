@@ -2,11 +2,7 @@ class DishesController < ApplicationController
 
 
   def index
-    dishes = Dish.search(params[:search]).where(status: "available")
-    @dishes = Array.new
-    dishes.each do |dish|
-      @dishes << dish unless dish.cook.status
-    end
+    @dishes = Dish.search(params[:search]).where(status: "available")
   end
 
   def show

@@ -1,0 +1,16 @@
+<% @favorit_dishes.each do |favorit_dish|%>
+  <div class="row g-0 my-2 position-relative shadow-lg shadow-lg">
+    <img class="col-4 img-fluid rounded-4 " src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg" alt="...">
+    <div class="col-8 d-flex flex-column justify-content-around">
+      <h6 class="card-title text-center col-9 ps-1  fs-6"><%= favorit_dish.name %></h6>
+      <div class="row add-delete px-3">
+        <div class="col d-flex-center">
+          <div class="fw-bold fs-7"><%= favorit_dish.price_euro %></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-1 position-btn-close d-flex-center">
+      <%= link_to "", favorit_path(favorit_dish_to_destroy(dish)), method: :delete, class:"btn-close p-00 fs-10"%>
+    </div>
+  </div>
+<% end %>
