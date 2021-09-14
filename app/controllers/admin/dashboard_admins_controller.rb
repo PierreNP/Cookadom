@@ -8,8 +8,7 @@ class Admin::DashboardAdminsController < ApplicationController
     @invalid_cooks = Cook.where(status: false)
     @cooks = Cook.all
     @users = User.user
-    puts "*" * 100
-    puts params
+    @tags = Tag.all
   end
 
   def require_admin
