@@ -4,7 +4,7 @@ class OrderDishesController < ApplicationController
   before_action :set_order, only: [:update, :destroy]
   
   def create
-    if @cart.dishes.empty? || @cart.dishes.last.cook ==  Dish.find_by(id: params[:dish_id]).cook
+    if @cart.dishes.empty? || @cart.cook ==  Dish.find_by(id: params[:dish_id]).cook
       
       if @cart.dishes.include?(Dish.find_by(id: params[:dish_id]))
         @order = OrderDish.find_by(dish_id: params[:dish_id], cart_id: @cart.id)
@@ -17,10 +17,7 @@ class OrderDishesController < ApplicationController
 
       else
         order = OrderDish.create(dish_id: params[:dish_id], cart_id: @cart.id, quantity: params[:quantity].to_i)
-        puts "%"*500
         puts order.errors.messages
-        puts "%"*500
-
         if order.save
           flash[:success] = "Plat ajouté au panier."
         else
