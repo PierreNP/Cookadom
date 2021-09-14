@@ -26,6 +26,9 @@ class Cart < ApplicationRecord
     money.insert(-1, " #{currency}")
   end
 
+  def cook
+    self.dishes.first.cook if self.dishes.any?
+  end
 
   def clean_and_destroy_cart
     user_id = self.user_id

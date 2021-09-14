@@ -30,6 +30,9 @@
     </div>
   </div>
   <div class="row">
+    
+
+    <h2><%= "Voici les autres plats proposé par votre cuisinier" if @cart.dishes.any? %></h2>
     <% @dishes.each do |dish| %>
         <%= render 'card_index', dish: dish %>
     <% end %>
