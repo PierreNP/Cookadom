@@ -36,6 +36,10 @@ class Dish < ApplicationRecord
       rate_mean / self.ratings.length 
    end
 
+   def count_dish_total_number_of_votes
+      return self.ratings.length
+   end
+
    def status_fr
       case self.status
       when "disable"

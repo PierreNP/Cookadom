@@ -6,6 +6,7 @@ class CooksController < ApplicationController
   def show
     @dishes = @cook.dishes
     @addresses = @cook.user.addresses
+    @cook_votes = @cook.count_cook_total_number_of_votes
   end
 
   def new
