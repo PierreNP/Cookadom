@@ -10,7 +10,19 @@
         <% else %>
         <img class="img-fluid rounded-left-5 " src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg"> 
       <% end %>
-  
+      <% if current_user && !is_a_favorit_dish?(@dish)%>
+        <div class="d-flex align-items-center justify-content-center p-2 bg-white rounded-circle position-absolute top-0 end-50 m-2">
+            <%= link_to favorits_path(dish_id: @dish.id), method: :post do %>
+              <i class="fas fa-heart text-primary fs-3"></i>
+            <% end %>
+        </div>
+      <% elsif  current_user && is_a_favorit_dish?(@dish)  %>
+        <div class="d-flex align-items-center justify-content-center p-2 bg-secondary rounded-circle position-absolute top-0 end-50 m-2">
+          <%= link_to favorit_path(@dish.id), method: :delete do %>
+            <i class="fas fa-heart text-primary fs-3"></i>
+          <% end %>
+        </div>
+      <% end %>
     <div class="card-body bg-white rounded-right-5 text-center">
       <h2 class="card-title text-primary border-bottom border-1 p-3 border-primary"><%= @dish.name %></h2>
       <p class="mt-4"><%= @dish.description %></p>

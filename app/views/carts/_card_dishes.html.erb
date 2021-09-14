@@ -4,7 +4,10 @@
   <div class="col-8 d-flex flex-column justify-content-around">
     <h6 class="card-title text-center col-9 ps-1  fs-6"><%= dish.name %> x <%= order_dish.quantity %></h6>
     <div class="row add-delete px-3">
-      <div class="col d-flex-center">
+      <div class="col d-flex justify-content-evenly">
+
+        <%= render "order_dishes/quantity_choice", order_dish: order_dish%>
+
         <div class="fw-bold fs-7"><%= dish.price_euro %></div>
       </div>
     </div>

@@ -1,0 +1,28 @@
+<% if @favorits.empty? %>
+  <h1 class="vh-90 d-flex justify-content-center align-items-center"> Vous n'avez pas encore de favoris... </h1>
+<% else %>
+  <div class="container">
+    <h1 class="my-5 text-primary d-flex justify-content-center"> Vos favoris </h1>
+    <div class="row">
+      <% @favorits.each do |favorit|%>
+        <% dish = Dish.find(favorit.favorit_dish_id) %>
+        <div class="col-6">
+          <div class="row g-0 my-2 position-relative shadow-lg shadow-lg">
+            <img class="col-4 img-fluid rounded-4 " src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg" alt="...">
+            <div class="col-8 d-flex flex-column justify-content-around">
+              <h6 class="card-title text-center col-9 ps-1  fs-6"><%= dish.name %></h6>
+              <div class="row add-delete px-3">
+                <div class="col d-flex-center">
+                  <div class="fw-bold fs-7"><%= dish.price_euro %></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-1 position-btn-close d-flex-center">
+              <%= link_to "", favorit_path(dish.id), method: :delete, class:"btn-close p-00 fs-10"%>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
