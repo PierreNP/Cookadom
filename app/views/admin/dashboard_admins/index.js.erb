@@ -1,11 +1,14 @@
-
-
 if (<%= params[:dashboard_method].to_i == 1 %>) {
   if (document.querySelector("div.validation-method-block")) {
   }
   else {
     document.querySelector("div.right-column-block").children[0].remove();
     document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'validation_method' %>");
+
+    document.querySelector("div.border-active").classList.remove("border");
+    document.querySelector("div.border-active").classList.remove("border-active");
+    document.querySelector("div.border-validation").classList.add("border");
+    document.querySelector("div.border-validation").classList.add("border-active");
   }
 }
 else if (<%= params[:dashboard_method].to_i == 2 %>) {
@@ -14,6 +17,11 @@ else if (<%= params[:dashboard_method].to_i == 2 %>) {
   else {
     document.querySelector("div.right-column-block").children[0].remove();
     document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'cook_method' %>");
+
+    document.querySelector("div.border-active").classList.remove("border");
+    document.querySelector("div.border-active").classList.remove("border-active");
+    document.querySelector("div.border-cook").classList.add("border");
+    document.querySelector("div.border-cook").classList.add("border-active");
   }
 }
 else if (<%= params[:dashboard_method].to_i == 3 %>) {
@@ -22,14 +30,37 @@ else if (<%= params[:dashboard_method].to_i == 3 %>) {
   else {
     document.querySelector("div.right-column-block").children[0].remove();
     document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'user_method' %>");
+
+    document.querySelector("div.border-active").classList.remove("border");
+    document.querySelector("div.border-active").classList.remove("border-active");
+    document.querySelector("div.border-user").classList.add("border");
+    document.querySelector("div.border-user").classList.add("border-active");
   }
 }
 else if (<%= params[:dashboard_method].to_i == 4 %>) {
-  if (document.querySelector("div.stats-method-block")) {
+  if (document.querySelector("div.tag-method-block")) {
   }
   else {
     document.querySelector("div.right-column-block").children[0].remove();
-    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'stats_method' %>");
+    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'tag_method' %>");
+
+    document.querySelector("div.border-active").classList.remove("border");
+    document.querySelector("div.border-active").classList.remove("border-active");
+    document.querySelector("div.border-tag").classList.add("border");
+    document.querySelector("div.border-tag").classList.add("border-active");
+  }
+}
+else if (<%= params[:dashboard_method].to_i == 5 %>) {
+  if (document.querySelector("div.stat-method-block")) {
+  }
+  else {
+    document.querySelector("div.right-column-block").children[0].remove();
+    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'stat_method' %>");
+
+    document.querySelector("div.border-active").classList.remove("border");
+    document.querySelector("div.border-active").classList.remove("border-active");
+    document.querySelector("div.border-stat").classList.add("border");
+    document.querySelector("div.border-stat").classList.add("border-active");
   }
 }
 else {
