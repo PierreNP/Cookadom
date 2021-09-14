@@ -1,5 +1,4 @@
 <section class="container mt-3">
-  <div class="d-flex justify-content-center"> 
     <div class="row">
       <div class="col-md-6 d-flex">
         <div class="card flex">
@@ -21,11 +20,11 @@
           </div>
         </div>
       </div>
-    </div>
+      <div class="d-flex-center flex-column  bg-primary">
+        <h2 class="text-center text-white ">Le plat du Cook</h2>
+        <%= render "dishes/card_index", dish: @pinned_dish if @pinned_dish %>
+      </div>
 
-    <div class="bg-danger d-flex-center">
-      <%= render "dishes/card_index", dish: @pinned_dish if @pinned_dish %>
-    </div>
   </div>
 
     <div class="row mt-2">
