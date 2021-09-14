@@ -10,22 +10,21 @@
           
         <% end %>
         
-
+          
           <% if @cart.total_price != 0 %>
             <h5 class="my-3 text-primary"> Total: <%= @cart.total_price_euro %></h5>
             <% if @cart.delivery_date %>
-              <p class="my-3 text-muted">Livraison : <%= @cart.delivery_date.strftime("%m/%d/%Y à %I:%M ")%> </p>
+              <p class="my-3 text-muted">Livraison : <%= @cart.delivery_date.strftime("%m/%d/%Y à %I:%M ")%> 
+              <%= link_to :Modifier, cart_path(@cart, new_date: true), method: :put ,remote: true, class: "text-primary"%> </p>
             <% end %>
           <% end%>
         
         <% if current_user.addresses.first.nil? %>
           <p> Il vous faut une adresse pour commander ! Cliquez <%= link_to "ici", edit_user_path(current_user.id)%> pour en ajouter une.</p>
-        <% elsif !@cart.delivery_date?%>
-        <h2>Choisir une date de livraison</h2>
-        <%= form_with model: @cart, url: cart_path(@cart), method: :put do |form| %>
-          <%= form.datetime_field :delivery_date, min: Date.tomorrow %>
-          <%= form.submit "Valider date de livraison", class: " mt-3 btn btn-primary" %>
-        <% end %>
+        <% elsif !@cart.delivery_date? && @cart.total_price != 0%>
+
+          <%= render "carts/date_form", cart: @cart%>
+
         <% elsif @cart_pre_validation.order_dishes.first %>
           <%= link_to "Valider la commande", cart_path(@cart_pre_validation.id ), method: :put, class:"btn btn-primary col-6 offset-3" %>
         <% end %>
