@@ -26,13 +26,13 @@
           <div id=<%="flush-collapse#{user.id}"%> class="accordion-collapse collapse" aria-labelledby=<%="flush-#{user.id}"%> data-bs-parent="#accordionFlushExample" style="">
             <div class="accordion-body">
                 <!-- Item start -->
-              <% comments = Comment.where(sender_id: user.id)%>
+              <% comments = Comment.where(user_id: user.id)%>
               <% comments.each do |comment|%>
               <div class="text-center mb-3 row d-flex align-items-center">
                 <div class="col-2">
                   <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
                 </div>
-                <p class=" mb-0 col-6 "><%= comment.comment %></p>
+                <p class=" mb-0 col-6 "><%= comment.content %></p>
                 <p class=" mb-0 col-2 "><%= comment.updated_at %></p>
 
                 <div class="col-1 grid-2 gap-1">

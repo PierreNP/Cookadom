@@ -28,11 +28,12 @@ class Dish < ApplicationRecord
    end
   
    def rating 
+      return 0 if self.ratings.empty?
       rate_mean = 0
       self.ratings.each do |rating|
          rate_mean += rating.value
       end
-      rate_mean
+      rate_mean / self.ratings.length 
    end
 
    def status_fr
