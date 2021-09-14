@@ -63,24 +63,8 @@
   </div>
   <div class="container">
     <% current_user.carts.last.order_dishes.each do |order_dish| %>
-    <% dish = order_dish.dish %>
-      <div class="row g-0 my-2 position-relative shadow-lg shadow-lg">
-        <img class="col-4 img-fluid rounded-4 " src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg" alt="...">
-        <div class="col-8 d-flex flex-column justify-content-around">
-          <h6 class="card-title text-center col-9 ps-1  fs-6"><%= dish.name %> x <%= order_dish.quantity %></h6>
-          <div class="row add-delete px-3">
-            <div class="col d-flex justify-content-evenly">
-              <%= render "order_dishes/quantity_choice", order_dish: order_dish%>
+      <%= render "carts/card_dishes", order_dish: order_dish, cart: @cart%>
 
-
-              <div class="fw-bold fs-7"><%= dish.price_euro %></div>
-            </div>
-          </div>
-        </div>
-        <div class="col-1 position-btn-close d-flex-center">
-          <%= link_to "", order_dish_path(order_dish.id), method: :delete, class:"btn-close p-00 fs-10"%>
-        </div>
-      </div>
     <% end %>
     <div class="offcanvas-body d-flex justify-content-center">
       <%= link_to("Voir mon panier", carts_path, class: "nav-link btn-primary text-light rounded-6 m-2 w-50") if current_user %>

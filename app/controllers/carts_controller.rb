@@ -10,12 +10,18 @@ class CartsController < ApplicationController
   end
 
   def update
+    if params[:cart] && delivery = params[:cart][:delivery_date]
+      @cart.update(delivery_date: delivery )
+      redirect_to root_path
+      return
+    end
+    
     @order_dish = OrderDish.find_by(cart_id: @cart.id)
     @dish = Dish.find_by(id: @order_dish.dish_id)
     @cook = Cook.find_by(id: @dish.cook_id)
     @user = User.find_by(id: @cart.user_id)
     @pre_status = @cart.status
-
+    
     if @cart.update(status: 1)
       flash[:success] = "Panier mis à jour."
       Cart.create(user_id: current_user.id, status: 0)
