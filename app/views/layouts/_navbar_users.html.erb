@@ -1,16 +1,11 @@
   <nav class="navbar navbar-expand-lg  navbar-light navbar-light bg-light sticky-top shadow-sm" id="nav">
         <div class="container">
-            <% if current_user.cooks.any?%>
-                <div class="pe-3 fs-4" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
-                    <i class="fas fa-bars"></i>
-                </div>
-            <% end %>
 
             <%= link_to  root_path, class: "navbar-brand fw-bolder text-primary d-none d-lg-block" do %>
               <%= image_tag "logo.svg", alt: :logo, width: 50 %><span class="fw-bolder text-primary ms-1">COOKADOM</span>
             <% end %>
 
-            <% if current_user.status_user?%>
+            <% if current_user.status == "user" %>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span></button>
             <% end %>
@@ -23,10 +18,20 @@
                     <li class="nav-item">
                         <%= link_to "Les plats", dishes_path, class:"nav-link" %>
                     </li>       
-                    <% unless current_user.status_cook? %>
+                    <% unless current_user.status == "cook" || current_user.status == "admin"%>
                         <li class="nav-item">
                             <%= link_to "Devenir un Cook", new_cook_path, class:"nav-link" %>
                         </li>  
+                    <% end %>
+                    <% if current_user.status == "cook" %>
+                        <li class="nav-item">
+                            <%= link_to "Dashboard", cook_dishes_path, class:"nav-link" %>
+                        </li>
+                    <% end %>
+                    <% if current_user.status == "admin" %>
+                        <li class="nav-item">
+                            <%= link_to "Dashboard", admin_dashboard_admins_path, class:"nav-link" %>
+                        </li>
                     <% end %>
                 </ul>
             </div>
@@ -37,7 +42,7 @@
                 </a>
                 <ul class="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
                     <li>
-                        <%= link_to "Profil", edit_user_path(current_user.id), class:"dropdown-item" %>
+                        <%= link_to "Profil Utilisateur", edit_user_path(current_user.id), class:"dropdown-item" %>
                     </li>
                     <li>
                         <%= link_to "Mes commandes", user_path(current_user.id), class:"dropdown-item" %>
@@ -75,9 +80,3 @@
   </div>
  </div>
 
-
-
-
-    <% if current_user.cook? %>
-        <%= render "layouts/start_navbar" %>
-    <% end %>

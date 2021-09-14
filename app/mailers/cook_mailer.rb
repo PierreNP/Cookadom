@@ -50,4 +50,5 @@ class CookMailer < ApplicationMailer
         mail(to: @cook.user.email, subject: 'La commande a été réglée, à vos fourneaux !')
         
     end
+
 end

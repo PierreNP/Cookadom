@@ -1,0 +1,118 @@
+<div class="command-method-block mt-5">
+
+      <div class="accordion accordion-flush mt-5 shadow-sm" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              <h2 class="text-center  col">Commandes Payées</h2>
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
+            <div class="accordion-body">
+                <!-- Item start -->
+              <% @carts.each do |cart|%>
+                <% if cart.status == "paid" %>
+                <% address = Address.find_by(user_id: User.find_by(id: cart.user_id).id) %>
+                <div class="text-center mb-3 row d-flex flex-wrap align-items-center">
+                  <div class="col-2">
+                    <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
+                  </div>
+                  <p class=" mb-0 col-4">Id Utilisateur: <%= cart.user_id %></p>
+                  <p class=" mb-0 col-2">Status: <%= cart.status %></p>
+                  <p class=" mb-0 fs-6  col-4 ">Payé le: <%= cart.updated_at %></p>
+                  <p class=" mb-0 fs-6  col-6 ">Adresse: <%= address.street_number %> <%= address.street_type %> <%= address.street_name %></p>
+                  <p class=" mb-0 fs-6  col-6 ">Informations complémentaires: <%= address.additional_info %></p>
+
+                </div>
+
+
+                <div class="accordion accordion-flush mt-5 shadow-sm" id="accordionFlushExample2">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingDetails<%="#{cart.id}"%>">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseDetails<%="#{cart.id}"%>" aria-expanded="false" aria-controls="flush-collapseDetails<%="#{cart.id}"%>">
+                        <h2 class="text-center  col">Détail</h2>
+                      </button>
+                    </h2>
+                    <div id="flush-collapseDetails<%="#{cart.id}"%>" class="accordion-collapse collapse" aria-labelledby="flush-headingDetails<%="#{cart.id}"%>" data-bs-parent="#accordionFlushExample2" style="">
+                    <div class="accordion-body">
+                      <% OrderDish.where(cart_id: cart.id).each do |order_dish| %>
+                        <% dish = Dish.find_by(id: order_dish.dish_id) %>
+                      <div class="text-center mb-3 row d-flex align-items-center flex-wrap">
+                        <div class="col-2">
+                          <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
+                        </div>
+                        <p class=" mb-0 col-3">Plat: <%= dish.name %></p>
+                        <p class=" mb-0 col-2">X <%= order_dish.quantity %></p>
+                      </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              <h2 class="text-center col">Commandes Validées</h2>
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <!-- Item start -->
+              <% @carts.each do |cart|%>
+                <% if cart.status == "post_validation" %>
+                <div class="text-center mb-3 row d-flex align-items-center">
+                  <div class="col-2">
+                    <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
+                  </div>
+                  <p class=" mb-0 col-4 ">Id Utilisateur: <%= cart.user_id %></p>
+                  <p class=" mb-0 col-2 ">Status: <%= cart.status %></p>
+                  <p class=" mb-0 fs-6  col-4 ">Validé le: <%= cart.updated_at %></p>
+                </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+              <h2 class="text-center col">Commandes en Attente de Validation</h2>
+            </button>
+          </h2>
+          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <!-- Item start -->
+              <% @carts.each do |cart|%>
+                <% if cart.status == "validation" %>
+                <div class="text-center mb-3 row d-flex align-items-center">
+                  <div class="col-2">
+                    <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
+                  </div>
+                  <p class=" mb-0 col-4 ">Id Utilisateur: <%= cart.user_id %></p>
+                  <p class=" mb-0 col-2 ">Status: <%= cart.status %></p>
+                  <p class=" mb-0 fs-6  col-4 ">Commandé le: <%= cart.updated_at %></p>
+                  <div class="col-1 grid-2 gap-1">
+                    <%= link_to cook_cart_path(cart.id), method: :put, class: "btn btn-succes" do %>
+                      <i class="fas fa-check"></i>
+                    <% end %>
+                    <%= link_to cook_cart_path(cart.id), method: :delete, class: "btn btn-danger" do %>
+                      <i class="fas fa-times"></i>
+                    <% end %>
+                  </div>
+                </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        
+
+
+      </div>
+</div>

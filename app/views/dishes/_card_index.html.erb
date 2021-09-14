@@ -2,7 +2,7 @@
   <%= link_to dish_path(dish) do %>
     <div class="position-relative ">
       <% if dish.photo.attached? %>
-        <%= image_tag dish.photo.variant(resize: "400x300^", crop: '400x300+0+0') , alt: dish.name, class: "rounded-top img-fluid" %>
+        <%= image_tag dish.photo.variant(resize: "400x300^", crop: '300x200+50+50') , alt: dish.name, class: "rounded-top img-fluid" %>
       <% else %>
         <img class="img-fluid rounded-top " src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg"> 
       <% end %>
@@ -34,7 +34,6 @@
     <div class=" d-flex justify-content-between align-self-baseline">
       <span class="text-muted fs-8"><i class="fas fa-star text-primary fs-9"></i> <%= dish.rating if dish.ratings.any? %></span>
       <p class="card-text"><%= dish.price_euro %></p>
-
     </div>
     <div class="d-flex justify-content-between align-items-center">
       <% if current_user %>
