@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   
   resources :comments, only: [:create, :update, :destroy]
 
-  resources :favorits, only: [:index]
+  resources :favorits, only: [:index, :create, :destroy]
 
   scope '/checkout' do
     post 'create', to: 'checkouts#create', as: 'checkout_create'
