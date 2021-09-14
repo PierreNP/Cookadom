@@ -20,22 +20,25 @@
           </div>
         </div>
       </div>
-      <div class="d-flex-center flex-column  bg-primary">
-        <h2 class="text-center text-white ">Le plat du Cook</h2>
-        <%= render "dishes/card_index", dish: @pinned_dish if @pinned_dish %>
+      <div class="my-5">
+        <% list_tags(@cook).each do |tags| %>
+          <span class="btn btn-tag rounded-x btn-secondary"><%= tags %></span>
+        <% end %>
       </div>
 
-  </div>
+      <div class="row mt-2">
+        <h2 class="">Le plat du Cook</h2>
+        <%= render "dishes/card_index", dish: @pinned_dish if @pinned_dish %>
+      </div>
+    </div>
 
     <div class="row mt-2">
         <h2>Ses plats</h2>
     </div>
     
-    <% list_tags(@cook).each do |tags| %>
-      <span class="btn btn-tag rounded-x btn-secondary"><%= tags %></span>
-    <% end %>
 
-    <div class="d-flex gap-5 flex-wrap" >
+
+    <div class="row" >
       <% @cook.dishes.each do |dish| %>
         <%= render "dishes/card_index", dish: dish unless dish.disabled?%>
       <% end %>
