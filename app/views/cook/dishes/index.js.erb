@@ -1,0 +1,35 @@
+if (<%= params[:dashboard_method].to_i == 1 %>) {
+  if (document.querySelector("div.command-method-block")) {
+  }
+  else {
+    document.querySelector("div.right-column-block").children[0].remove();
+    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'command_method' %>");
+  }
+}
+else if (<%= params[:dashboard_method].to_i == 2 %>) {
+  if (document.querySelector("div.dish-method-block")) {
+  }
+  else {
+    document.querySelector("div.right-column-block").children[0].remove();
+    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'dish_method' %>");
+  }
+}
+else if (<%= params[:dashboard_method].to_i == 3 %>) {
+  if (document.querySelector("div.new-dish-method-block")) {
+  }
+  else {
+    document.querySelector("div.right-column-block").children[0].remove();
+    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'new_dish_method' %>");
+  }
+}
+else if (<%= params[:dashboard_method].to_i == 4 %>) {
+  if (document.querySelector("div.stat-method-block")) {
+  }
+  else {
+    document.querySelector("div.right-column-block").children[0].remove();
+    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'stat_method' %>");
+  }
+}
+else {
+
+}

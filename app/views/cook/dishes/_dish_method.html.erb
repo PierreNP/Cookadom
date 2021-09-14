@@ -1,0 +1,41 @@
+<div class="dish-method-block">
+  <div class="container border my-5">    
+    <% @dishes.each do |dish|%>
+
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-6">
+        <div class="container my-2">
+          <h1 class="my-4"><%= dish.name %><%= link_to "Delete Dish", cook_dish_path(dish.id), method: :delete, class: "btn mx-2 btn-danger" %></h1> 
+          <p>description: <%= dish.description %></p> 
+          <p>price: <%= dish.price %></p>
+          <p>ingredients: <%= dish.ingredients %></p>  
+          <div class="container"><%= render "photo_form", dish: dish %></div>
+            <div class="container">
+              <%= form_with model: dish, url: cook_dish_path(dish),local: true, method: :put do |form| %>
+                <%= form.radio_button :status, :disabled %>
+                <%= form.label :status, :Désactivé %><br />
+                
+                <%= form.radio_button :status, :unavailable %>
+                <%= form.label :status, :Indisponible %><br />
+
+                <%= form.radio_button :status, :available %>
+                <%= form.label :status, :Disponible %><br />
+
+                <%= form.radio_button :status, :pinned %>
+                <%= form.label :status, "Épinglé" %><br />
+
+                <%= form.submit :Valider, class: "btn btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-6">
+          <h1 class="my-4 text-center">Éditer votre plat</h1>
+          <div class="container-fluid my-2"><%= render "edit_form", dish: dish %></div>
+        </div>
+      </div>
+
+      <% end %>
+  </div>
+</div>

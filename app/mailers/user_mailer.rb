@@ -20,7 +20,7 @@ class UserMailer < ApplicationMailer
     def validated_order(user, cook)
         @user = user 
         @cook = cook
-        @cart = user.cart.find_by(status: 1)
+        @cart = Cart.find_by(user_id: @user.id, status: 1)
         @url  = "https://cookadom-staging.herokuapp.com/cart/#{@cart.id}"
 
         mail(to: @user.email, subject: 'Commande validée !')
