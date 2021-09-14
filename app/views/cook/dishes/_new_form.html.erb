@@ -34,11 +34,19 @@
             <%= form.text_field :ingredients, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary", placeholder: dish.ingredients %>
           </div> 
         </div>
+        
+        <!-- <p class="fs-6 mt-4 mb-3 text-muted">Tags : </p> 
+          <select id="select-tag" class="form-select form-select-lg p-3 rounded-4 border-2 border-primary" name="tag[]" multiple autocomplete="off">
+            <option value="italien">Italien</option>
+            <option value="japonais">Japonais</option>
+            <option value="chinois">Chinois</option>
+          </select> -->
+         
       <div class="row">
         <div class="col-12 mt-3">
           <%= form.submit "Valider", class:"btn btn-primary" %>
         </div>
       </div>
-     </div>
+    </div>
 
   <%end%>

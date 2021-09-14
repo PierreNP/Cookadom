@@ -1,0 +1,37 @@
+
+
+if (<%= params[:dashboard_method].to_i == 1 %>) {
+  if (document.querySelector("div.validation-method-block")) {
+  }
+  else {
+    document.querySelector("div.right-column-block").children[0].remove();
+    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'validation_method' %>");
+  }
+}
+else if (<%= params[:dashboard_method].to_i == 2 %>) {
+  if (document.querySelector("div.cook-method-block")) {
+  }
+  else {
+    document.querySelector("div.right-column-block").children[0].remove();
+    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'cook_method' %>");
+  }
+}
+else if (<%= params[:dashboard_method].to_i == 3 %>) {
+  if (document.querySelector("div.user-method-block")) {
+  }
+  else {
+    document.querySelector("div.right-column-block").children[0].remove();
+    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'user_method' %>");
+  }
+}
+else if (<%= params[:dashboard_method].to_i == 4 %>) {
+  if (document.querySelector("div.stats-method-block")) {
+  }
+  else {
+    document.querySelector("div.right-column-block").children[0].remove();
+    document.querySelector("div.right-column-block").insertAdjacentHTML("beforeend", "<%= j render 'stats_method' %>");
+  }
+}
+else {
+
+}

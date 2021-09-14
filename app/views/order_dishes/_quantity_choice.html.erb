@@ -1,0 +1,10 @@
+<% if order_dish.cart.pre_validation? %>
+
+    <%= link_to order_dish_path(id: order_dish, quantity: order_dish.quantity-1 ), method: :patch do %>
+    <i class="fas fa-minus line-h-quantity fs-7 text-white bg-primary p-1 rounded-circle"></i>
+    <%end%>
+    <%= order_dish.quantity %>
+    <%= link_to order_dish_path(id: order_dish, quantity: order_dish.quantity+1 ), method: :patch do %>
+    <i class="fas fa-plus line-h-quantity fs-7 text-white bg-primary p-1 rounded-circle"></i>
+    <%end%>
+<% end %>

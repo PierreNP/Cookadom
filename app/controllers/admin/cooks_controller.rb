@@ -3,13 +3,6 @@ class Admin::CooksController < ApplicationController
   before_action :authenticate_user!
   before_action :require_admin
   before_action :set_cook, only: [:update, :destroy]
- 
-
-  def index
-    @valid_cooks = Cook.where(status: true)
-    @invalid_cooks = Cook.where(status: false)
-    @cooks = Cook.all
-  end
 
   def update
     @status = @cook.status
@@ -25,7 +18,7 @@ class Admin::CooksController < ApplicationController
     end
     
     respond_to do |format|
-      format.html {redirect_to admin_cooks_path}
+      format.html {redirect_to admin_dashboard_admins_path}
       format.js {}
     end
   end
@@ -34,7 +27,7 @@ class Admin::CooksController < ApplicationController
     @cook.destroy
 
     respond_to do |format|
-      format.html {redirect_to admin_cooks_path}
+      format.html {redirect_to admin_dashboard_admins_path}
       format.js {}
     end
   end

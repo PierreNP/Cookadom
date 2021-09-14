@@ -1,31 +1,31 @@
 Rails.application.routes.draw do
- 
-  get 'avatars/create'
-  get 'avatars/destroy'
-  get 'avatar/create'
-  get 'avatar/destroy'
-
   root 'static_pages#home'
   
   resource :static_pages, only: [:home]
   
-  resources :carts, only: [:show, :update]
+  resources :carts, only: [:index, :update]
 
   resources :order_dishes, only: [:create, :update, :destroy]
 
-  resources :dishes, only: [:index, :show]
+  resources :dishes, only: [:index, :show] do 
+    resources :ratings, only: [:new, :create, :show]
+  end
   
   resources :cooks, only: [:new, :edit, :create, :show, :destroy] do 
     resources :avatars, only: [:create, :destroy]
   end
   
   devise_for :users, :controllers => { registrations: :registrations }
+
   resources :users, only: [:show, :edit, :update, :destroy] do 
     resources :addresses, only: [:create, :update, :destroy]
   end
 
-  namespace :admin, only: [:index, :update, :destroy] do
-    resources :cooks, :users
+  namespace :admin do
+    resources :cooks, :users, only: [:update, :destroy]
+    resources :dashboard_admins, only: [:index]
+    resources :admin_dishes, only: [:destroy]
+    resources :admin_comments, only: [:destroy]
   end
 
   namespace :cook, only: [:index, :create, :update, :destroy] do
@@ -34,6 +34,14 @@ Rails.application.routes.draw do
     end
     resources :carts, only: [:update, :destroy]
   end
+
+  namespace :user do
+    resources :dishes, only: [:index]
+  end
+  
+  resources :comments, only: [:create, :update, :destroy]
+
+  resources :favorits, only: [:index, :create, :destroy]
 
   scope '/checkout' do
     post 'create', to: 'checkouts#create', as: 'checkout_create'

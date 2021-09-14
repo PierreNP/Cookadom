@@ -13,11 +13,12 @@ class User < ApplicationRecord
   has_many :addresses
   has_many :cooks
   has_many :comments
-  has_many :sent_comments, foreign_key: 'sender_id', class_name: "Comments"
-  has_many :received_comments, foreign_key: 'recipient_id', class_name: "Comments"
+  has_many :dishes, through: :comments
   has_many :ratings
   has_many :dishes, through: :ratings
   has_many :carts
+  has_many :favorit_dishes, foreign_key: 'favorit_user_id', class_name: "Favorit"
+
 
   validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "email adress please" }
   # validates :first_name, length: { in: 1..20 }
@@ -39,6 +40,17 @@ class User < ApplicationRecord
   def status_admin?
     status == "admin"
   end
+
+  def past_dishes
+    dishes = Array.new
+    self.carts.each do |cart|
+      cart.order_dishes.each do  |order|
+        dishes << order.dish unless dishes.include?(order.dish) || cart.pre_validation?
+      end
+    end
+    dishes
+  end
+        
 
 
   private

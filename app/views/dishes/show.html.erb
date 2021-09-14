@@ -10,10 +10,24 @@
         <% else %>
         <img class="img-fluid rounded-left-5 " src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg"> 
       <% end %>
-  
+      <% if current_user && !is_a_favorit_dish?(@dish)%>
+        <div class="d-flex align-items-center justify-content-center p-2 bg-white rounded-circle position-absolute top-0 end-50 m-2">
+            <%= link_to favorits_path(dish_id: @dish.id), method: :post do %>
+              <i class="fas fa-heart text-primary fs-3"></i>
+            <% end %>
+        </div>
+      <% elsif  current_user && is_a_favorit_dish?(@dish)  %>
+        <div class="d-flex align-items-center justify-content-center p-2 bg-secondary rounded-circle position-absolute top-0 end-50 m-2">
+          <%= link_to favorit_path(@dish.id), method: :delete do %>
+            <i class="fas fa-heart text-primary fs-3"></i>
+          <% end %>
+        </div>
+      <% end %>
     <div class="card-body bg-white rounded-right-5 text-center">
       <h2 class="card-title text-primary border-bottom border-1 p-3 border-primary"><%= @dish.name %></h2>
       <p class="mt-4"><%= @dish.description %></p>
+      <p class="mt-4"><%= @dish.status %></p>
+      <p><%= @dish.rating %>/5 <i class="fas fa-star text-primary"></i></p>
     </div>
   </div>
   
@@ -32,32 +46,64 @@
         <%= link_to cook_path(@dish.cook) do %>
           <%= render "avatars/cook", cook: @dish.cook %>
         <% end %>
+        <p><%= @dish.cook.rating %>/5 <i class="fas fa-star text-primary"></i></p>
         <p class="text-center text-dark fs-6"> préparé par <br/><%= link_to @dish.cook.user.first_name, cook_path(@dish.cook) , class: "text-primary fs-3 fw-bold" %></p>
       </div>
       
-      <div class="d-flex justify-content-evenly">
-        <p class="px-3 py-2 fs-2 fw-bold"><%= @dish.price_euro %></p>
-         <%# <form class="d-flex-center gap-3 " action="" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="6bm3iR5NUpurOgJ9qxDL4xYUoz+wDKzozSW5I4nLuIu9XQEU4e4nEUWGzw4DsiblLWo+nE+49rHnRKMQQzZfjg==">
+      <div >
+        <p class="px-3 py-2 fs-2 fw-bold text-center"><%= @dish.price_euro %></p>
+         <%= form_with model: @order_dishes, url: order_dishes_path(dish_id: @dish.id), class: "d-flex justify-content-evenly" do |form| %>
 
-          <a data-remote="true" rel="nofollow" data-method="patch" href="/cart_items/52?sign=minus">
+          <%# <a data-remote="true" rel="nofollow" data-method="patch" href="/cart_items/52?sign=minus">
             <i class="fas fa-minus line-h-quantity fs-4 text-white bg-primary p-1 rounded-circle"></i>
-          </a>  
+          </a>   %>
           
-          <input value="2" class=" text-center w-quantity-input-2 fs-4" type="text" name="cart_item[quantity]" id="cart_item_quantity">
-          
-          <a data-remote="true" rel="nofollow" data-method="patch" href="/cart_items/52?sign=plus">
+          <%= form.number_field :quantity , value: "1", class: "text-center col-2 fs-4" %>
+
+          <%# <a data-remote="true" rel="nofollow" data-method="patch" href="/cart_items/52?sign=plus">
             <i class="fas fa-plus fs-4 text-white line-h-quantity bg-primary p-1 rounded-circle"></i>
-          </a>
-
-        </form> %>
+          </a> %>
+          <%= form.submit "Ajouter au panier" , class: "btn btn-primary btn-block text-uppercase"%>
+        <% end %>
       </div>
-    
+    </div>
+  </div>
 
-      <%= link_to order_dishes_path(dish_id: @dish.id), method: :post, class: "btn btn-primary btn-block text-uppercase" do %>
-        <i class="fa fa-shopping-cart"></i> ajouter au panier
+  <div class="container my-5">
+    <div class="col-12 mt-5">
+      <h1 class="text-primary pb-5 border-bottom"> Commentaires: </h1>
+      <% @dish.comments.each do |comment| %>
+        <% user = User.find(comment.user_id) %>
+        <div class="py-5 border-bottom">
+          <div class="col mb-4 text-secondary">
+            <%= user.email %>
+          </div class="col">
+            <%= comment.content %>
+          </div>
+        </div>
+      <% end %>
+      <% if can_comment?(current_user, @dish) %>
+      <div class="col">
+        <%= form_with(model: @comments, url: comments_path(params[:id]), local: true, method: :post) do |form| %>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-8 mb-2">
+                <%= form.label :Nouveau_commentaire, class:"fs-6 form-label text-muted"%>:
+                <%= form.text_area :content, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary" %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12 mt-3">
+                <%= form.submit "Commenter", class:"btn btn-primary" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
       <% end %>
     </div>
   </div>
 
+  
 </section>
 

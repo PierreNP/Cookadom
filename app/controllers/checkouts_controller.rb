@@ -2,10 +2,10 @@ class CheckoutsController < ApplicationController
   QUANTITY = 1
 
    def create
-    @cart = Cart.find_by(user_id: current_user.id, status: 2 )
+    @cart = Cart.find_by(user_id: current_user.id, status: 2)
     if current_user.addresses.first == nil
       redirect_to edit_user_path(current_user.id)
-      flash[:error] = "Veuillez renseigner une adresse de livraison avant de valider votr commande."
+      flash[:error] = "Veuillez renseigner une adresse de livraison avant de valider votre commande."
     else
       @total = @cart.total_price
       @session = Stripe::Checkout::Session.create(
@@ -29,19 +29,17 @@ class CheckoutsController < ApplicationController
   end
 
   def success
-    @cart = Cart.find_by(user_id: current_user.id, status: 2 )
+    @cart = Cart.find_by(user_id: current_user.id, status: 2)
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
     UserMailer.paid_order(current_user, @cart).deliver_now
     AdminMailer.paid_order(current_user, @cart).deliver_now
-    @cart.update(status: 3)
-    Cart.create(user_id: current_user.id, status: 0)
     CookMailer.paid_order(@cart).deliver_now
+    @cart.update(status: 3)
   end
 
   def cancel
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
-    @cart.update(status: 1)
   end
 end

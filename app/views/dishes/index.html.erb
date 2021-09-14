@@ -1,5 +1,35 @@
 <section class="container">
   <div class="row">
+    <div class="mt-5 mb-2">
+      <%= form_tag(dishes_path, method: :get, class:"input-group")  do %>
+        <%= text_field_tag(:search, params[:search],placeholder:"Search dish by name or ingredients",class:"form-control col-md-9") %>
+        <%= submit_tag ("Search") , class:"btn btn-primary col-md-2 mx-2" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-sm-12 col-md-6 offset-md-3 col-xs-12">
+      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <%= image_tag("sale1.png", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag("sale2.png", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag("sale3.png", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
     <% @dishes.each do |dish| %>
         <%= render 'card_index', dish: dish %>
     <% end %>
