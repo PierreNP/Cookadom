@@ -1,0 +1,119 @@
+
+
+
+<div class="container-fluid vh-80 ">
+<div class="row h-100">
+  <div class="col-2 border-end border-bottom h-100">
+    <div class="d-flex h-50 flex-column align-items-center justify-content-center">
+      <div class="btn border w-100 py-3">
+        <%= link_to admin_dashboard_admins_path(dashboard_method: 1), remote: :true, class: "d-inline-block w-100 h-100" do %>
+          <i class="fas fa-award"></i>
+          <span >Validations</span>
+        <% end %>
+      </div>
+
+      <div class="btn w-100 py-3">
+        <%= link_to admin_dashboard_admins_path(dashboard_method: 2), remote: :true, class: "d-inline-block w-100 h-100" do %>
+          <i class="fas fa-utensils"></i>
+          <span >Cooks</span>
+        <% end %>
+      </div>
+
+      <div class="btn w-100 py-3">
+        <%= link_to admin_dashboard_admins_path(dashboard_method: 3), remote: :true, class: "d-inline-block w-100 h-100" do %>
+          <i class="fas fa-users"></i>
+          <span >Utilisateurs</span>
+        <% end %>
+      </div>
+
+      <div class="btn w-100 py-3">
+        <%= link_to admin_dashboard_admins_path(dashboard_method: 4), remote: :true, class: "d-inline-block w-100 h-100" do %>
+          <i class="fas fa-poll"></i>
+          <span >Statistiques</span>
+        <% end %>
+      </div>
+
+    </div>
+    <div class="d-flex h-50 flex-column align-items-center justify-content-end">
+      <div class="btn w-100 py-3">
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fas fa-sign-out-alt"></i>
+          <span >Logout</span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-10 h-100 bg-light right-column-block overflow-auto">
+    <div class="validation-method-block">
+      <div class="accordion accordion-flush mt-5  shadow-sm" id="accordionFlushExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              <h2 class="text-center  col">Cuisiniers en Attente de Validation</h2>
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
+            <div class="accordion-body">
+                <!-- Item start -->
+              <% @invalid_cooks.each do |cook|%>
+              <div class="text-center mb-3 row d-flex align-items-center">
+                <div class="col-2">
+                  <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
+                </div>
+                <p class=" mb-0 col-1 "><%= cook.user_id %></p>
+                <p class=" mb-0 col-5 "><%= cook.business_name %></p>
+                <p class=" mb-0 fs-6  col-2 "><%= cook.created_at %></p>
+                <p class=" mb-0 col-1 "><%= cook.status %></p>
+                <div class="col-1 grid-2 gap-1">
+                  <%= link_to admin_cook_path(cook.id), method: :delete, class: "btn btn-danger" do %>
+                    <i class="fas fa-times"></i>
+                  <% end %>
+
+                  <%= link_to admin_cook_path(cook.id), method: :put, class: "btn btn-success" do %>
+                    <i class="fas fa-check"></i>
+                  <% end %>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              <h2 class="text-center col">Cuisiniers Validés</h2>
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              
+                <!-- Item start -->
+                <% @valid_cooks.each do |cook|%>
+                <div class="text-center mb-3 row d-flex align-items-center">
+                  <div class="col-2">
+                    <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
+                  </div>
+                  <p class=" mb-0 col-1 "><%= cook.user_id %></p>
+                  <p class=" mb-0 col-5 "><%= cook.business_name %></p>
+                  <p class=" mb-0 fs-6  col-2 "><%= cook.created_at %></p>
+                  <p class=" mb-0 col-1 "><%= cook.status %></p>
+                  <div class="col-1 grid-2 gap-1">
+                    <%= link_to admin_cook_path(cook.id), method: :delete, class: "btn btn-danger" do %>
+                      <i class="fas fa-times"></i>
+                    <% end %>
+
+                    <%= link_to admin_cook_path(cook.id), method: :put, class: "btn btn-warning" do %>
+                      <i class="fas fa-undo"></i>
+                    <% end %>
+                  </div>
+                </div>
+                <% end %>
+            </div>
+          </div>
+        </div>     
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
