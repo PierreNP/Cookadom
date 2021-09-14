@@ -10,9 +10,17 @@ class CartsController < ApplicationController
   end
 
   def update
+    if params[:new_date]
+      respond_to do |format|
+        format.js {}
+      end
+      return
+    end
+      
+
     if params[:cart] && delivery = params[:cart][:delivery_date]
       @cart.update(delivery_date: delivery )
-      redirect_to root_path
+      redirect_back(fallback_location: root_path)
       return
     end
     

@@ -2,7 +2,12 @@ class DishesController < ApplicationController
 
 
   def index
-    @dishes = Dish.search(params[:search]).where(status: "available")
+    if @cart.dishes.any?
+      @dishes = @cart.cook.dishes
+    else
+      @dishes = Dish.search(params[:search]).where(status: "available")
+
+    end
   end
 
   def show

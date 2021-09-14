@@ -1,0 +1,30 @@
+<div class="tag-method-block w-100">
+  <div class="container">
+    <div class="row py-2 d-flex justify-content-center flex-wrap">
+      <% @tags.each do |tag| %>
+      <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3 p-2 shadow-sm bg-white my-1 mx-2 d-flex flex-column justify-content-center align-items-center">
+        <div class="d-flex py-2 flex-row justify-content-end w-100">
+          <h4 class="flex-grow-1"><%= tag.label %></h4>
+          <%= link_to admin_tag_path(tag.id), method: :delete, class: "btn btn-danger ml-4" do %>
+            <i class="fas fa-times"></i>
+          <% end %>
+        </div>
+        <div class="w-100">
+          <%= form_with(model: tag, url: admin_tag_path(tag.id), local: true, remote: false, method: :put) do |form| %>
+          <div class="row">
+            <div class="col-12 mb-2">
+              <%= form.text_field :label, class:"form-control rounded-4 border-2 border-primary", placeholder: tag.label %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 mt-3">
+              <%= form.submit "Valider", class:"btn btn-primary" %>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <% end %>
+    <div>
+  </div>
+</div>

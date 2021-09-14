@@ -6,6 +6,7 @@ class CooksController < ApplicationController
   def show
     @dishes = @cook.dishes
     @addresses = @cook.user.addresses
+    @pinned_dish = @dishes.find_by(status:"pinned") 
   end
 
   def new

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
-  
-  resource :static_pages, only: [:home]
+  get "/static_pages/home_cook" => "static_pages#home_cook"
+  resource :static_pages, only: [:home, :home_cook]
   
   resources :carts, only: [:index, :update]
 
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :dashboard_admins, only: [:index]
     resources :admin_dishes, only: [:destroy]
     resources :admin_comments, only: [:destroy]
+    resources :tags, only: [:create, :update, :destroy]
   end
 
   namespace :cook, only: [:index, :create, :update, :destroy] do

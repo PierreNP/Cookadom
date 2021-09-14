@@ -1,31 +1,31 @@
-<div class="dish-method-block">
- <section class="container">
-<div class="row">
-  <% @dishes.each do |dish|%>
-    <div class="col-sm-12 col-md-5 col-lg-6">
+<section class="container bg-light dish-method-block">
+  <div class="row">
+    <% @dishes.each do |dish|%>
+      <div class="col-md-12 col-sm-12 col-lg-6 col-xl-3 m-1">
+        <div class="mt-5 shadow-sm shadow-sm row">
+          <div class="col-md-12 col-sm-12 col-lg-4 ">
+            <div id="atachement-photos" class="my-1 rounded img-fluid">
+              <% if dish.photo.attached? %>
+                <%=image_tag(dish.photo.variant(resize: "95x95^", crop: '100x100+0+0'), alt: dish.name)%>
+              <% else %>
+                <small>Aucune photo.</small>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md-12 col-sm-12 col-lg-8 px-5">
+            <p class="card-title" ><%= dish.name %></p>
+            <span class="card-title fw-light" ><%= dish.status %></p>
 
-<div class="row g-0 mt-3 position-relative shadow-sm shadow-sm border-top">
-
-<div class="d-grid gap-2 d-md-block">
-  <div id="atachement-photos">
-    <% if dish.photo.attached? %>
-        <%=image_tag(dish.photo.variant(resize: "100x100^", crop: '100x100+0+0'), alt: dish.name)%>
-    <% else %>
-        <small>Aucune photo.</small>
-    <% end %>
-  </div>
-  <div>
-    <%= dish.name %>
-    <%= dish.description %>
-    <%= dish.price_euro %>
-  </div>
-  <div>
-    <%= link_to "Delete Dish", cook_dish_path(dish.id), method: :delete, class: "btn mx-2 btn-danger" %>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-<%= dish.id %>">editer</button>
-  </div>
-</div>
-
-       <!-- Modal -->
+            <div class="">
+              <p class="text-muted pe-3"><%= dish.price_euro %></p>
+            </div>
+            <div class="mb-2">
+              <%= link_to "supprimer", cook_dish_path(dish.id), method: :delete, class: "btn btn-sm btn-danger" %>
+              <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal-<%= dish.id %>">editer</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="modal fade" id="modal-<%= dish.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
@@ -44,8 +44,6 @@
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
 </section>
-</div>
