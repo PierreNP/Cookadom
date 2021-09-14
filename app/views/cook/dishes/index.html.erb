@@ -68,6 +68,9 @@
             <p>Adresse: <%= address.name %>: <%= address.street_number %> <%= address.street_type %> <%= address.street_name %></p>
             <p>Informations complémentaires: <%= address.additional_info %></p>
           <% end %>
+          <% if cart.delivery_date %>
+            <p>Date de livraison: <%= cart.show_date%></p>
+          <% end %>
           <%= link_to "Valider la Commande", cook_cart_path(cart.id), method: :put, class: "btn btn-success" %>
           <%= link_to "Refuser la Commande", cook_cart_path(cart.id), method: :delete, class: "btn btn-success" %>
         </div>
@@ -88,6 +91,9 @@
             <p>Adresse: <%= address.name %>: <%= address.street_number %> <%= address.street_type %> <%= address.street_name %></p>
             <p>Informations complémentaires: <%= address.additional_info %></p>
           <% end %>
+          <% if cart.delivery_date %>
+            <p>Date de livraison: <%= cart.show_date%></p>
+          <% end %>
         </div>
         <% end %>
       <% end %>
@@ -105,6 +111,9 @@
             <% address = Address.find_by(user_id: User.find_by(id: cart.user_id).id) %>
             <p>Adresse: <%= address.name %>: <%= address.street_number %> <%= address.street_type %> <%= address.street_name %></p>
             <p>Informations complémentaires: <%= address.additional_info %></p>
+          <% end %>
+          <% if cart.delivery_date %>
+            <p>Date de livraison: <%= cart.show_date%></p>
           <% end %>
         </div>
         <% end %>
