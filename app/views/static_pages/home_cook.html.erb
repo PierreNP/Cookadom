@@ -1,0 +1,96 @@
+<main>
+  <div class="p-5 mb-4 bg_static top-0 start-0 ">
+    <div class="container py-5 text-center">
+      <div class="row">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="display-6 mt-5 fw-bold">Vous souhaitez vous lancer dans la restauration freelance ?</h1>
+          <p class="fs-4">Cookadom vous offre une solution <strong>rapide, flexible et sans les contraintes d'un restaurant</strong>, pour faire parler vos talents de cuisinier ! Devenez un Cook sur notre plateforme pour rejoindre l'aventure !</p>
+          <%= link_to "Découvrir", "/static_pages/home_cook/#how-it-work", class:"btn btn-secondary text-light m-2 btn-lg rounded-6" %>
+          <%= link_to "S'inscrire", new_user_registration_path, class:"btn btn-primary m-2 btn-lg rounded-6" %>
+        </div>
+      </div>
+    </div>
+    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-5 d-none d-md-block"><a class="btn btn-secondary mt-3 btn-lg rounded-6 text-light" href="#quality"><i class="fas fa-arrow-down"></i></a></div>
+  </div>
+  <section class="bg-quality bg-light py-5 px-5 shadow" id="quality">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-xs-12 py-5 px-5 mb-3">
+          <h2 class="mb-3">Pourquoi<span class="fw-bolder text-primary"> Cookadom</span> ?</h2>
+          <p class="lead">Parce que se lancer dans la restauration peut s'avérer compliqué, demander des investissements initiaux lourds, et entraîner une logistique difficile à gérer au quotidien, simplifiez-vous la tâche avec Cookadom ! En recevant vos commandes directement sur notre plateforme, vous n'aurez qu'à les valider avant de les préparer pour la date prévue par votre client et ensuite lui faire parvenir vos plats. Une gestion claire et simplifiée de vos commandes, une flexibilité maximale pour votre organisation au quotidien, de la visibilité sur votre activité à court et moyen-terme... n'hésitez plus et rejoignez l'aventure !</p>
+          <p>Conformément à la loi, vous devrez être détenteur d'un diplôme attestant votre capacité à préparer des plats destinés à la vente. Egalement, vous devrez être en mesure de nous fournir les justificatifs légaux témoignant de l'existence d'une structure juridique vous permettant d'exercer le métier de cuisinier freelance.</p>
+        </div>
+        <div class="col-sm-12 col-md-6 col-xs-12">
+        
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <%= image_tag("utensils1.jpg", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
+              </div>
+              <div class="carousel-item">
+                <%= image_tag("utensils2.jpg", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
+              </div>
+              <div class="carousel-item">
+                <%= image_tag("utensils3.jpg", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  <section id="how-it-work" class="pt-5 mb-5">
+      <div class="container mt-5 pb-5">
+          <div class="row text-center">
+              <h1 class="p-4 text-center">Comment ça marche ?</h1>
+              <div class="col-md-3 col-sm-12 col-xs-12">
+                <%= image_tag("spoon_cook.jpg", :alt => "illutration choix", class:"img-fluid img-howitworks") %>
+                <p class="fw-bolder">Inscrivez-vous<br/>
+                  <span class="fw-normal">sur notre plateforme pour vérification de votre profil</span>
+                </p>
+              </div>
+              <div class="col-md-3 col-sm-12 col-xs-12">
+                <%= image_tag("laptop.jpg", :alt => "illutration chef", class:"img-fluid img-howitworks") %>
+                <p class="fw-bolder">Recevez vos demandes de commandes<br/>
+                  <span class="fw-normal">avec les plats, dates et lieux de livraison souhaités</span>
+                </p>
+              </div>
+              <div class="col-md-3 col-sm-12 col-xs-12">
+                <%= image_tag("cooking.jpg", :alt => "illutration livraison", class:"img-fluid img-howitworks") %>
+                <p class="fw-bolder">Après validation, à vos fourneaux<br/>
+                  <span class="fw-normal">pour faire parler vos talents</span>
+                </p>
+              </div>
+              <div class="col-md-3 col-sm-12 col-xs-12">
+                <%= image_tag("paid_cook.jpg", :alt => "illutration plaisir", class:"img-fluid img-howitworks") %>
+                <p class="fw-bolder ">Livrez vos plats<br/>
+                  <span class="fw-normal">et recevez votre paiement !</span>
+                </p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <section class="container-fluid">
+      <div class="row">
+          <div class="p-5 mb-4 bg_section top-0 bg-gradient-cookadom start-0">
+              <div class="container py-5 text-center">
+                  <h1 class="display-5 text-light fw-bold">S'inscrire, Cuisiner, Profiter</h1>
+                  <p class="fs-4 text-light">Choisissez vos commandes, et gérez votre activité comme bon vous semble.</p>
+              </div>
+          </div>
+          <div class="bg-divider"></div>
+      </div>
+  </section>
+
+  
+</main>
+  <div class="container-fluid">
+    <%= render "layouts/newsletter" %>
+  </div>
