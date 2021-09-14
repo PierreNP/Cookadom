@@ -70,13 +70,9 @@
           <h6 class="card-title text-center col-9 ps-1  fs-6"><%= dish.name %> x <%= order_dish.quantity %></h6>
           <div class="row add-delete px-3">
             <div class="col d-flex justify-content-evenly">
-              <%= link_to order_dish_path(id: order_dish, quantity: order_dish.quantity-1 ), method: :patch do %>
-                <i class="fas fa-minus line-h-quantity fs-7 text-white bg-primary p-1 rounded-circle"></i>
-              <%end%>
-              <%= order_dish.quantity %>
-              <%= link_to order_dish_path(id: order_dish, quantity: order_dish.quantity+1 ), method: :patch do %>
-                <i class="fas fa-plus line-h-quantity fs-7 text-white bg-primary p-1 rounded-circle"></i>
-              <%end%>
+              <%= render "order_dishes/quantity_choice", order_dish: order_dish%>
+
+
               <div class="fw-bold fs-7"><%= dish.price_euro %></div>
             </div>
           </div>
