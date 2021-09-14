@@ -9,11 +9,8 @@
           <%= render "card_dishes", order_dish: order_dish, cart: @cart_pre_validation %>
           
         <% end %>
-        
-
-        
+    
         <h5 class="my-3 text-primary"> <%= "Total: #{@cart.total_price_euro}" if @cart.total_price != 0 %></h5>
-        
         
         <% if current_user.addresses.first.nil? %>
           <p> Il vous faut une adresse pour commander ! Cliquez <%= link_to "ici", edit_user_path(current_user.id)%> pour en ajouter une.</p>
