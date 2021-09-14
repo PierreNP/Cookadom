@@ -10,6 +10,7 @@ class AddressesController < ApplicationController
 
   def update
     @address = Address.find(params[:id])
+
     if @address.update(address_params)
       redirect_back(fallback_location: root_path)
     end

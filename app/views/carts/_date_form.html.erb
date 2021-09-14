@@ -1,5 +1,0 @@
-<h2>Choisir une date de livraison</h2>
-<%= form_with model: cart, url: cart_path(cart), method: :put, local: true do |form| %>
-	<%= form.datetime_field :delivery_date, min: Date.tomorrow %>
-	<%= form.submit "Valider date de livraison", class: " mt-3 btn btn-primary" %>
-<% end %>

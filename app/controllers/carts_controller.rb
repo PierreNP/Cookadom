@@ -10,20 +10,20 @@ class CartsController < ApplicationController
   end
 
   def update
+
     if params[:new_date]
       respond_to do |format|
         format.js {}
       end
       return
     end
-      
 
-    if params[:cart] && delivery = params[:cart][:delivery_date]
-      @cart.update(delivery_date: delivery )
+    if params[:cart] && delivery = params[:cart][:delivery_date] && address = params[:cart][:address]
+      @cart.update(delivery_date: delivery, address_id: address)
       redirect_back(fallback_location: root_path)
       return
     end
-    
+
     @order_dish = OrderDish.find_by(cart_id: @cart.id)
     @dish = Dish.find_by(id: @order_dish.dish_id)
     @cook = Cook.find_by(id: @dish.cook_id)
@@ -49,6 +49,10 @@ class CartsController < ApplicationController
   end
 
   private
+
+  def delivery_date_and_address
+
+  end
 
   def set_cart
     @cart = Cart.find_by(id: params[:id])
