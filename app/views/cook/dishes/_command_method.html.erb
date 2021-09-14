@@ -43,6 +43,7 @@
                         </div>
                         <p class=" mb-0 col-3">Plat: <%= dish.name %></p>
                         <p class=" mb-0 col-2">X <%= order_dish.quantity %></p>
+                        <p class=" mb-0 fs-6  col-4 ">Livraison: <%= cart.show_date %></p>
                       </div>
                       <% end %>
                     </div>
@@ -71,7 +72,7 @@
                   </div>
                   <p class=" mb-0 col-4 ">Id Utilisateur: <%= cart.user_id %></p>
                   <p class=" mb-0 col-2 ">Status: <%= cart.status %></p>
-                  <p class=" mb-0 fs-6  col-4 ">Validé le: <%= cart.updated_at %></p>
+                  <p class=" mb-0 fs-6  col-4 ">Livraison: <%= cart.show_date %></p>
                 </div>
                 <% end %>
               <% end %>
@@ -96,7 +97,7 @@
                   </div>
                   <p class=" mb-0 col-4 ">Id Utilisateur: <%= cart.user_id %></p>
                   <p class=" mb-0 col-2 ">Status: <%= cart.status %></p>
-                  <p class=" mb-0 fs-6  col-4 ">Commandé le: <%= cart.updated_at %></p>
+                  <p class=" mb-0 fs-6  col-4 ">Livraison: <%= cart.show_date %></p>
                   <div class="col-1 grid-2 gap-1">
                     <%= link_to cook_cart_path(cart.id), method: :put, class: "btn btn-succes" do %>
                       <i class="fas fa-check"></i>
