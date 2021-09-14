@@ -11,7 +11,8 @@ class Dish < ApplicationRecord
    has_many :carts, through: :order_dishes
    has_many :comments
    has_many :users, through: :comments
- 
+   has_many :favorit_users, foreign_key: 'favorit_dish_id', class_name: "Favorit"
+
    has_one_attached :photo
 
    validates :name, presence: true, length: { in: 2..40 }
@@ -27,11 +28,12 @@ class Dish < ApplicationRecord
    end
   
    def rating 
+      return 0 if self.ratings.empty?
       rate_mean = 0
       self.ratings.each do |rating|
          rate_mean += rating.value
       end
-      rate_mean
+      rate_mean / self.ratings.length 
    end
 
    def status_fr

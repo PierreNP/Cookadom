@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :ratings
   has_many :dishes, through: :ratings
   has_many :carts
+  has_many :favorit_dishes, foreign_key: 'favorit_user_id', class_name: "Favorit"
 
 
   validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/, message: "email adress please" }

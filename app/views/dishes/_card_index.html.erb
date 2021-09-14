@@ -1,13 +1,26 @@
 <div class="border-0 overflow-hidden rounded-top col-lg-3 col-md-6 col-sm-12 col-xs-12 mb-3 ">
-  <!-- card head -->
   <%= link_to dish_path(dish) do %>
     <div class="position-relative ">
       <% if dish.photo.attached? %>
-        <%= image_tag dish.photo.variant(resize: "400x300^", crop: '400x300+0+0') , alt: dish.name, class: "rounded-top img-fluid" %>
+        <%= image_tag dish.photo.variant(resize: "400x300^", crop: '300x200+50+50') , alt: dish.name, class: "rounded-top img-fluid" %>
       <% else %>
         <img class="img-fluid rounded-top " src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg"> 
       <% end %>
-      <!-- tags -->
+
+      <% if current_user && !is_a_favorit_dish?(dish)%>
+        <div class="d-flex align-items-center justify-content-center p-2 bg-white rounded-circle position-absolute top-0 end-0 m-2">
+            <%= link_to favorits_path(dish_id: dish.id), method: :post do %>
+              <i class="fas fa-heart text-primary fs-3"></i>
+            <% end %>
+        </div>
+      <% elsif  current_user && is_a_favorit_dish?(dish)  %>
+        <div class="d-flex align-items-center justify-content-center p-2 bg-secondary rounded-circle position-absolute top-0 end-0 m-2">
+          <%= link_to favorit_path(dish.id), method: :delete do %>
+            <i class="fas fa-heart text-primary fs-3"></i>
+          <% end %>
+        </div>
+      <% end %>
+
       <div class="card-tag position-absolute bottom-0 p-2">
         <% dish.tags.each do |tag| %>
           <%= link_to tag.label, root_path, class: "btn btn-tag rounded-x btn-secondary" %>
@@ -16,12 +29,11 @@
     </div>
   <% end %>
   <!-- card body -->
-  <div class="card-body p-2">     
+  <div class="card-body p-2 bg-white rounded-2 ">     
     <h6 class="card-title"> <%= dish.name %></h6>
     <div class=" d-flex justify-content-between align-self-baseline">
       <span class="text-muted fs-8"><i class="fas fa-star text-primary fs-9"></i> <%= dish.rating if dish.ratings.any? %></span>
       <p class="card-text"><%= dish.price_euro %></p>
-
     </div>
     <div class="d-flex justify-content-between align-items-center">
       <% if current_user %>
