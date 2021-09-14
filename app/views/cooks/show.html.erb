@@ -25,11 +25,12 @@
           <span class="btn btn-tag rounded-x btn-secondary"><%= tags %></span>
         <% end %>
       </div>
-
+      <% if @pinned_dish %>
       <div class="row mt-2">
         <h2 class="">Le plat du Cook</h2>
-        <%= render "dishes/card_index", dish: @pinned_dish if @pinned_dish %>
+        <%= render "dishes/card_index", dish: @pinned_dish %>
       </div>
+      <% end %>
     </div>
 
     <div class="row mt-2">
@@ -40,7 +41,12 @@
 
     <div class="row" >
       <% @cook.dishes.each do |dish| %>
-        <%= render "dishes/card_index", dish: dish unless dish.disabled?%>
+        <%= render "dishes/card_index", dish: dish if dish.available? || dish.pinned? %>
+      <% end %>
+    </div>
+    <div class="row">  
+      <% @cook.dishes.each do |dish| %>
+        <%= render "dishes/card_index", dish: dish if dish.unavailable? %>
       <% end %>
     </div>
 </section>
