@@ -2,7 +2,7 @@ function update_date() {
     console.log("coucou")
     let form = document.querySelector('.justify-content-around>.col-12')
     console.log(form)
-    form.insertAdjacentHTML("beforeend","<%= j render "carts/date_form", cart: @cart %>" )
+    form.insertAdjacentHTML("beforeend","<%= j render "carts/address_date_form", cart: @cart %>" )
 }
 
 update_date()
