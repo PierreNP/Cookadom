@@ -12,9 +12,10 @@ class Dish < ApplicationRecord
    has_many :comments
    has_many :users, through: :comments
    has_many :favorit_users, foreign_key: 'favorit_dish_id', class_name: "Favorit"
-
+   
    has_one_attached :photo
-
+   
+   validates_length_of :tag_dishes, maximum: 3
    validates :name, presence: true, length: { in: 2..40 }
    validates :description, presence: true, length: { in: 2..400 }
    validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 1 }

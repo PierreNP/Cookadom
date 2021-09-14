@@ -3,7 +3,7 @@ class DishesController < ApplicationController
   before_action :set_dish, only: [:show]
 
   def index
-    if @cart.dishes.any?
+    if current_user && @cart.dishes.any?
       @dishes = @cart.cook.dishes
     else
       @dishes = Dish.search(params[:search]).where(status: "available")
