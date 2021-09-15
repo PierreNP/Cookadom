@@ -36,6 +36,15 @@ class CheckoutsController < ApplicationController
     AdminMailer.paid_order(current_user, @cart).deliver_now
     CookMailer.paid_order(@cart).deliver_now
     @cart.update(status: 3)
+
+    
+    # Calcul pour l'envoi du mail la veille de la livraison
+    
+    @today = DateTime.now
+    @deliver = @cart.delivery_date
+    @diff = @deliver.to_time.to_i - @today.to_time.to_i
+    UserMailer.deliver_order_today(current_user, @cart).deliver_later(wait: @diff - 84600)
+    
   end
 
   def cancel
