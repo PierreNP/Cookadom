@@ -104,6 +104,7 @@
                           <p class=" mb-0 col-3">Plat: <%= dish.name %></p>
                           <p class=" mb-0 col-2">X <%= order_dish.quantity %></p>
                           <p class=" mb-0 fs-6  col-4 ">Livraison: <%= cart.show_date %></p>
+                          <%= link_to "Envoyer un message", new_conversation_path(user_id: cart.user.id), class: 'btn btn-primary col-3' %>
                         </div>
                         <% end %>
                       </div>
@@ -133,6 +134,8 @@
                     <p class=" mb-0 col-4 ">Id Utilisateur: <%= cart.user_id %></p>
                     <p class=" mb-0 col-2 ">Status: <%= cart.status %></p>
                     <p class=" mb-0 fs-6  col-4 ">Livraison: <%= cart.show_date %></p>
+                    <%= link_to "Envoyer un message", new_conversation_path(user_id: cart.user.id), class: 'btn btn-primary col-3' %>
+
                   </div>
                   <% end %>
                 <% end %>

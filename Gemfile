@@ -78,4 +78,6 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'letter_opener'
 gem 'money'
 gem 'jquery-ui-rails'
+gem 'mailboxer', github: 'mailboxer/mailboxer'
+
 ###########################

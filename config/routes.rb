@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
   get "/static_pages/home_cook" => "static_pages#home_cook"
+  
   resource :static_pages, only: [:home, :home_cook]
+  devise_for :users, :controllers => { registrations: :registrations }
   
   resources :carts, only: [:index, :update]
-
+  resources :comments, only: [:create, :update, :destroy]
+  resources :favorits, only: [:index, :create, :destroy]
   resources :order_dishes, only: [:create, :update, :destroy]
 
   resources :dishes, only: [:index, :show] do 
@@ -15,10 +18,12 @@ Rails.application.routes.draw do
     resources :avatars, only: [:create, :destroy]
   end
   
-  devise_for :users, :controllers => { registrations: :registrations }
-
   resources :users, only: [:show, :edit, :update, :destroy] do 
     resources :addresses, only: [:create, :update, :destroy]
+  end
+
+  resources :conversations do
+    resources :messages
   end
 
   namespace :admin do
@@ -40,9 +45,7 @@ Rails.application.routes.draw do
     resources :dishes, only: [:index]
   end
   
-  resources :comments, only: [:create, :update, :destroy]
 
-  resources :favorits, only: [:index, :create, :destroy]
 
   scope '/checkout' do
     post 'create', to: 'checkouts#create', as: 'checkout_create'

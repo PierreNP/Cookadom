@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   
     def edit
       @address = Address.new
-      flash[:error] = "test"
     end
   
     def update
