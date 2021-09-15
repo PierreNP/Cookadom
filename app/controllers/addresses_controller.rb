@@ -5,7 +5,11 @@ class AddressesController < ApplicationController
     @address.content = address_hasher(params[:address][:name_select])
     @address.user_id = current_user.id
     @address.additional_info = params[:address][:additional_info]
-    @address.save
+    if @address.save
+      flash[:success]="Une nouvelle adresse a bien été ajoutée."
+    else
+      flash[:error] = @address.errors.messages
+    end
     
     redirect_back(fallback_location: root_path)
   end
@@ -39,9 +43,9 @@ class AddressesController < ApplicationController
     
     label_array.length.times do
       i-=1
-      if label_array[i].to_i    
-        zip_index = i -1
-        zip_code = label_array[i-1]
+      if label_array[i].to_i > 0    
+        zip_index = i
+        zip_code = label_array[i]
         break
       end
     end

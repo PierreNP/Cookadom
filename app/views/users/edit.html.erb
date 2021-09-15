@@ -86,7 +86,7 @@
               </div>
           
               <div class="d-flex gap-1">
-                <div class="col-2">
+                <div class="col-12">
                   <%= form.label "Adresse", class: "fs-6 mt-4 mb-3 text-muted" %><br />
                   <%= form.text_field :content, class:"form-control  p-3 rounded-4 border-2 border-primary", value: address.content%>
                 </div>
@@ -119,7 +119,7 @@
           </div>
           <div>
             <%= form.label "Choix de l'Adresse", class: "fs-6 mt-4 mb-3 text-muted"%><br />
-            <%= form.select :name_select, ["Votre Adresse"] %>
+            <%= form.select :name_select, [["Votre Adresse", ""]] %>
           </div>
           <div>
             <%= form.label "Infos supplémentaires", class: "fs-6 mt-4 mb-3 text-muted" %><br />
