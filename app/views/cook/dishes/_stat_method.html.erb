@@ -1,2 +1,94 @@
-<div class="stat-method-block">
+<div class="stat-method-block mt-5">
+<style>
+.chart{
+  display:table;
+  table-layout: fixed;   
+  width:100%;
+  max-width:100%;
+  height:200px;
+  margin:0 auto;
+}  
+  .chart li{
+    position:relative;
+    display:table-cell;
+    vertical-align:bottom;
+    height:100px;
+  }
+  
+ li span{
+    margin:0 1em;
+    display: block;
+  background-color:#fa6400;
+    animation: draw 1s ease-in-out;
+
+  }
+  
+   span:before{
+      position:absolute;
+      left:0;right:0;top:100%;
+      padding:5px 1em 0;
+  		display:block;
+      text-align:center;
+      content:attr(title);
+      word-wrap: break-word;
+    }
+span:hover {
+    opacity:0.5;
+}
+
+span:hover:before {
+    content:attr(order_number);
+}
+#count{opacity:0}
+@keyframes draw{
+  0%{height:0;} 
+}
+
+</style>
+<%i=0%>
+<% @carts.each do |cart|%>
+    <% i +=1 %>
+    <%= cart.created_at.strftime('%B') %>
+<%end%>
+<ul class="chart">
+  <li>
+    <span style="height:100%" title="Janvier"></span>
+  </li>
+  <li>
+    <span style="height:70%" title="Fevrier"></span>
+  </li>
+  <li>
+    <span style="height:50%" title="Mars"></span>
+  </li>
+  <li>
+    <span style="height:15%" title="avril"></span>
+  </li>
+  <li>
+    <span style="height:100%" title="mai"></span>
+  </li>
+  <li>
+    <span style="height:70%" title="Juin"></span>
+  </li>
+  <li>
+    <span style="height:50%" title="juillet"></span>
+  </li>
+  <li>
+    <span style="height:15%" title="aout"></span>
+  </li>
+    <li>
+    <span class="bg-secondary" style="height:<%= i*100 %>%" title="Septembre" order_number="<%= i %> Commandes" ></span>
+  </li>
+  <li>
+    <span style="height:0%" title="Octobre"></span>
+  </li>
+  <li>
+    <span style="height:0%" title="Novembre"></span>
+  </li>
+    <li>
+    <span style="height:0%" title="Décembre"></span>
+  </li>  
+</ul>    
+
+
 </div>
+                
