@@ -53,19 +53,24 @@
     <script>
       $(document).ready(function(){
         $("#adresse_auto").keyup(function(){
+          $("#address_name_select")[0].innerHTML =""; 
           var text = this.value
           if (text.length >= 2 ) {
             $.ajax({
               url: 'https://api-adresse.data.gouv.fr/search/?q='+text+'&type=housenumber&autocomplete=1',
               type: "get",
-              success: function(data) {
-                data.features.forEach(element => {$("#datalistOptions")[0].innerHTML += '<option value="'+element.properties.label+'">'+element.properties.label+'</option>';});
+              success: function(data) {var i=0
+                data.features.forEach(element => {
+                  i++
+                  $("#address_name_select")[0].innerHTML += '<option class="option-'+i+'" value="'+element.properties.label+'">'+element.properties.label+'</option>';});
               }
             });
           }
         });
       });
+    
     </script>
+  
 
     <div class="col-12 col-lg-5 row ps-5 border-start border-2 border-primary d-flex justify-content-center">
       <% if current_user.addresses.any? %>
@@ -81,21 +86,11 @@
               </div>
           
               <div class="d-flex gap-1">
-                <div class="col-2">
-                  <%= form.label "Numéro", class: "fs-6 mt-4 mb-3 text-muted" %><br />
-                  <%= form.text_field :street_number, class:"form-control  p-3 rounded-4 border-2 border-primary", value: address.street_number%>
+                <div class="col-12">
+                  <%= form.label "Adresse", class: "fs-6 mt-4 mb-3 text-muted" %><br />
+                  <%= form.text_field :content, class:"form-control  p-3 rounded-4 border-2 border-primary", value: address.content%>
                 </div>
-
-                <div class="col-4">
-                  <%= form.label "Type de voie", class: "fs-6 mt-4 mb-3 text-muted" %><br />
-                  <%= form.text_field :street_type, class:"form-control p-3 rounded-4 border-2 border-primary", value: address.street_type %>
-                </div>
-
-                <div class="col">
-                  <%= form.label "Nom de la voie", class: "fs-6 mt-4 mb-3 text-muted" %><br />
-                  <%= form.text_field :street_name, class:"form-control p-3 rounded-4 border-2 border-primary" , value: address.street_name%>
-                </div>
-              </div> 
+              </div>
 
               <div>
                 <%= form.label "Infos supplémentaires", class: "fs-6 mt-4 mb-3 text-muted" %><br />
@@ -113,32 +108,19 @@
       <h3 class="text-primary"> Ajouter une addresse de livraison:</h3>
       <div class="col-12">
         <%= form_with(model: @address, url: user_addresses_path(current_user.id)) do |form| %>
+
           <div>
             <%= form.label "Nom de l'adresse", class: "fs-6 mt-4 mb-3 text-muted"%><br />
-            <%= form.text_field :name, class:"form-control p-3 rounded-4 border-2 border-primary", id:"adresse_auto", autocomplete:"off", list:"datalistOptions" %>
-            <datalist id="datalistOptions">
-            </datalist>
+            <%= form.text_field :name, class:"form-control p-3 rounded-4 border-2 border-primary" %>
           </div>
-      
-          <div class="d-flex gap-1">
-
-            <div class="col-2">
-              <%= form.label "Numéro", class: "fs-6 mt-4 mb-3 text-muted" %><br />
-              <%= form.text_field :street_number, class:"form-control  p-3 rounded-4 border-2 border-primary"%>
-            </div>
-
-            <div class="col-4">
-              <%= form.label "Type de voie", class: "fs-6 mt-4 mb-3 text-muted" %><br />
-              <%= form.text_field :street_type, class:"form-control p-3 rounded-4 border-2 border-primary" %>
-            </div>
-
-            <div class="col">
-              <%= form.label "Nom de la voie", class: "fs-6 mt-4 mb-3 text-muted" %><br />
-              <%= form.text_field :street_name, class:"form-control p-3 rounded-4 border-2 border-primary" %>
-            </div>
-
-          </div> 
-
+          <div>
+            <%= form.label "Recherchez votre Adresse", class: "fs-6 mt-4 mb-3 text-muted"%><br />
+            <%= form.text_field :search, class:"form-control p-3 rounded-4 border-2 border-primary", id:"adresse_auto", autocomplete:"off", list:"datalistOptions" %>
+          </div>
+          <div>
+            <%= form.label "Choix de l'Adresse", class: "fs-6 mt-4 mb-3 text-muted"%><br />
+            <%= form.select :name_select, [["Votre Adresse", ""]] %>
+          </div>
           <div>
             <%= form.label "Infos supplémentaires", class: "fs-6 mt-4 mb-3 text-muted" %><br />
             <%= form.text_field :additional_info, class:"form-control p-3 rounded-4 border-2 border-primary" %>

@@ -59,7 +59,7 @@ puts "Tag create"
     Cook.create(user_id: user.id, siren: "#{rand(100000000..999999999)}", business_name: Faker::Restaurant.name, legal_status: ["EI", "EURL", "SNC", "SCA","SARL","SA", "SAS"].sample, headquarter: Faker::Address.street_name, vat_number: "FR#{rand(100000000..999999999)}", commercial_register: "RCS PARIS #{["A", "B"].sample} #{rand(100000000..999999999)}", status: false)
     puts "Cook create"
   end
-  Address.create(name: ["home","friend 1", "work", "friend 2", "mummy the best mom"].sample, street_name: Faker::Address.street_name,street_number: rand(1..80), street_type: "rue", additional_info: "blabla", user_id: user.id)
+  Address.create(name: ["home","friend 1", "work", "friend 2", "mummy the best mom"].sample, content: "JEAN NE DOIT PAS DONNER D'ORDRE" , additional_info: "blabla", user_id: user.id)
   puts "Address create"
 end
 puts "User create"

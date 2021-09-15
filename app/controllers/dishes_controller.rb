@@ -8,6 +8,7 @@ class DishesController < ApplicationController
     else
       @dishes = Dish.search(params[:search]).where(status: "available")
 
+    
     end
   end
 
