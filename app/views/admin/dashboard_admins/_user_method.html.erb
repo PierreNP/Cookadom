@@ -10,6 +10,7 @@
         <i class="fas fa-times"></i>
         <span> Détruire l'Utilisateur</span>
       <% end %>
+      <%= link_to :Message, new_conversation_path(user_id: user), class: "btn btn-primary" %>
       <%= link_to admin_user_path(user.id), method: :put, class: "btn btn-warning" do %>
         <i class="fas fa-user-cog"></i>
         <span> Passer Administrateur</span>

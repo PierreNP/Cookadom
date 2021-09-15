@@ -30,7 +30,7 @@
 
         <div class="col-md-2">
           <h6 class="text-uppercase font-weight-bold">
-            <%= link_to "Contact", root_path , class: "text-white" %>
+            <%= link_to "Contact", new_conversation_path(user_id: User.admin.first) , class: "text-white" %>
           </h6>
         </div>
 

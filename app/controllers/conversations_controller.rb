@@ -12,7 +12,7 @@ class ConversationsController < ApplicationController
 
 
   def new
-    @recipient = params[:user_id]
+   @recipient = params[:user_id]
   end
 
   def create 
