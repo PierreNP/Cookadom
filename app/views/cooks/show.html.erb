@@ -27,6 +27,9 @@
           </div>
         </div>
       </div>
+      <div>
+        <%= link_to "Envoyer un message", new_conversation_path(user_id: @cook.user), class: 'btn  btn-primary' %>
+      </div>
       <div class="my-5">
         <% list_tags(@cook).each do |tags| %>
           <span class="btn btn-tag rounded-x btn-secondary"><%= tags %></span>

@@ -8,7 +8,7 @@ class ConversationsController < ApplicationController
   end
 
   def new
-    @recipients = User.all - [current_user]
+    @recipient = params[:user_id]
   end
 
   def create 
