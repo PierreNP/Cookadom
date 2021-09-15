@@ -12,4 +12,5 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require flash.js
+//= require flash
+//= require modify_dish_quantity
