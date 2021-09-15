@@ -1,11 +1,22 @@
 <section class="container">
-  <div class="row">
-    <div class="mt-5 mb-2">
+  <div class="row d-flex justify-content-around">
+    <div class="mt-5 mb-2 col-8">
       <%= form_tag(dishes_path, method: :get, class:"input-group")  do %>
         <%= text_field_tag(:search, params[:search],placeholder:"Search dish by name or ingredients",class:"form-control col-md-9") %>
         <%= submit_tag ("Search") , class:"btn btn-primary col-md-2 mx-2" %>
       <% end %>
     </div>
+    <div class="mt-5 mb-2 col-2">
+     
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+         Recherche par ville
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <% @dishes_cities.each do |city| %>
+            <li><%= link_to city.name, dishes_path(city_id: city.id), class:"dropdown-item" %></li>
+          <% end %>
+        </ul>
+      </div>
   </div>
   <div class="row mb-5">
     <div class="col-sm-12 col-md-6 offset-md-3 col-xs-12">
