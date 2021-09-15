@@ -8,24 +8,27 @@
 
           <%= render "card_dishes", order_dish: order_dish, cart: @cart_pre_validation %>
           
-        <% end %>
-        
-          
-          <% if @cart.total_price != 0 %>
-            <h5 class="my-3 text-primary"> Total: <%= @cart.total_price_euro %></h5>
-            <% if @cart.delivery_date %>
-              <p class="my-3 text-muted">Livraison : <%= @cart.delivery_date.strftime("%m/%d/%Y à %I:%M ")%> 
-              <%= link_to :Modifier, cart_path(@cart, new_date: true), method: :put ,remote: true, class: "text-primary"%> </p>
-            <% end %>
-          <% end%>
+        <% end %> 
+
+        <% if @cart.total_price != 0 %>
+          <h5 class="my-3 text-primary"> Total: <%= @cart.total_price_euro %></h5>
+          <% if @cart.delivery_date %>
+            <p class="my-3 text-muted">Date de livraison : <%= @cart.delivery_date.strftime("%m/%d/%Y à %I:%M ")%> </p>
+            <p class="my-3 text-muted">Addresse de livraison : <%= @cart.address.full%>
+            <p><%= link_to :Modifier, cart_path(@cart, new_date: true), method: :put ,remote: true, class: "text-primary"%></p>
+          <% end %>
+        <% end%>
         
         <% if current_user.addresses.first.nil? %>
           <p> Il vous faut une adresse pour commander ! Cliquez <%= link_to "ici", edit_user_path(current_user.id)%> pour en ajouter une.</p>
-        <% elsif !@cart.delivery_date? && @cart.total_price != 0%>
-
-          <%= render "carts/date_form", cart: @cart%>
-
         <% elsif @cart_pre_validation.order_dishes.first %>
+          <% if !@cart.delivery_date? && @cart.address.nil? && @cart.total_price != 0%>
+            
+            <%= render "carts/address_date_form", cart: @cart%>
+          
+          <% end %>
+        <% end %>
+        <% if @cart.address && @cart.delivery_date %>
           <%= link_to "Valider la commande", cart_path(@cart_pre_validation.id ), method: :put, class:"btn btn-primary col-6 offset-3" %>
         <% end %>
       <% end %>
@@ -74,3 +77,7 @@
     </div>
   </div>
 </div>
+
+<% content_for :title_page do %>
+<title>Cookadom - Votre panier</title>
+<% end %>
