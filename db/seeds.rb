@@ -52,6 +52,12 @@ puts "City create"
 end
 puts "Tag create"
 
+admin = User.create(email: "admin@ex.ex", password: "password", status: 2, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city_id: rand(1..20), phone: "0#{rand(600000000..699999999)}")
+cook = User.create(email: "cook@ex.ex", password: "password", status: 1, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city_id: rand(1..20), phone: "0#{rand(600000000..699999999)}")
+Cook.create(user_id: cook.id, siren: "#{rand(100000000..999999999)}", business_name: Faker::Restaurant.name, legal_status: ["EI", "EURL", "SNC", "SCA","SARL","SA", "SAS"].sample, headquarter: Faker::Address.street_name, vat_number: "FR#{rand(100000000..999999999)}", commercial_register: "RCS PARIS #{["A", "B"].sample} #{rand(100000000..999999999)}", status: true)
+
+puts "admin@ex.ex + cook@ex.ex created"
+
 20.times do 
   user = User.create(email: Faker::Internet.safe_email, password: "password", status: rand(0..2), first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city_id: rand(1..20), phone: "0#{rand(600000000..699999999)}")
   puts user.errors.messages
@@ -63,11 +69,7 @@ puts "Tag create"
   puts "Address create"
 end
 puts "User create"
-admin = User.create(email: "admin@ex.ex", password: "password", status: 2, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city_id: rand(1..20), phone: "0#{rand(600000000..699999999)}")
-cook = User.create(email: "cook@ex.ex", password: "password", status: 1, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city_id: rand(1..20), phone: "0#{rand(600000000..699999999)}")
-Cook.create(user_id: cook.id, siren: "#{rand(100000000..999999999)}", business_name: Faker::Restaurant.name, legal_status: ["EI", "EURL", "SNC", "SCA","SARL","SA", "SAS"].sample, headquarter: Faker::Address.street_name, vat_number: "FR#{rand(100000000..999999999)}", commercial_register: "RCS PARIS #{["A", "B"].sample} #{rand(100000000..999999999)}", status: true)
 
-puts "admin@ex.ex + cook@ex.ex created"
 
 20.times do 
   Dish.create(name: Faker::Food.dish.to_s, description: Faker::Lorem.sentence(word_count: rand(1..10)).to_s, price: rand(500..20000), ingredients: Faker::Food.description.to_s, cook_id: rand(1..Cook.all.length), status: rand(0..2))
