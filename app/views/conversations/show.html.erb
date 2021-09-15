@@ -1,4 +1,4 @@
-<h1 class="text-center text-primary"><%= @conversation.subject %></h1>
+<h1 class="text-center text-primary my-4"><%= @conversation.subject %></h1>
 
 <div class="container">
   <% @conversation.receipts_for(current_user).each do |receipt| %>
