@@ -11,8 +11,10 @@
         Recherche par ville
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <% @dishes_cities.each do |city| %>
-          <li><%= link_to city.name, dishes_path(city_id: city.id), class:"dropdown-item" %></li>
+        <% if @dishes_cities %>
+          <% @dishes_cities.each do |city| %>
+            <li><%= link_to city.name, dishes_path(city_id: city.id), class:"dropdown-item" %></li>
+          <% end %>
         <% end %>
       </ul>
     </div>
