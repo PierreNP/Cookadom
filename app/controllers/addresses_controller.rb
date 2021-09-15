@@ -54,9 +54,8 @@ class AddressesController < ApplicationController
     content = label_array[ 0 .. zip_index - 1].join(" ")
     if !City.find_by(zip_code: zip_code, name: city)
       City.create(name: city, zip_code: zip_code)
-
     end
-
+    current_user.update(city_id: City.find_by(zip_code: zip_code, name: city).id)
     return content
   end
 end
