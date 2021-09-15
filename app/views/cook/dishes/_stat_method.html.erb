@@ -49,6 +49,7 @@ span:hover:before {
 <% @carts.each do |cart|%>
   <% mounth_stats[cart.updated_at.strftime('%m').to_i - 1][1] += 1 %>
 <% end %>
+
 <% max = 0 %>
 <% mounth_stats.each do |mounth| %>
   <% if mounth[1] > max %>
@@ -59,7 +60,8 @@ span:hover:before {
 <ul class="chart">
   <% mounth_stats.each do |mounth| %>
     <li>
-      <span style="height:<%= mounth[1] * 100 / max %>%" title="<%= mounth[0] %>"></span>
+      <span style="height:<%= mounth[1] * 100 / max %>%" title="<%= mounth[0] %>" order_number="<%= mounth[1] %> commandes" ></span>
+      <p class="text-center"><%= mounth[1] %></p>
     </li>
   <% end %>
 </ul> 
