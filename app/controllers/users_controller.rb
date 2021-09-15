@@ -37,7 +37,7 @@ class UsersController < ApplicationController
 
     def autocomplete
       if params["q"].size > 2
-       result = search_adresse(params["q"])
+       result = params["q"]
        found = result if result.present?
          render :json => found
       else
