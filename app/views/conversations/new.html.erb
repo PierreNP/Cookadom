@@ -3,11 +3,11 @@
 <%= form_tag conversations_path(user_id: params[:user_id]), method: :post do %>
 
   <div>
-    <%= text_field_tag :subject, nil,  placeholder: "Sujet" %>
+    <%= text_field_tag :subject, nil,  placeholder: "Sujet", autocomplete: "off"%>
   </div>
 
   <div>
-    <%= text_field_tag :body , nil,  placeholder: "Votre message ici ..." %>
+    <%= text_field_tag :body , nil,  placeholder: "Votre message ici ...", autocomplete: "off" %>
   </div>
 
   <%= submit_tag %>

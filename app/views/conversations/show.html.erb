@@ -22,7 +22,7 @@
   <% end %>
   <%= form_tag conversation_messages_path(@conversation), method: :post, class:"d-flex-center flex-column" do  %>
     <div>
-      <%= text_area_tag :body, "", class: "border-primary" %>
+      <%= text_area_tag :body, "", size: "50x10" , class: "border-primary", autocomplete: "off"%>
     </div>
       <p class="text-center"><%= submit_tag :Envoyer, class: "btn btn-primary" %></p>
   <% end %>
