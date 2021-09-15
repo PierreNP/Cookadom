@@ -12,7 +12,7 @@ class ConversationsController < ApplicationController
 
 
   def new
-   @recipient = params[:user_id]
+    @recipient = params[:user_id]
   end
 
   def create 
@@ -20,4 +20,12 @@ class ConversationsController < ApplicationController
     receipt = current_user.send_message(recipient, params[:body], params[:subject])
     redirect_to conversation_path(receipt.conversation)
   end 
+
+  def destroy
+    puts "*"*5000
+    @conversation = current_user.mailbox.conversations.find(params[:id])
+    @conversation.mark_as_deleted(current_user)
+    redirect_back(fallback_location: root_path)
+
+  end
 end

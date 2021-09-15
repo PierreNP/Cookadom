@@ -1,16 +1,21 @@
 <div class="container">
   <h1 class="text-center text-primary my-4"> Vos conversations </h1>
-
-  <div class="col-8 offset-2 border border-primary p-4 alert-secondary rounded-1">
-    <% @conversations.each do |conversation| %>
-      <p>
-          <%= link_to "#{conversation.subject}", conversation_path(conversation) %> - 
-          <% conversation.recipients.each do |recipient| %>
-            <%= recipient.name  if recipient.id != current_user.id %>
-          <% end %> -
-          <em class="text-muted"><%= conversation.updated_at.strftime("%m/%d à %I:%M") %></em>
-        
-      </p>
-    <% end %>
-  </div>
+  <% if @conversations.any? %>
+    <div class="col-8 offset-2 border border-primary p-4 alert-secondary rounded-1">
+      <% @conversations.each do |conversation| %>
+        <% unless conversation.is_deleted?(current_user) %>
+          <p>
+            <%= link_to "#{conversation.subject}", conversation_path(conversation) %> - 
+            <% conversation.recipients.each do |recipient| %>
+              <%= recipient.name  if recipient.id != current_user.id %>
+            <% end %> -
+            <em class="text-muted"><%= conversation.updated_at.strftime("%m/%d à %I:%M") %></em> 
+            <%= link_to :Supprimer, conversation_path(conversation), method: :delete, class: "ms-3 btn btn-outline-danger" %>
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <h4>Vous n'avez aucune conversation pour l'instant.</h4>
+  <% end %>
 </div>
