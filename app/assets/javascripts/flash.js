@@ -1,5 +1,5 @@
 function fadeOutFlash() {
-    window.addEventListener("DOMContentLoaded", (event) => {
+    window.addEventListener("DOMContentLoaded", function() {
         let flash = document.querySelector('#flash');
         console.log(flash);
         setTimeout(function(){ flash.classList.add('opacity-0')}, 5000)
