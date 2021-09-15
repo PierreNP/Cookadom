@@ -33,6 +33,10 @@ class Cook < ApplicationRecord
       return votes
    end
    
+   def name
+      self.user.name
+   end
+
    private
 
    def future_cook_send_admin
