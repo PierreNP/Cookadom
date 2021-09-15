@@ -2,11 +2,13 @@ class User < ApplicationRecord
   after_create :welcome_send
   after_create :new_user_cart
 
+
   enum status: [ :user, :cook, :admin ]
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  acts_as_messageable
 
   belongs_to :city, optional: true
 
@@ -27,7 +29,11 @@ class User < ApplicationRecord
   # validates :phone, uniqueness: true, numericality: { only_integer: true }, length: { is: 10 }
 
   def name
-     first_name + " " + last_name
+    if self.first_name && self.last_name 
+     name = first_name + " " + last_name
+    else
+      name = "Anonyme #{self.id}"
+    end
   end
 
   def status_cook?
@@ -51,7 +57,9 @@ class User < ApplicationRecord
     dishes
   end
         
-
+  def mailboxer_email(object)
+    nil
+  end
 
   private
     def welcome_send

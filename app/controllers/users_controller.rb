@@ -13,7 +13,6 @@ class UsersController < ApplicationController
   
     def edit
       @address = Address.new
-      flash[:error] = "test"
     end
   
     def update
@@ -32,16 +31,6 @@ class UsersController < ApplicationController
       respond_to do |format|
         format.html {redirect_to root_path}
         format.js {}
-      end
-    end
-
-    def autocomplete
-      if params["q"].size > 2
-       result = search_adresse(params["q"])
-       found = result if result.present?
-         render :json => found
-      else
-         render :json => ['no']
       end
     end
       
