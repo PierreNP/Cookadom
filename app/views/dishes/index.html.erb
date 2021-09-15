@@ -1,52 +1,53 @@
-<section class="container">
-  <div class="row">
-    <div class="mt-5 mb-2 col-12 col-md-10">
-      <%= form_tag(dishes_path, method: :get, class:"input-group")  do %>
-        <%= text_field_tag(:search, params[:search],placeholder:"Search dish by name or ingredients",class:"form-control col-12 col-md-9") %>
-        <%= submit_tag ("Search") , class:"btn btn-primary col-md-2 me-2" %>
-      <% end %>
-    </div>
-    <div class="mt-5 mb-2 col-12 col-md-2 text-center">
-      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        Recherche par ville
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-        <% @dishes_cities.each do |city| %>
-          <li><%= link_to city.name, dishes_path(city_id: city.id), class:"dropdown-item" %></li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-  <div class="row mb-5">
-    <div class="col-sm-12 col-md-6 offset-md-3 col-xs-12">
-      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <section class="container">
+      <div class="row">
+        <div class="mt-5 mb-2 col-12 col-md-10">
+          <%= form_tag(dishes_path, method: :get, class:"input-group")  do %>
+            <%= text_field_tag(:search, params[:search],placeholder:"Rechercher un plat avec son nom ou ses ingrédients",class:"form-control col-12 col-md-9") %>
+            <%= submit_tag ("Rechercher") , class:"btn btn-primary col-md-2 me-2" %>
+          <% end %>
         </div>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <%= image_tag("sale1.png", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
-          </div>
-          <div class="carousel-item">
-            <%= image_tag("sale2.png", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
-          </div>
-          <div class="carousel-item">
-            <%= image_tag("sale3.png", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
+        <div class="mt-5 mb-2 col-12 col-md-2 text-center">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Recherche par ville
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <% if @dishes_cities %>
+              <% @dishes_cities.each do |city| %>
+                <li><%= link_to city.name, dishes_path(city_id: city.id), class:"dropdown-item" %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="row mb-5">
+        <div class="col-sm-12 col-md-6 offset-md-3 col-xs-12">
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <%= image_tag("sale1.png", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
+              </div>
+              <div class="carousel-item">
+                <%= image_tag("sale2.png", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
+              </div>
+              <div class="carousel-item">
+                <%= image_tag("sale3.png", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <h2><%= "Voici les autres plats proposés par votre Cook" if current_user && @cart.dishes.any? %></h2>
-    <% @dishes.each do |dish| %>
-        <%= render 'card_index', dish: dish %>
+      <div class="row">
+        <h2><%= "Voici les autres plats proposés par votre Cook" if current_user && @cart.dishes.any? %></h2>
+        <% @dishes.each do |dish| %>
+          <%= render 'card_index', dish: dish %>
+        <% end %>
+      </div>
+    </section>
+    <% content_for :title_page do %>
+      <title>Cookadom - Vos plats</title>
     <% end %>
-  </div>
-</section>
-
-<% content_for :title_page do %>
-<title>Cookadom - Vos plats</title>
-<% end %>
