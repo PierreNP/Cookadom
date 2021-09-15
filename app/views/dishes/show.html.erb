@@ -3,117 +3,75 @@
 <br />
 <section class="container p-5">
   
-  <div class="grid-2  position-relative ">
-    <div class="section-bg bg-primary rounded-5"></div>
-      <% if @dish.photo.attached? %>
-        <%= image_tag @dish.photo.variant(resize: "400x300^", crop: '400x300+0+0') , alt: @dish.name, class: "rounded-left-5" %>
-        <% else %>
-        <img class="img-fluid rounded-left-5 " src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg"> 
-      <% end %>
+  <h2 class="card-title text-primary border-bottom border-1 p-3 border-primary"><%= @dish.name %></h2>
+  <div class="row">
+  
+    <div class="col-3 position-relative ">
+      <%= render "dishes/photo", dish: @dish, size: "550x330^"%>
+  
       <% if current_user && !is_a_favorit_dish?(@dish)%>
-        <div class="d-flex align-items-center justify-content-center p-2 bg-white rounded-circle position-absolute top-0 end-50 m-2">
+        <div class="d-flex align-items-center justify-content-center p-2 bg-white rounded-circle position-absolute top-0 end-5 m-2">
             <%= link_to favorits_path(dish_id: @dish.id), method: :post do %>
               <i class="fas fa-heart text-primary fs-3"></i>
             <% end %>
         </div>
       <% elsif  current_user && is_a_favorit_dish?(@dish)  %>
-        <div class="d-flex align-items-center justify-content-center p-2 bg-secondary rounded-circle position-absolute top-0 end-50 m-2">
+        <div class="d-flex align-items-center justify-content-center p-2 bg-secondary rounded-circle position-absolute top-0 end-5 m-2">
           <%= link_to favorit_path(@dish.id), method: :delete do %>
             <i class="fas fa-heart text-primary fs-3"></i>
           <% end %>
         </div>
       <% end %>
-    <div class="card-body bg-white rounded-right-5 text-center">
-      <h2 class="card-title text-primary border-bottom border-1 p-3 border-primary"><%= @dish.name %></h2>
-      <p class="mt-4"><%= @dish.description %></p>
-      <p class="mt-4"><%= @dish.status %></p>
-      <p><%= @dish.rating %>/5 (<%= @dish.count_dish_total_number_of_votes %>)
-      <% if @dish.count_dish_total_number_of_votes == 0 %>
-        <i class="fas fa-star text-muted"></i>
-      <% else %>
-        <i class="fas fa-star text-primary"></i>
-      <% end %></p>
     </div>
+
+    <div class="bg-white rounded-right-5 col text-center">
+      <p class="mt-4"><%= @dish.description %></p>
+      <div class="row">
+        <p class="fs-2 col">
+          <%= @dish.rating %>/5 (<%= @dish.count_dish_total_number_of_votes %>)
+          <% if @dish.count_dish_total_number_of_votes == 0 %>
+            <i class="fas fa-star text-muted"></i>
+          <% else %>
+            <i class="fas fa-star text-primary"></i>
+          <% end %>
+        </p>
+        <p class="col fs-2 fw-bold text-center"><%= @dish.price_euro %></p>
+      </div>
+    </div>
+
   </div>
-  
-  <br />
-  <br />
-  
-  <div class="grid-2 gap-3 p-5">
-    <div class="position-relative bg-white rounded-5 p-2 d-flex-center me-3 flex-column">
-      <div class="section-bg-2 rounded-5 bg-secondary"></div>
-      <h2 class="text-secondary border-bottom border-1 border-secondary p-3"> Ingrédients </h2>
+
+  <div class="grid-2">
+
+
+    <div class="p-2 d-flex align-items-center flex-column">
+      <%= render "cooks/card", cook: @cook%>
+    </div>
+
+    <div class="p-2 d-flex align-items-center flex-column ">
+     <h2 class="card-title text-secondary border-bottom border-1 p-3 border-secondary"> Ingrédients </h2>
       <p class="p-3"><%= @dish.ingredients %></p>
     </div>
+  </div>
 
-    <div class="bg-white rounded-5 d-flex flex-column ms-3 px-5 justify-content-evenly">
-      <div class="d-flex justify-content-around align-items-center">
-        <%= link_to cook_path(@dish.cook) do %>
-          <%= render "avatars/cook", cook: @dish.cook %>
-        <% end %>
-        <p><%= @dish.cook.rating %>/5 (<%= @cook_votes %>)
-        <% if @cook_votes == 0 %>
-          <i class="fas fa-star text-muted"></i>
-        <% else %>
-          <i class="fas fa-star text-primary"></i>
-        <% end %></p>
-        <p class="text-center text-dark fs-6"> préparé par <br/><%= link_to @dish.cook.user.first_name, cook_path(@dish.cook) , class: "text-primary fs-3 fw-bold" %></p>
-      </div>
-      
-      <div >
-        <p class="px-3 py-2 fs-2 fw-bold text-center"><%= @dish.price_euro %></p>
-         <%= form_with model: @order_dishes, url: order_dishes_path(dish_id: @dish.id), class: "d-flex justify-content-evenly" do |form| %>
-
-          <%# <a data-remote="true" rel="nofollow" data-method="patch" href="/cart_items/52?sign=minus">
-            <i class="fas fa-minus line-h-quantity fs-4 text-white bg-primary p-1 rounded-circle"></i>
-          </a>   %>
-          
+  <div class="my-5">
+        <%= form_with model: @order_dishes, url: order_dishes_path(dish_id: @dish.id), class: " d-flex align-items-center justify-content-evenly" do |form| %>
+            <i class="fas fa-minus line-h-quantity fs-4 text-white bg-primary p-2 rounded-circle"></i>
+  
           <%= form.number_field :quantity , value: "1", class: "text-center col-2 fs-4" %>
+            
+            <i class="fas fa-plus line-h-quantity fs-4 text-white bg-primary p-2 rounded-circle"></i>
 
-          <%# <a data-remote="true" rel="nofollow" data-method="patch" href="/cart_items/52?sign=plus">
-            <i class="fas fa-plus fs-4 text-white line-h-quantity bg-primary p-1 rounded-circle"></i>
-          </a> %>
           <%= form.submit "Ajouter au panier" , class: "btn btn-primary btn-block text-uppercase"%>
         <% end %>
-      </div>
-    </div>
-  </div>
 
-  <div class="container my-5">
-    <div class="col-12 mt-5">
-      <h1 class="text-primary pb-5 border-bottom"> Commentaires: </h1>
-      <% @dish.comments.each do |comment| %>
-        <% user = User.find(comment.user_id) %>
-        <div class="py-5 border-bottom">
-          <div class="col mb-4 text-secondary">
-            <%= user.email %>
-          </div class="col">
-            <%= comment.content %>
-          </div>
-        </div>
-      <% end %>
-      <% if can_comment?(current_user, @dish) %>
-      <div class="col">
-        <%= form_with(model: @comments, url: comments_path(params[:id]), local: true, method: :post) do |form| %>
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-8 mb-2">
-                <%= form.label :Nouveau_commentaire, class:"fs-6 form-label text-muted"%>:
-                <%= form.text_area :content, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary" %>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12 mt-3">
-                <%= form.submit "Commenter", class:"btn btn-primary" %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-      <% end %>
-    </div>
   </div>
+  <div class="d-flex-center gap-2">
+    <%= render "ratings", dish: @dish %>
+  </div>
+  <br/>
 
+ <%= render "comments", comment: @comment%>
   
 </section>
 

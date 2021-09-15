@@ -1,31 +1,8 @@
 <section class="container mt-3">
     <div class="row">
       <div class="col-md-6 d-flex">
-        <div class="card flex">
-          <div class="card-body">
-            <div class="d-flex align-items-center">
-              <div class="m-2"> 
-
-                <%= render "avatars/cook", cook: @cook%>
-
-              </div>
-              <div class="px-4" >
-                <h1 class="card-title"><%= @cook.business_name %></h1>
-                  <div class=" d-flex justify-content-between">
-                    <span class=text-muted>
-                      <%= @cook.rating %>/5 (<%= @cook_votes %>)
-                      <% if @cook_votes == 0 %>
-                        <i class="fas fa-star text-muted"></i>
-                      <% else %>
-                        <i class="fas fa-star text-primary"></i>
-                      <% end %>
-                    </span> 
-                    <p class="card-text"><%= @cook.user.city.name %></p>
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <%= render "cooks/card", cook: @cook%>
+        
       </div>
       <div>
         <%= link_to "Envoyer un message", new_conversation_path(user_id: @cook.user), class: 'btn  btn-primary' %>
