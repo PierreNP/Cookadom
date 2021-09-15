@@ -45,50 +45,24 @@ span:hover:before {
 }
 
 </style>
-<%i=0%>
+<% mounth_stats = [["Janvier", 0], ["Fevrier", 0], ["Mars", 0], ["Avril", 0], ["Mai", 0], ["Juin", 0], ["Juillet", 0], ["Aout", 0], ["Septembre", 0], ["Octobre", 0], ["Novembre", 0], ["Decembre", 0]]%>
 <% @carts.each do |cart|%>
-    <% i +=1 %>
-    <%= cart.created_at.strftime('%B') %>
-<%end%>
-<ul class="chart">
-  <li>
-    <span style="height:100%" title="Janvier"></span>
-  </li>
-  <li>
-    <span style="height:70%" title="Fevrier"></span>
-  </li>
-  <li>
-    <span style="height:50%" title="Mars"></span>
-  </li>
-  <li>
-    <span style="height:15%" title="avril"></span>
-  </li>
-  <li>
-    <span style="height:100%" title="mai"></span>
-  </li>
-  <li>
-    <span style="height:70%" title="Juin"></span>
-  </li>
-  <li>
-    <span style="height:50%" title="juillet"></span>
-  </li>
-  <li>
-    <span style="height:15%" title="aout"></span>
-  </li>
-    <li>
-    <span class="bg-secondary" style="height:<%= i*100 %>%" title="Septembre" order_number="<%= i %> Commandes" ></span>
-  </li>
-  <li>
-    <span style="height:0%" title="Octobre"></span>
-  </li>
-  <li>
-    <span style="height:0%" title="Novembre"></span>
-  </li>
-    <li>
-    <span style="height:0%" title="Décembre"></span>
-  </li>  
-</ul>    
+  <% mounth_stats[cart.updated_at.strftime('%m').to_i - 1][1] += 1 %>
+<% end %>
+<% max = 0 %>
+<% mounth_stats.each do |mounth| %>
+  <% if mounth[1] > max %>
+    <% max = mounth[1] %>
+  <% end %>
+<% end %>
 
+<ul class="chart">
+  <% mounth_stats.each do |mounth| %>
+    <li>
+      <span style="height:<%= mounth[1] * 100 / max %>%" title="<%= mounth[0] %>"></span>
+    </li>
+  <% end %>
+</ul> 
 
 </div>
                 
