@@ -5,7 +5,11 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = current_user.mailbox.conversations.find(params[:id])
+    @conversation.recipients.each do |recipient|
+      recipient.id == current_user.id ? @user = recipient : @interlocutor = recipient
+    end
   end
+
 
   def new
     @recipient = params[:user_id]
