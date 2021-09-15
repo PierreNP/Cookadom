@@ -22,6 +22,9 @@ class Cook::DishesController < ApplicationController
     @dish = Dish.new(dish_params)
     @dish.cook_id = @cook.id
     if @dish.save 
+      params[:dish][:tags].each do |tag|
+        TagDish.create(dish_id:@dish.id, tag_id:tag) unless tag == ""
+      end
       redirect_to cook_dishes_path, success:  "Nouveau plat ajouté !"
     else
       render cook_dishes_path, error: "Impossible d'ajouter le plat"
