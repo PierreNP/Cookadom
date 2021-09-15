@@ -6,9 +6,16 @@ class DishesController < ApplicationController
     if current_user && @cart.dishes.any?
       @dishes = @cart.cook.dishes
     else
-      @dishes = Dish.search(params[:search]).where(status: "available")
-
-    
+      @dishes_cities = Dish.all_cities
+      if params[:city_id]
+        @dishes = City.find_by(id: params[:city_id]).dishes_in_a_city
+      elsif params[:search] 
+        @dishes = Dish.search(params[:search]).where(status: "available")
+      elsif current_user && Address.find_by(user_id: current_user.id)
+        @dishes = City.find_by(id: current_user.city_id).dishes_in_a_city
+      else
+        @dishes = Dish.all.where(status: "available")
+      end
     end
   end
 

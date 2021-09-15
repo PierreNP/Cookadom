@@ -69,4 +69,18 @@ class Dish < ApplicationRecord
       end
   end
 
+  def self.all_cities
+    city_dishes = []
+    Dish.all.each do |dish|
+      cook = User.find_by(id: dish.cook.user_id)
+      cook_city = City.find_by(id: cook.city_id)
+      if !city_dishes.include?(cook_city)
+         city_dishes << cook_city
+      end
+    end
+    puts "%"*500
+    puts city_dishes
+    puts "%"*500
+    return city_dishes
+  end
 end
