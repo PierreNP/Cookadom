@@ -34,16 +34,6 @@ class UsersController < ApplicationController
         format.js {}
       end
     end
-
-    def autocomplete
-      if params["q"].size > 2
-       result = params["q"]
-       found = result if result.present?
-         render :json => found
-      else
-         render :json => ['no']
-      end
-    end
       
     private
    
