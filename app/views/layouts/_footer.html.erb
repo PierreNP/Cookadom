@@ -24,12 +24,6 @@
 
         <div class="col-md-2">
           <h6 class="text-uppercase font-weight-bold">
-            <%= link_to "Nécessaire ?", root_path , class: "text-white" %>
-          </h6>
-        </div>
-
-        <div class="col-md-2">
-          <h6 class="text-uppercase font-weight-bold">
             <%= link_to "Contact", new_conversation_path(user_id: User.admin.first) , class: "text-white" %>
           </h6>
         </div>
@@ -37,15 +31,27 @@
       </div>
       <!-- Grid row-->
     </section>
-    <hr class="my-5" />
+    <hr class="my-5 w-75 container d-flex justify-content-center" />
     <!-- Section: Text -->
     <section class="mb-5">
         <div class="row d-flex justify-content-center">
             <div class="col-lg-8">
-                <p>Leo Gabriel Adam Thiméo Raphael Lucas Louis Arthur Nathan Hugo Nolane Enzo Jules Liam Ethan Noah Sacha Tom Theo Gabin
-                    <span class="fs-1">  Vos Cuisiniers  </span> Leo Gabriel Adam Thiméo Raphael Lucas Louis Arthur Nathan Hugo Nolane Enzo Jules Liam Ethan Noah Sacha Tom Theo Gabin .
-                </p>
-                <p class="fs-5"> Vous voulez <span class="fs-1">Devenir un Cook ?</span> alors <%=link_to "inscrivez-vous vite", new_user_registration_path %> !
+                <p class="fs-5"> Envie d'en savoir plus sur nos fondateurs ? Venez parcourir leurs profils Github : </p>
+                  <p>
+                    <%= link_to "Xavier GRENOUILLET", "https://github.com/GXcode95" %>
+                  </p>
+                  <p>
+                    <%= link_to "Ludovic BARATIER", "https://github.com/Wiyap" %>
+                  </p>
+                  <p>
+                    <%= link_to "Jean FERSTLER", "https://github.com/ecko9" %>
+                  </p>
+                  <p>
+                    <%= link_to "Anthony CORNU", "https://github.com/antcrn" %>
+                  </p>
+                  <p>
+                    <%= link_to "Pierre NOPPE", "https://github.com/PierreNP" %>
+                  </p>
             </div>
         </div>
     </section>
