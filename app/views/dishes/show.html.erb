@@ -55,7 +55,7 @@
   </div>
 
   <div class="my-5">
-        <%= form_with model: @order_dishes, url: order_dishes_path(dish_id: @dish.id), class: " d-flex align-items-center justify-content-evenly" do |form| %>
+        <%= form_with model: @order_dishes, url: order_dishes_path(dish_id: @dish.id), local: true, class: " d-flex align-items-center justify-content-evenly" do |form| %>
             <i class="fas fa-minus fs-4 text-white bg-primary p-2 rounded-circle" data-quantity="remove"></i>
   
           <%= form.number_field :quantity , value: "1", class: "text-center col-2 fs-4" %>

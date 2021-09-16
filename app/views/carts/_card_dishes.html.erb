@@ -1,6 +1,6 @@
 <div>
 <% dish = order_dish.dish %>
-  <div data-card="dish" class="row g-0 mt-5 position-relative shadow-lg shadow-lg border-top">
+  <div data-card="<%= order_dish.id %>" class="row g-0 mt-5 position-relative shadow-lg shadow-lg border-top">
     <%= link_to dish_path(dish), class:"row" do %>
       <img class="col-4 img-fluid rounded-4" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg" alt="...">
     <% end %>

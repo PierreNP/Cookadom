@@ -1,0 +1,6 @@
+function destroy() {
+  var cards = document.querySelectorAll('div[data-card="<%= @order.id %>"]')
+  for(var i = 0; i < cards.length; i++) { cards[i].remove }
+}
+window.addEventListener("DOMContentLoaded", destroy())
+

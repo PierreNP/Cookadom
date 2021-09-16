@@ -64,20 +64,4 @@
     </div>
   </nav>
 
-    <!-- CART SIDEBAR -->
-<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-  <div class="offcanvas-header">
-    <h5 id="offcanvasRightLabel">Panier</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="container">
-    <% current_user.carts.last.order_dishes.each do |order_dish| %>
-      <%= render "carts/card_dishes", order_dish: order_dish, cart: @cart%>
-
-    <% end %>
-    <div class="offcanvas-body d-flex justify-content-center">
-      <%= link_to("Voir mon panier", carts_path, class: "nav-link btn-primary text-light rounded-6 m-2 w-50") if current_user %>
-    </div>
-  </div>
- </div>
-
+<%= render "layouts/cart_sidebar", cart: @cart%>
