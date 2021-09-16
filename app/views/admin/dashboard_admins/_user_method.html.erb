@@ -8,12 +8,12 @@
       </div>
       <%= link_to admin_user_path(user.id), method: :delete, class: "btn btn-danger" do %>
         <i class="fas fa-times"></i>
-        <span> Détruire l'Utilisateur</span>
+        <span> Supprimer l'utilisateur</span>
       <% end %>
       <%= link_to :Message, new_conversation_path(user_id: user), class: "btn btn-primary" %>
       <%= link_to admin_user_path(user.id), method: :put, class: "btn btn-warning" do %>
         <i class="fas fa-user-cog"></i>
-        <span> Passer Administrateur</span>
+        <span> Passer administrateur</span>
       <% end %>
     </div>
     <div class="w-100">
@@ -21,7 +21,7 @@
         <div class="accordion-item">
           <h2 class="accordion-header" id=<%="flush-#{user.id}"%>>
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target=<%="#flush-collapse#{user.id}"%> aria-expanded="false" aria-controls=<%="flush-#{user.id}"%>>
-              <h2 class="text-center col">Ses Comments</h2>
+              <h2 class="text-center col">Ses commentaires</h2>
             </button>
           </h2>
           <div id=<%="flush-collapse#{user.id}"%> class="accordion-collapse collapse" aria-labelledby=<%="flush-#{user.id}"%> data-bs-parent="#accordionFlushExample" style="">
