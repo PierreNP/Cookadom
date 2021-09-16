@@ -11,7 +11,9 @@
         <%= render 'card_index', dish: dish %>
       <% end %>
     <% else %>
-      <h2 class="text-center text-primary">Il n'y a pas encore de Cooks dans votre ville ...</h2>
+      <h2 class="text-center text-primary">
+        <%= params[:search] ?  "Aucun résultat ..." : "Il n'y a pas encore de Cooks dans votre ville ..." %>
+      </h2>
     <% end %>
   </div>
 </section>
