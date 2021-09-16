@@ -29,7 +29,7 @@
 
             </div>
             <div class="row m-2">
-              <p class="col-6 ">Adresse:<br/> <%= address.content %></p>
+              <p class="col-6 ">Adresse:<br/> <%= address.content %>,&nbsp; <%= City.find_by(id: address.city_id).zip_code %>&nbsp;<%= City.find_by(id: address.city_id).name %></p>
             </div>
             <div class="row m-2">
               <p class="col-12 ">Informations complémentaires:<br/> <%= address.additional_info %></p>
