@@ -1,6 +1,10 @@
 class ConversationsController < ApplicationController
   def index
     @conversations = current_user.mailbox.conversations
+    @empty = false
+    @conversations.each do |conversation|
+      @empty = true unless conversation.is_deleted?(current_user)
+    end
   end
 
   def show

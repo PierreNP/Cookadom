@@ -1,21 +1,22 @@
-<div class="container">
+<div class="container vh-60">
   <h1 class="text-center text-primary my-4"> Vos conversations </h1>
-  <% if @conversations.any? %>
-    <div class="col-8 offset-2 border border-primary p-4 alert-secondary rounded-1">
+  <% if @empty %>
+    <div class="col-8 offset-2 border border-primary p-4 rounded-3">
       <% @conversations.each do |conversation| %>
         <% unless conversation.is_deleted?(current_user) %>
+          <h3><%= link_to "#{conversation.subject}", conversation_path(conversation), class: "text-decoration-underline" %></h3>
           <p>
-            <%= link_to "#{conversation.subject}", conversation_path(conversation) %> - 
             <% conversation.recipients.each do |recipient| %>
               <%= recipient.name  if recipient.id != current_user.id %>
-            <% end %> -
-            <em class="text-muted"><%= conversation.updated_at.strftime("%m/%d à %I:%M") %></em> 
-            <%= link_to :Supprimer, conversation_path(conversation), method: :delete, class: "ms-3 btn btn-outline-danger" %>
+            <% end %> 
+            <em class="text-muted">le <%= conversation.updated_at.strftime("%m/%d à %I:%M") %></em> 
+            <%= link_to :Supprimer, conversation_path(conversation), method: :delete, class: "ms-3 btn btn-outline-danger fs-8" %>
           </p>
+          <hr>
         <% end %>
       <% end %>
     </div>
   <% else %>
-    <h4>Vous n'avez aucune conversation pour l'instant.</h4>
+    <h4 class="m-5 text-center">Vous n'avez aucune conversation pour l'instant.</h4>
   <% end %>
 </div>
