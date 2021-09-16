@@ -27,7 +27,10 @@ class OrderDishesController < ApplicationController
     else
       flash[:error] = "Vous ne pouvez pas commander à deux cuisiniers différents dans la même commande."
     end
-    redirect_to dishes_path
+    respond_to do |format|
+      format.html {redirect_to dishes_path}
+      format.js{}
+    end
   end
 
   def update 

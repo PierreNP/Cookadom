@@ -1,24 +1,26 @@
+<div>
 <% dish = order_dish.dish %>
-    <div class="row g-0 mt-5 position-relative shadow-lg shadow-lg border-top">
-      <%= link_to dish_path(dish), class:"row" do %>
-        <img class="col-4 img-fluid rounded-4" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg" alt="...">
-      <% end %>
-      <div class="col-sm-8">
-        <%= link_to dish_path(dish) do %>
-          <div class="d-flex flex-column">
-            <h6 class="flex-row card-title fs-6 p-2"><%= dish.name %> x <%= order_dish.quantity %></h6>
-            <div class="add-delete px-3 p-2 flex-row">
-              <div class="">
-                <%= render "order_dishes/quantity_choice", order_dish: order_dish%>
-                <div class="fw-bold fs-7"><%= dish.price_euro %></div>
-              </div>
+  <div data-card="dish" class="row g-0 mt-5 position-relative shadow-lg shadow-lg border-top">
+    <%= link_to dish_path(dish), class:"row" do %>
+      <img class="col-4 img-fluid rounded-4" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg" alt="...">
+    <% end %>
+    <div class="col-sm-8">
+      <%= link_to dish_path(dish) do %>
+        <div class="d-flex flex-column">
+          <h6 class="flex-row card-title fs-6 p-2"><%= dish.name %> x <%= order_dish.quantity %></h6>
+          <div class="add-delete px-3 p-2 flex-row">
+            <div class="">
+              <%= render "order_dishes/quantity_choice", order_dish: order_dish%>
+              <div class="fw-bold fs-7"><%= dish.price_euro %></div>
             </div>
           </div>
-        <% end %>
-      </div>
-      <% if cart.status == "pre_validation" %>
-        <div class="col-1 position-btn-close d-flex-center">
-          <%= link_to "", order_dish_path(order_dish.id), method: :delete, class:"btn-close p-00 fs-10"%>
         </div>
       <% end %>
     </div>
+    <% if cart.status == "pre_validation" %>
+      <div class="col-1 position-btn-close d-flex-center">
+        <%= link_to "", order_dish_path(order_dish.id), method: :delete, class:"btn-close p-00 fs-10"%>
+      </div>
+    <% end %>
+  </div>
+</div>

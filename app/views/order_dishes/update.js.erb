@@ -1,0 +1,10 @@
+function update() {
+  var cards = document.querySelectorAll('div[data-card="dish"]')
+  for(var i = 0; i < cards.length; i++) {
+    var card = cards[i]
+    var parent = card.parentElement
+    parent.innerHTML = "<%= j render 'carts/card_dishes', cart: @cart, order_dish: @order%>"
+  }
+}
+window.addEventListener("DOMContentLoaded", update())
+
