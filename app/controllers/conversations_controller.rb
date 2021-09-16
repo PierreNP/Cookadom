@@ -15,7 +15,7 @@ class ConversationsController < ApplicationController
     @conversation.recipients.each do |recipient|
       recipient.id == current_user.id ? @user = recipient : @interlocutor = recipient
     end
-    @conversation.receipts_for(current_user).order(updated_at: :desc).each do |receipt|
+    @conversation.receipts_for(current_user).each do |receipt|
       receipt.message.mark_as_read(current_user)
     end
    
