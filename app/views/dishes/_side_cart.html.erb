@@ -1,0 +1,3 @@
+<% current_user.carts.find_by(status:"pre_validation").order_dishes.each do |order_dish| %>
+  <%= render "carts/card_dishes", order_dish: order_dish, cart: @cart%>
+<% end %>

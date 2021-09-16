@@ -1,0 +1,5 @@
+var dishesRow = document.querySelector('#dishes')
+var cartDiv = document.querySelector('#cart')
+
+dishesRow.innerHTML = "<%= j render "dishes/order_dish_create", dishes: @dishes %>"
+cartDiv.innerHTML ="<%= j render "dishes/side_cart" %>"
