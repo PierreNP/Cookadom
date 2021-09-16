@@ -1,81 +1,68 @@
-  <nav class="navbar navbar-expand-lg  navbar-light navbar-light bg-light sticky-top shadow-sm" id="nav">
-        <div class="container">
-
-            <%= link_to  root_path, class: "navbar-brand fw-bolder text-primary d-none d-lg-block" do %>
-              <%= image_tag "logo.svg", alt: :logo, width: 50 %><span class="fw-bolder text-primary ms-1">COOKADOM</span>
-            <% end %>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span></button>
-
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <%= link_to :Accueil,root_path,  class: "nav-link active", aria_current: "page" %>
-                    </li>
-                    <li class="nav-item">
-                        <%= link_to "Les plats", dishes_path, class:"nav-link" %>
-                    </li>       
-                    <% unless current_user.status == "cook" || current_user.status == "admin"%>
-                        <li class="nav-item">
-                            <%= link_to "Devenir un Cook", static_pages_home_cook_path, class:"nav-link" %>
-                        </li>  
-                    <% end %>
-                    <% if current_user.status == "cook" %>
-                        <li class="nav-item">
-                            <%= link_to "Dashboard", cook_dishes_path, class:"nav-link" %>
-                        </li>
-                    <% end %>
-                    <% if current_user.status == "admin" %>
-                        <li class="nav-item">
-                            <%= link_to "Dashboard", admin_dashboard_admins_path, class:"nav-link" %>
-                        </li>
-                    <% end %>
-                </ul>
-            </div>
-            
-            <div class="nav-item dropdown">
-                <a class="dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<% @cook = Cook.find_by(user_id:current_user.id) %>
-            		<% if @cook.avatar %>
-								  <%= image_tag @cook.avatar, alt: "logo cookadom #{@cook.business_name}", class: "rounded-circle", width: 35  %>
-								<% else %>
-    							<%= image_tag "logo.svg" , alt: "logo cookadom #{@cook.business_name}", class: "rounded-circle", width: 35  %>
-                <% end %>
-								<% if @unread != 0 %>
-								  <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-secondary"><%= @unread %></span>
-            		<%end%>
-                </a>
-                <ul class="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
-                    <li>
-                        <%= link_to "Profil Utilisateur", edit_user_path(current_user.id), class:"dropdown-item" %>
-                    </li>
-                    <li>
-                        <%= link_to "Mes commandes", user_path(current_user.id), class:"dropdown-item" %>
-                    </li>
-                    <li>
-                        <%= link_to "Mes plats Favoris", favorits_path, class:"dropdown-item" %>
-                    </li>
-                    <li class="nav-item">
-                      <%= link_to "Messages", conversations_path, class:"dropdown-item #{'fw-bold text-primary' if @unread != 0 }" %>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <%= link_to "Se déconnecter", destroy_user_session_path, class:"dropdown-item", method: :delete  %>
-                    </li>
-                </ul>
-            </div>
-
-            <a class="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-shopping-bag fa-lg nav-link text-dark"></i>
-						  <% if @current_user.carts.last.order_dishes.size != 0 %>
-								<span class="translate-middle badge rounded-pill bg-primary">
-                    <%= @current_user.carts.last.order_dishes.size  %>                    
-            			</span>
-            <%end%>
-            </a>
-        </div>
-  </nav>
+<nav class="navbar navbar-expand-lg  navbar-light navbar-light bg-light sticky-top shadow-sm" id="nav">
+  <div class="container">
+    <%= link_to  root_path, class: "navbar-brand fw-bolder text-primary d-none d-lg-block" do %>
+      <%= image_tag "logo.svg", alt: :logo, width: 50 %><span class="fw-bolder text-primary ms-1">COOKADOM</span>
+    <% end %>
+	  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+  	  <span class="navbar-toggler-icon"></span>
+		</button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to :Accueil,root_path,  class: "nav-link active", aria_current: "page" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Les plats", dishes_path, class:"nav-link" %>
+        </li>       
+		    <li class="nav-item">
+            <%= link_to "Dashboard", cook_dishes_path, class:"nav-link" %>
+        </li>
+      </ul>
+    </div>
+    <div class="nav-item dropdown">
+			<% if @unread != 0 %>
+				<span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-secondary"><%= @unread %></span>
+    	<%end%>
+      <a class="dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				<% @cook = Cook.find_by(user_id:current_user.id) %>
+       	<% if @cook.avatar %>
+						<%= image_tag @cook.avatar, alt: "logo cookadom #{@cook.business_name}", class: "rounded-circle", width: 35  %>
+					<% else %>
+  				<%= image_tag "logo.svg" , alt: "logo cookadom #{@cook.business_name}", class: "rounded-circle", width: 35  %>
+        <% end %>
+				<% if @unread != 0 %>
+					<span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-secondary"><%= @unread %></span>
+        <%end%>
+      </a>
+      <ul class="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
+        <li>
+          <%= link_to "Profil Utilisateur", edit_user_path(current_user.id), class:"dropdown-item" %>
+        </li>
+        <li>
+          <%= link_to "Mes commandes", user_path(current_user.id), class:"dropdown-item" %>
+        </li>
+        <li>
+          <%= link_to "Mes plats Favoris", favorits_path, class:"dropdown-item" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Messages", conversations_path, class:"dropdown-item #{'fw-bold text-primary' if @unread != 0 }" %>
+        </li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li>
+          <%= link_to "Se déconnecter", destroy_user_session_path, class:"dropdown-item", method: :delete  %>
+        </li>
+      </ul>
+    </div>
+	  <a class="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-shopping-bag fa-lg nav-link text-dark"></i>
+		  <% if @current_user.carts.last.order_dishes.size != 0 %>
+				<span class="translate-middle badge rounded-pill bg-primary">
+    	    <%= @current_user.carts.last.order_dishes.size  %>                    
+    		</span>
+      <%end%>
+    </a>
+  </div>
+</nav>
 
 <%= render "layouts/cart_sidebar", cart: @cart%>
