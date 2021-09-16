@@ -15,7 +15,7 @@
 
   <body class="body-flx">
     <%= render "layouts/navbar_users" if current_user && current_user.admin?  %>
-    <%= render "layouts/navbar_cook" if current_user && current_user.user?  %>
+    <%= render "layouts/navbar_cook" if current_user && current_user.cook?  %>
     <%= render "layouts/navbar_users" if current_user && current_user.user?  %>
     <%= render "layouts/navbar" if !current_user %>
     <div id="flash" class="transition-2">
