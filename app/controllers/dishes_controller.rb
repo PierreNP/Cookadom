@@ -4,7 +4,7 @@ class DishesController < ApplicationController
 
   def index
     if current_user && @cart.dishes.any?
-      @dishes = @cart.cook.dishes
+      @dishes = @cart.cook.dishes.where(status: "available")
     else
       @dishes_cities = Dish.all_cities
       if params[:city_id]
