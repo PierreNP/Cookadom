@@ -41,10 +41,14 @@ class OrderDishesController < ApplicationController
   def destroy 
     if @order.destroy
       flash[:success] = "Plat enlevé du panier avec succès."
-      redirect_back(fallback_location: root_path)
     else
       flash[:error] = "Impossible de supprimer le plat."
     end
+    respond_to do |format|
+      format.html{redirect_back(fallback_location: root_path)}
+      format.js{}
+    end
+
   end
   
   private
