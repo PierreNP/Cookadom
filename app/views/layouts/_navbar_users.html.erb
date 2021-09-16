@@ -35,16 +35,11 @@
             </div>
             
             <div class="nav-item dropdown">
+            <% if @unread != 0 %>
+                <span class="bg-primary p-1 fs-9 rounded-5 "><%= @unread  %></span>
+            <%end%>
                 <a class="dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<% @cook = Cook.find_by(user_id:current_user.id) %>
-            		<% if @cook.avatar %>
-								  <%= image_tag @cook.avatar, alt: "logo cookadom #{@cook.business_name}", class: "rounded-circle", width: 35  %>
-								<% else %>
-    							<%= image_tag "logo.svg" , alt: "logo cookadom #{@cook.business_name}", class: "rounded-circle", width: 35  %>
-                <% end %>
-								<% if @unread != 0 %>
-								  <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-secondary"><%= @unread %></span>
-            		<%end%>
+                    <i class="fas fa-user-circle fa-lg nav-link text-dark px-0"></i>
                 </a>
                 <ul class="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
                     <li>
@@ -57,7 +52,7 @@
                         <%= link_to "Mes plats Favoris", favorits_path, class:"dropdown-item" %>
                     </li>
                     <li class="nav-item">
-                      <%= link_to "Messages", conversations_path, class:"dropdown-item #{'fw-bold text-primary' if @unread != 0 }" %>
+                        <%= link_to "Messages", conversations_path, class:"dropdown-item" %>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
@@ -68,14 +63,8 @@
                 </ul>
             </div>
 
-            <a class="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-shopping-bag fa-lg nav-link text-dark"></i>
-						  <% if @current_user.carts.last.order_dishes.size != 0 %>
-								<span class="translate-middle badge rounded-pill bg-primary">
-                    <%= @current_user.carts.last.order_dishes.size  %>                    
-            			</span>
-            <%end%>
-            </a>
-        </div>
+        <a class="" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-shopping-cart fa-lg nav-link text-dark"></i></a>
+    </div>
   </nav>
 
 <%= render "layouts/cart_sidebar", cart: @cart%>
