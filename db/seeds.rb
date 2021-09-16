@@ -47,6 +47,8 @@ City.reset_pk_sequence
 end
 puts "City create"
 
+
+
 20.times do 
   Tag.create(label: Faker::Food.ethnic_category)
 end
@@ -65,7 +67,7 @@ puts "admin@ex.ex + cook@ex.ex created"
     Cook.create(user_id: user.id, siren: "#{rand(100000000..999999999)}", business_name: Faker::Restaurant.name, legal_status: ["EI", "EURL", "SNC", "SCA","SARL","SA", "SAS"].sample, headquarter: Faker::Address.street_name, vat_number: "FR#{rand(100000000..999999999)}", commercial_register: "RCS PARIS #{["A", "B"].sample} #{rand(100000000..999999999)}", status: false)
     puts "Cook create"
   end
-  Address.create(name: ["home","friend 1", "work", "friend 2", "mummy the best mom"].sample, content: "JEAN NE DOIT PAS DONNER D'ORDRE" , additional_info: "blabla", user_id: user.id)
+  Address.create(name: ["home","friend 1", "work", "friend 2", "mummy the best mom"].sample, content: Faker::Address.street_address , additional_info: "blabla", user_id: user.id)
   puts "Address create"
 end
 puts "User create"
