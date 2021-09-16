@@ -1,185 +1,190 @@
 <div class="container-fluid vh-90 bg-light">
-<div class="row h-100">
-  <div class="col-2 border-end border-bottom h-100">
-    <div class="d-flex h-50 flex-column align-items-center justify-content-center">
-      <div class="btn border border-active border-command w-100 py-3">
-        <%= link_to cook_dishes_path(dashboard_method: 1), remote: :true, class: "d-inline-block w-100 h-100" do %>
-          <i class="fas fa-clipboard-list"></i>
-          <span >Mes Commandes</span>
-        <% end %>
-      </div>
-
-      <div class="btn w-100 py-3 border-dish">
-        <%= link_to cook_dishes_path(dashboard_method: 2), remote: :true, class: "d-inline-block w-100 h-100" do %>
-          <i class="fas fa-utensils"></i>
-          <span >Mes Plats</span>
-        <% end %>
-      </div>
-
-      <div class="btn w-100 py-3 border-stat">
-        <%= link_to cook_dishes_path(dashboard_method: 3), remote: :true, class: "d-inline-block w-100 h-100" do %>
-          <i class="fas fa-chart-line"></i>
-          <span >Statistiques</span>
-        <% end %>
-      </div>
-
-      </div>
-      <div class="d-flex h-50 flex-column align-items-center justify-content-end">
-        <div class="w-100 py-3">
-          <%= link_to destroy_user_session_path, method: :delete do %>
-            <i class="fas fa-sign-out-alt"></i>
-            <span >Logout</span>
+  <div class="row h-100">
+    <div class="col-2 border-end border-bottom h-100">
+      <div class="d-flex h-50 flex-column align-items-center justify-content-center">
+        <div class="btn border border-active border-command w-100 py-3">
+          <%= link_to cook_dishes_path(dashboard_method: 1), remote: :true, class: "d-inline-block w-100 h-100" do %>
+            <i class="fas fa-clipboard-list"></i>
+            <span >Mes Commandes</span>
           <% end %>
         </div>
-      </div>
-    </div>
-    <div class="col-10 h-100 bg-light right-column-block overflow-auto">
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end bg-light mt-3">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Ajouter un nouveau plat</button>
-      </div>
-      <!-- Modal New dish -->
-  <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Nouveau plat</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        <div class="btn w-100 py-3 border-dish">
+          <%= link_to cook_dishes_path(dashboard_method: 2), remote: :true, class: "d-inline-block w-100 h-100" do %>
+            <i class="fas fa-utensils"></i>
+            <span >Mes Plats</span>
+          <% end %>
         </div>
-        <div class="modal-body">
-              <div class="col-8">
-        <h1>Nouveau plat</h1>
-        <%=render "new_form", dish: @dish %>
-      </div>
+
+        <div class="btn w-100 py-3 border-stat">
+          <%= link_to cook_dishes_path(dashboard_method: 3), remote: :true, class: "d-inline-block w-100 h-100" do %>
+            <i class="fas fa-chart-line"></i>
+            <span >Statistiques</span>
+          <% end %>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        </div>
+        <div class="d-flex h-50 flex-column align-items-center justify-content-end">
+          <div class="w-100 py-3">
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <i class="fas fa-sign-out-alt"></i>
+              <span >Logout</span>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-      <div class="command-method-block mt-5">
+      <div class="col-10 h-100 bg-light right-column-block overflow-auto">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end bg-light mt-3">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Ajouter un nouveau plat</button>
+        </div>
+        <!-- Modal New dish -->
+        <div class="modal  fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nouveau plat</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                    <div class="col-8">
+              <h1>Nouveau plat</h1>
+              <%=render "new_form", dish: @dish %>
+            </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div class="command-method-block mt-5">
 
-        <div class="accordion accordion-flush mt-5 shadow-sm" id="accordionFlushExample">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingOne">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                <h2 class="text-center  col">Commandes Payées</h2>
-              </button>
-            </h2>
-            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
-              <div class="accordion-body">
-                  <!-- Item start -->
-                <% @carts.each do |cart|%>
-                  <% if cart.status == "paid" %>
-                  <% address = Address.find_by(user_id: User.find_by(id: cart.user_id).id) %>
-                  <div class="text-center mb-3 row d-flex flex-wrap align-items-center">
-                    <div class="col-2">
-                      <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
-                    </div>
-                    <p class=" mb-0 col-4">Id Utilisateur: <%= cart.user_id %></p>
-                    <p class=" mb-0 col-2">Status: <%= cart.status %></p>
-                    <p class=" mb-0 fs-6  col-4 ">Payé le: <%= cart.updated_at %></p>
-                    <p class=" mb-0 fs-6  col-6 ">Adresse: <%= address.content %></p>
-                    <p class=" mb-0 fs-6  col-6 ">Informations complémentaires: <%= address.additional_info %></p>
-                    <p class=" mb-0 fs-6  col-4 ">Livraison: <%= cart.show_date %></p>
+          <div class="accordion accordion-flush mt-5 shadow-sm" id="accordionFlushExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  <h2 class="text-center  col">Commandes Payées</h2>
+                </button>
+              </h2>
 
-                  </div>
-
-
-                  <div class="accordion accordion-flush mt-5 shadow-sm" id="accordionFlushExample2">
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="flush-headingDetails<%="#{cart.id}"%>">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseDetails<%="#{cart.id}"%>" aria-expanded="false" aria-controls="flush-collapseDetails<%="#{cart.id}"%>">
-                          <h2 class="text-center  col">Détail</h2>
-                        </button>
-                      </h2>
-                      <div id="flush-collapseDetails<%="#{cart.id}"%>" class="accordion-collapse collapse" aria-labelledby="flush-headingDetails<%="#{cart.id}"%>" data-bs-parent="#accordionFlushExample2" style="">
-                      <div class="accordion-body">
-                        <% OrderDish.where(cart_id: cart.id).each do |order_dish| %>
-                          <% dish = Dish.find_by(id: order_dish.dish_id) %>
-                        <div class="text-center mb-3 row d-flex align-items-center flex-wrap">
-                          <div class="col-2">
-                            <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
-                          </div>
-                          <p class=" mb-0 col-3">Plat: <%= dish.name %></p>
-                          <p class=" mb-0 col-2">X <%= order_dish.quantity %></p>
-                          <p class=" mb-0 fs-6  col-4 ">Livraison: <%= cart.show_date %></p>
-                          <%= link_to "Envoyer un message", new_conversation_path(user_id: cart.user.id), class: 'btn btn-primary col-3' %>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample" style="">
+                <div class="accordion-body">
+                    <!-- Item start -->
+                  <% @carts.each do |cart|%>
+                    <% if cart.status == "paid" %>
+                      <% address = Address.find_by(user_id: User.find_by(id: cart.user_id).id) %>
+                      <div class="text-center mb-3 row d-flex flex-wrap align-items-center">
+                        <div class="col-2">
+                          <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
                         </div>
-                        <% end %>
+                        <p class=" mb-0 col-4">Id Utilisateur: <%= cart.user_id %></p>
+                        <p class=" mb-0 col-2">Status: <%= cart.status %></p>
+                        <p class=" mb-0 fs-6  col-4 ">Payé le: <%= cart.updated_at %></p>
+                        <p class=" mb-0 fs-6  col-6 ">Adresse: <%= address.content %></p>
+                        <p class=" mb-0 fs-6  col-6 ">Informations complémentaires: <%= address.additional_info %></p>
+                        <p class=" mb-0 fs-6  col-4 ">Livraison: <%= cart.show_date %></p>
+
                       </div>
-                    </div>
-                  </div>
 
+
+                      <div class="accordion accordion-flush mt-5 shadow-sm" id="accordionFlushExample2">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="flush-headingDetails<%="#{cart.id}"%>">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseDetails<%="#{cart.id}"%>" aria-expanded="false" aria-controls="flush-collapseDetails<%="#{cart.id}"%>">
+                              <h2 class="text-center  col">Détail</h2>
+                            </button>
+                          </h2>
+                          <div id="flush-collapseDetails<%="#{cart.id}"%>" class="accordion-collapse collapse" aria-labelledby="flush-headingDetails<%="#{cart.id}"%>" data-bs-parent="#accordionFlushExample2" style="">
+                          <div class="accordion-body">
+                            <% OrderDish.where(cart_id: cart.id).each do |order_dish| %>
+                              <% dish = Dish.find_by(id: order_dish.dish_id) %>
+                              <div class="text-center mb-3 row d-flex align-items-center flex-wrap">
+                                <div class="col-2">
+                                  <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
+                                </div>
+                                <p class=" mb-0 col-3">Plat: <%= dish.name %></p>
+                                <p class=" mb-0 col-2">X <%= order_dish.quantity %></p>
+                                <p class=" mb-0 fs-6  col-4 ">Livraison: <%= cart.show_date %></p>
+                                <%= link_to "Envoyer un message", new_conversation_path(user_id: cart.user.id), class: 'btn btn-primary col-3' %>
+                              </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+
+                    <% end %>
                   <% end %>
-                <% end %>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingTwo">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                <h2 class="text-center col">Commandes Validées</h2>
-              </button>
-            </h2>
-            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body">
-                <!-- Item start -->
-                <% @carts.each do |cart|%>
-                  <% if cart.status == "post_validation" %>
-                  <div class="text-center mb-3 row d-flex align-items-center">
-                    <div class="col-2">
-                      <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
-                    </div>
-                    <p class=" mb-0 col-4 ">Id Utilisateur: <%= cart.user_id %></p>
-                    <p class=" mb-0 col-2 ">Status: <%= cart.status %></p>
-                    <p class=" mb-0 fs-6  col-4 ">Livraison: <%= cart.show_date %></p>
-                    <%= link_to "Envoyer un message", new_conversation_path(user_id: cart.user.id), class: 'btn btn-primary col-3' %>
 
-                  </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                  <h2 class="text-center col">Commandes Validées</h2>
+                </button>
+              </h2>
+              <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <!-- Item start -->
+                  <% @carts.each do |cart|%>
+                    <% if cart.status == "post_validation" %>
+                    <div class="text-center mb-3 row d-flex align-items-center">
+                      <div class="col-2">
+                        <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
+                      </div>
+                      <p class=" mb-0 col-4 ">Id Utilisateur: <%= cart.user_id %></p>
+                      <p class=" mb-0 col-2 ">Status: <%= cart.status %></p>
+                      <p class=" mb-0 fs-6  col-4 ">Livraison: <%= cart.show_date %></p>
+                      <%= link_to "Envoyer un message", new_conversation_path(user_id: cart.user.id), class: 'btn btn-primary col-3' %>
+
+                    </div>
+                    <% end %>
                   <% end %>
-                <% end %>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="flush-headingThree">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                <h2 class="text-center col">Commandes en Attente de Validation</h2>
-              </button>
-            </h2>
-            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-              <div class="accordion-body">
-                <!-- Item start -->
-                <% @carts.each do |cart|%>
-                  <% if cart.status == "validation" %>
-                  <div class="text-center mb-3 row d-flex align-items-center">
-                    <div class="col-2">
-                      <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
-                    </div>
-                    <p class=" mb-0 col-4 ">Id Utilisateur: <%= cart.user_id %></p>
-                    <p class=" mb-0 col-2 ">Status: <%= cart.status %></p>
-                    <p class=" mb-0 fs-6  col-4 ">Livraison: <%= cart.show_date %></p>
-                    <div class="col-1 grid-2 gap-1">
-                      <%= link_to cook_cart_path(cart.id), method: :put, class: "btn btn-succes" do %>
-                        <i class="fas fa-check"></i>
-                      <% end %>
-                      <%= link_to cook_cart_path(cart.id), method: :delete, class: "btn btn-danger" do %>
-                        <i class="fas fa-times"></i>
-                      <% end %>
-                    </div>
-                  </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                  <h2 class="text-center col">Commandes en Attente de Validation</h2>
+                </button>
+              </h2>
+              <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <!-- Item start -->
+                  <% @carts.each do |cart|%>
+                    <% if cart.status == "validation" %>
+                      <div class="text-center mb-3 row d-flex align-items-center">
+                        <div class="col-2">
+                          <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
+                        </div>
+                        <p class=" mb-0 col-4 ">Id Utilisateur: <%= cart.user_id %></p>
+                        <p class=" mb-0 col-2 ">Status: <%= cart.status %></p>
+                        <p class=" mb-0 fs-6  col-4 ">Livraison: <%= cart.show_date %></p>
+                        <div class="col-1 grid-2 gap-1">
+                          <%= link_to cook_cart_path(cart.id), method: :put, class: "btn btn-succes" do %>
+                            <i class="fas fa-check"></i>
+                          <% end %>
+                          <%= link_to cook_cart_path(cart.id), method: :delete, class: "btn btn-danger" do %>
+                            <i class="fas fa-times"></i>
+                          <% end %>
+                        </div>
+                      </div>
+                    <% end %>
                   <% end %>
-                <% end %>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
+
     </div>
   </div>
-</div>
 </div>
 <% content_for :title_page do %>
 <title>Cookadom - Dashboard</title>
