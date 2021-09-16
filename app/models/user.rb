@@ -13,7 +13,7 @@ class User < ApplicationRecord
   belongs_to :city, optional: true
 
   has_many :addresses
-  has_many :cooks
+  has_one :cook
   has_many :comments
   has_many :dishes, through: :comments
   has_many :ratings
