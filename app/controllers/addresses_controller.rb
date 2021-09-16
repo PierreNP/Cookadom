@@ -1,17 +1,18 @@
 class AddressesController < ApplicationController
   def create 
+    address_params = address_hasher(params[:address][:name_select])
     @address = Address.new()
     @address.name = params[:address][:name]
-    @address.content = address_hasher(params[:address][:name_select])
+    @address.content = address_params[:content]
+    @address.city_id = address_params[:city_id]
     @address.user_id = current_user.id
     @address.additional_info = params[:address][:additional_info]
     if @address.save
       flash[:success]="Une nouvelle adresse a bien été ajoutée."
+      redirect_back(fallback_location: root_path)
     else
       flash[:error] = @address.errors.messages
     end
-    
-    redirect_back(fallback_location: root_path)
   end
 
   def update
@@ -49,14 +50,15 @@ class AddressesController < ApplicationController
         break
       end
     end
-
     city = label_array[zip_index + 1 .. label_array.length - 1].join(" ")
     content = label_array[ 0 .. zip_index - 1].join(" ")
+    
     if !City.find_by(zip_code: zip_code, name: city)
       City.create(name: city, zip_code: zip_code)
     end
+
     current_user.update(city_id: City.find_by(zip_code: zip_code, name: city).id)
-    return content
+    return {:content => content, :city_id => City.find_by(zip_code: zip_code, name: city).id}
   end
 end
 

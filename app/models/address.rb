@@ -1,6 +1,7 @@
 class Address < ApplicationRecord
    
    belongs_to :user
+   belongs_to :city
    has_many :carts
 
    validates :name, presence: true, length: { in: 4..200 }

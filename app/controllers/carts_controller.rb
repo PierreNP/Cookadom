@@ -18,8 +18,8 @@ class CartsController < ApplicationController
       return
     end
 
-    if params[:cart] && delivery = params[:cart][:delivery_date] && address = params[:cart][:address]
-      @cart.update(delivery_date: delivery, address_id: address)
+    if params[:cart] && params[:cart][:delivery_date] && params[:cart][:address]
+      @cart.update(delivery_date: params[:cart][:delivery_date], address_id: params[:cart][:address])
       redirect_back(fallback_location: root_path)
       return
     end

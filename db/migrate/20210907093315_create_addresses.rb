@@ -5,6 +5,7 @@ class CreateAddresses < ActiveRecord::Migration[5.2]
       t.string :content
       t.string :additional_info 
       t.belongs_to :user, index: true
+      t.belongs_to :city, index: true
 
       t.timestamps
     end
