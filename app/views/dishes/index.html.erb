@@ -6,8 +6,12 @@
 
   <div class="row" id="dishes">
     <h2><%= "Voici les autres plats proposés par votre Cook" if current_user && @cart.dishes.any? %></h2>
-    <% @dishes.each do |dish| %>
-      <%= render 'card_index', dish: dish %>
+    <% if @dishes.any? %>
+      <% @dishes.each do |dish| %>
+        <%= render 'card_index', dish: dish %>
+      <% end %>
+    <% else %>
+      <h2 class="text-center text-primary">Il n'y à pas encore de cuisinier dans votre ville ...</h2>
     <% end %>
   </div>
 </section>
