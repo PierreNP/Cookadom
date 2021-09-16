@@ -4,7 +4,7 @@
 <div class="mt-5 container d-flex justify-content-center">
   <div class="row">
     <div class="col-12 col-lg-6 me-5">
-      <h3 class="text-primary mt-3"> Information du profil: 
+      <h3 class="text-primary mt-3"> Informations du profil: 
       <div class="d-flex ">
         
         <%= form_with(model: @users, url: user_path(current_user), method: :put, local: true, class: "h-100 w-100 d-flex flex-column justify-content-evenly") do |form| %>
@@ -82,6 +82,8 @@
             <p><%= address.name %></p>
             <div class="text-muted mb-2">Détails de l'adresse : </div>
             <p><%= "#{address.content} #{city.zip_code} #{city.name}" %></p>
+            <div class="text-muted mb-2"> Informations supplémentaires: </p>
+            <p><%= "#{address.additional_info}" %></p>
             <%= link_to "Supprimer l'adresse", user_address_path(current_user.id, address.id), method: :delete, class:"btn btn-danger"%>
           </div>
         <% end %>
