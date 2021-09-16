@@ -1,0 +1,9 @@
+    
+<% if !current_user %>
+    <%= link_to "S'inscrire", new_user_registration_path, class:"btn btn-primary m-2 btn-lg rounded-6" %>
+<% elsif current_user.addresses.any? %>
+    <%= link_to "C'est parti !", new_cook_path, class:"btn btn-primary m-2 btn-lg rounded-6 w-25" %>
+<% else %>
+    <%= link_to "C'est parti !", edit_user_path(current_user.id), class:"btn btn-primary m-2 btn-lg rounded-6 w-25" %>
+<% end %>
+    
