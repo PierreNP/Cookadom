@@ -45,6 +45,7 @@ span:hover:before {
 }
 
 </style>
+<%= if @carts %>
 <% mounth_stats = [["Janvier", 0], ["Fevrier", 0], ["Mars", 0], ["Avril", 0], ["Mai", 0], ["Juin", 0], ["Juillet", 0], ["Aout", 0], ["Septembre", 0], ["Octobre", 0], ["Novembre", 0], ["Decembre", 0]]%>
 <% @carts.each do |cart|%>
   <% mounth_stats[cart.updated_at.strftime('%m').to_i - 1][1] += 1 %>
@@ -66,5 +67,6 @@ span:hover:before {
   <% end %>
 </ul> 
 
+  <% end %>
 </div>
                 
