@@ -92,15 +92,15 @@
 
           <div>
             <%= form.label "Nom de l'adresse", class: "fs-6 mt-4 mb-3 text-muted"%><br />
-            <%= form.text_field :name, class:"form-control p-3 rounded-4 border-2 border-primary"%>
+            <%= form.text_field :name, class:"form-control p-3 rounded-4 border-2 border-primary", required: true%>
           </div>
           <div>
             <%= form.label "Rechercher votre adresse", class: "fs-6 mt-4 mb-3 text-muted"%><br />
-            <%= form.text_field :search, class:"form-control p-3 rounded-4 border-2 border-primary", id:"adresse_auto", autocomplete:"off", list:"datalistOptions" %>
+            <%= form.text_field :search, class:"form-control p-3 rounded-4 border-2 border-primary", id:"adresse_auto", autocomplete:"off", list:"datalistOptions", required: true %>
           </div>
           <div>
-            <%= form.label "Choix de l'Adresse", class: "fs-6 mt-4 mb-3 text-muted"%><br />
-            <%= form.select :name_select, [["Votre Adresse", ""]], {},  {class:"form-select form-select-lg p-3 rounded-4 border-2 border-primary"} %>
+            <%= form.label "Choix de l'adresse", class: "fs-6 mt-4 mb-3 text-muted"%><br />
+            <%= form.select :name_select, [["Votre Adresse", ""]], {},  {required: true, class:"form-select form-select-lg p-3 rounded-4 border-2 border-primary"}  %>
           </div>
           <div>
             <%= form.label "Informations supplémentaires", class: "fs-6 mt-4 mb-3 text-muted" %><br />

@@ -37,6 +37,11 @@ class AddressesController < ApplicationController
   end
 
   def address_hasher(label)
+    puts params
+    unless params[:address][:name] && params[:address][:name_select] && params[:address][:search]
+      render edit_user_registration_path, error: "Veuillez compléter tout les champs"
+      return
+    end
     label_array = label.split(" ")
     i = label_array.length
     zip_index = 0
@@ -51,14 +56,23 @@ class AddressesController < ApplicationController
       end
     end
     city = label_array[zip_index + 1 .. label_array.length - 1].join(" ")
+    puts "#"* 10000
+    puts label_array
     content = label_array[ 0 .. zip_index - 1].join(" ")
     
     if !City.find_by(zip_code: zip_code, name: city)
       City.create(name: city, zip_code: zip_code)
     end
 
-    current_user.update(city_id: City.find_by(zip_code: zip_code, name: city).id)
-    return {:content => content, :city_id => City.find_by(zip_code: zip_code, name: city).id}
+    city = City.find_by(zip_code: zip_code, name: city)
+    if !city
+      flash[:error] = "Une erreur c'est produite. adresse non reconnue."
+      redirect_back(fallback_location: root_path)
+      return
+    else
+      current_user.update(city_id: city.id) 
+      {content:  content, city_id: city.id}
+    end
   end
 end
 
