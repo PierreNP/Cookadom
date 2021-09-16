@@ -1,15 +1,13 @@
 <div class="card flex">
 	<div class="card-body">
-		<div class="d-flex align-items-center">
-			<div class="m-2"> 
-
+		<div class="row">
+			<div class="col-lg-4 col-md-4"> 
 				<%= render "avatars/cook", cook: @cook%>
-
 			</div>
-			<div class="px-4" >
-				<h1 class="card-title"><%= link_to @cook.business_name, cook_path(@cook), class: "text-dark" %></h1>
-					<div class=" d-flex justify-content-between">
-						<span class=text-muted>
+			<div class="col-lg-8 col-md-6" >
+				<h2 class="card-title fs-3"><%= link_to @cook.business_name, cook_path(@cook), class: "text-dark" %></h2>
+					<div class="row ">
+						<span class="text-muted">
 							<%= @cook.rating %>/5 (<%= @cook_votes %>)
 							<% if @cook_votes == 0 %>
 								<i class="fas fa-star text-muted"></i>
@@ -17,7 +15,7 @@
 								<i class="fas fa-star text-primary"></i>
 							<% end %>
 						</span> 
-						<p class="card-text"><%= @cook.user.city.name %></p>
+						<p class="card-text"><i class="fas fa-sm fa-map-marker-alt"></i>   <%= @cook.user.city.name %></p>
 					</div>
 			</div>
 		</div>
