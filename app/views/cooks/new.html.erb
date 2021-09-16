@@ -1,39 +1,39 @@
-<div class="container d-flex align-items-center">
+<div class="container d-flex justify-content-center">
 
   <%= form_with(model: @cooks, url: cooks_path, local: true, remote: false, method: :post) do |form| %>
     
-    <div class="col-12 mb-2">
-      <%= form.label :siren, class:"fs-6 form-label text-muted" %>
+    <div class="col-12 mb-2 mt-3">
+      <%= form.label "siren", class:"fs-6 form-label text-muted"%>
       <%= form.text_field :siren, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary w-100"%>
     </div>
 
     <div class="col-12 mb-2">
-      <%= form.label :business_name, class:"fs-6 form-label text-muted" %>
+      <%= form.label "Nom de la société", class:"fs-6 form-label text-muted" %>
       <%= form.text_field :business_name, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary w-100"%>
     </div>
 
     <div class="col-12 mb-2">
-      <%= form.label :legal_status, class:"fs-6 form-label text-muted" %>
+      <%= form.label "Statut légal", class:"fs-6 form-label text-muted" %>
       <%= form.text_field :legal_status, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary w-100"%>
     </div>
 
     <div class="col-12 mb-2">
-      <%= form.label :headquarter, class:"fs-6 form-label text-muted" %>
+      <%= form.label "Siège social", class:"fs-6 form-label text-muted" %>
       <%= form.text_field :headquarter, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary w-100"%>
     </div>
 
     <div class="col-12 mb-2">
-      <%= form.label :vat_number, class:"fs-6 form-label text-muted" %>
+      <%= form.label "Numéro de TVA", class:"fs-6 form-label text-muted" %>
       <%= form.text_field :vat_number, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary w-100"%>
     </div>
 
     <div class="col-12 mb-2">
-      <%= form.label :commercial_register, class:"fs-6 form-label text-muted" %>
+      <%= form.label "Numéro d'immatriculation au RCS", class:"fs-6 form-label text-muted" %>
       <%= form.text_field :commercial_register, class:"form-control form-control-lg p-3 rounded-4 border-2 border-primary w-100"%>
     </div>
-
-    <div class="actions">
-      <%= form.submit %>
+  
+    <div class="actions text-center">
+      <%= form.submit "Valider", class:"btn btn-primary w-50" %>
     </div>
   <% end %>
 

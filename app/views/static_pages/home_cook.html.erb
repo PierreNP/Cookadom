@@ -75,11 +75,19 @@
               </div>
           </div>
       </div>
-      <div class="container mt-5 pb-5">
-          <div class="row text-center">
-       <%= link_to "C'est parti !", new_cook_path, class:"btn btn-primary m-2 btn-lg rounded-6 w-25" %>
-       </div>
-       </div>
+      <% if current_user.addresses.first %>
+        <div class="container mt-5 pb-5">
+          <div class="row d-flex justify-content-center">
+            <%= link_to "C'est parti !", new_cook_path, class:"btn btn-primary m-2 btn-lg rounded-6 w-25" %>
+          </div>
+        </div>
+      <% else %>
+        <div class="container mt-5 pb-5">
+          <div class="row d-flex justify-content-center">
+            <%= link_to "C'est parti !", edit_user_path(current_user.id), class:"btn btn-primary m-2 btn-lg rounded-6 w-25" %>
+          </div>
+        </div>
+      <% end %>
   </section>
 
   <section class="container-fluid">

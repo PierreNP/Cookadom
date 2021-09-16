@@ -9,8 +9,10 @@ class Admin::CooksController < ApplicationController
 
     if @status == true
       @cook.update(status: false)
+      User.find_by(id: @cook.user_id).update(status: "user")
     else
       @cook.update(status: true)
+      User.find_by(id: @cook.user_id).update(status: "cook")
     end
 
     if @cook.status != @status && @cook.status == true
@@ -24,6 +26,7 @@ class Admin::CooksController < ApplicationController
   end
 
   def destroy
+    User.find_by(id: @cook.user_id).update(status: "user")
     @cook.destroy
 
     respond_to do |format|
