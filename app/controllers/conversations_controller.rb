@@ -7,11 +7,18 @@ class ConversationsController < ApplicationController
     end
   end
 
+
+
+
   def show
     @conversation = current_user.mailbox.conversations.find(params[:id])
     @conversation.recipients.each do |recipient|
       recipient.id == current_user.id ? @user = recipient : @interlocutor = recipient
     end
+    @conversation.receipts_for(current_user).each do |receipt|
+      receipt.message.mark_as_read(current_user)
+    end
+   
   end
 
 
@@ -26,7 +33,6 @@ class ConversationsController < ApplicationController
   end 
 
   def destroy
-    puts "*"*5000
     @conversation = current_user.mailbox.conversations.find(params[:id])
     @conversation.mark_as_deleted(current_user)
     redirect_back(fallback_location: root_path)
