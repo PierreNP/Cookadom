@@ -11,6 +11,7 @@ class CooksController < ApplicationController
   end
 
   def new
+    redirect_to root_path if current_user.cook
     @cooks = Cook.new
   end
 
@@ -35,7 +36,6 @@ class CooksController < ApplicationController
   def update
     @cook.update(cook_params)
   end
-  
 
   def destroy
     @cook.destroy
