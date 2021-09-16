@@ -18,23 +18,8 @@ class CartsController < ApplicationController
       return
     end
 
-    puts "%"*500
-    puts params
-    puts "%"*500
-
     if params[:cart] && params[:cart][:delivery_date] && params[:cart][:address]
-    puts "%"*500
-    puts params[:cart][:delivery_date]
-    puts "%"*500
-    puts params[:cart][:address]
-    puts "%"*500
-
-      
       @cart.update(delivery_date: params[:cart][:delivery_date], address_id: params[:cart][:address])
-      puts "%"*500
-      puts @cart.errors.messages
-      puts "%"*500
-
       redirect_back(fallback_location: root_path)
       return
     end

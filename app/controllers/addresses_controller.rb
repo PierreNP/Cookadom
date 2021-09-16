@@ -9,11 +9,10 @@ class AddressesController < ApplicationController
     @address.additional_info = params[:address][:additional_info]
     if @address.save
       flash[:success]="Une nouvelle adresse a bien été ajoutée."
+      redirect_back(fallback_location: root_path)
     else
       flash[:error] = @address.errors.messages
     end
-    
-    redirect_back(fallback_location: root_path)
   end
 
   def update
