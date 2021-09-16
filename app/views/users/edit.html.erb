@@ -4,7 +4,11 @@
 <div class="mt-5 container d-flex justify-content-center">
   <div class="row">
     <div class="col-12 col-lg-6 me-5">
+<<<<<<< HEAD
       <h3 class="text-primary mt-3"> Information du profil: 
+=======
+      <h3 class="text-primary"> Informations du profil: 
+>>>>>>> master
       <div class="d-flex ">
         
         <%= form_with(model: @users, url: user_path(current_user), method: :put, local: true, class: "h-100 w-100 d-flex flex-column justify-content-evenly") do |form| %>
@@ -95,7 +99,7 @@
             <%= form.text_field :name, class:"form-control p-3 rounded-4 border-2 border-primary"%>
           </div>
           <div>
-            <%= form.label "Recherchez votre Adresse", class: "fs-6 mt-4 mb-3 text-muted"%><br />
+            <%= form.label "Rechercher votre adresse", class: "fs-6 mt-4 mb-3 text-muted"%><br />
             <%= form.text_field :search, class:"form-control p-3 rounded-4 border-2 border-primary", id:"adresse_auto", autocomplete:"off", list:"datalistOptions" %>
           </div>
           <div>

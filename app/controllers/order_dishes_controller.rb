@@ -25,7 +25,7 @@ class OrderDishesController < ApplicationController
         end
       end
     else
-      flash[:error] = "Vous ne pouvez pas commander à deux cuisiniers différents dans la même commande."
+      flash[:error] = "Vous ne pouvez pas commander à deux Cooks différents dans la même commande."
     end
 
     respond_to do |format|

@@ -1,4 +1,4 @@
-<h2><%= "Voici les autres plats proposé par votre cuisinier" if current_user && current_user.carts.find_by(status: "pre_validation").dishes.any? %></h2>
+<h2><%= "Voici les autres plats proposés par votre Cook" if current_user && current_user.carts.find_by(status: "pre_validation").dishes.any? %></h2>
 <% cook_dishes = dishes.where(cook_id: current_user.carts.find_by(status: "pre_validation").dishes.first.cook_id) %>
 <% cook_dishes.each do |dish| %>
   <div class="border-0 overflow-hidden rounded-top col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12 mb-3 ">
