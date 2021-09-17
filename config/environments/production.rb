@@ -93,5 +93,5 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => 'YOURAPPNAME.herokuapp.com' }
 
-  config.action_mailer.perform_deliveries = false
+  config.action_mailer.perform_deliveries = true
 end
