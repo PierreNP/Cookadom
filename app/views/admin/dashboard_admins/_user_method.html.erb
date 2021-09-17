@@ -31,7 +31,7 @@
               <% comments.each do |comment|%>
               <div class="text-center mb-3 row d-flex align-items-center">
                 <div class="col-2">
-                  <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
+                  <%= render "dishes/photo", dish: dish, size: "550x330^"%>
                 </div>
                 <p class=" mb-0 col-6 "><%= comment.content %></p>
                 <p class=" mb-0 col-2 "><%= comment.updated_at %></p>
