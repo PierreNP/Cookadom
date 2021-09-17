@@ -10,7 +10,11 @@
         </div>
       </div>
     </div>
-    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-5 d-none d-md-block"><a class="btn btn-secondary mt-3 btn-lg rounded-6 text-light" href="#quality"><i class="fas fa-arrow-down"></i></a></div>
+    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-5 d-none d-md-block">
+       <%= link_to root_path(anchor: 'quality'), class: "btn btn-secondary mt-3 btn-lg rounded-6 text-light" do %>
+        <i class="fas fa-arrow-down"></i>
+      <% end %>
+    </div>
   </div>
   
   <section class="bg-quality bg-light py-5 px-5 shadow" id="quality">

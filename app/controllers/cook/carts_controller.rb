@@ -6,7 +6,6 @@ class Cook::CartsController < ApplicationController
   def update
     @cook = Cook.find_by(user_id: current_user.id)
     @user = User.find_by(id: @cart.user_id)
-    @pre_status = @cart.status
     
     if @cart.update(status: 2)
       flash[:success] = "Panier mis à jour."
