@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
         flash[:error] = "Impossible de supprimer le commentaire."
       end
     end
-    flash [:error] = "Une erreur est survenue"
+    flash[:error] = "Une erreur est survenue"
   end
 
   def update
