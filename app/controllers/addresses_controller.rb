@@ -1,10 +1,10 @@
 class AddressesController < ApplicationController
   def create 
-    address_params = address_hasher(params[:address][:name_select])
+    address_param = address_hasher(params[:address][:name_select])
     @address = Address.new()
     @address.name = params[:address][:name]
-    @address.content = address_params[:content]
-    @address.city_id = address_params[:city_id]
+    @address.content = address_param[:content]
+    @address.city_id = address_param[:city_id]
     @address.user_id = current_user.id
     @address.additional_info = params[:address][:additional_info]
     if @address.save
