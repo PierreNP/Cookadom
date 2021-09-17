@@ -1,6 +1,6 @@
 <div id="atachement-photos">
     <% if dish.photo.attached? %>
-        <%=image_tag(dish.photo.variant(resize: "400x300^", crop: '300x200+50+50'), alt: dish.name)%>
+        <%=image_tag(dish.photo, alt: dish.name)%>
     <% else %>
         <p>Aucune photo.</p>
     <% end %>
