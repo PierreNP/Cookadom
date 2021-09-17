@@ -14,9 +14,6 @@
             <% address = Address.find_by(user_id: User.find_by(id: cart.user_id).id) %>
             <div class="border m-1 rounded-5 mb-3">
             <div class="text-center mb-3 row">
-              <div class="col-2">
-                <img class="img-fluid rounded-4 m-1" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
-              </div>
               <div class="col-10 d-flex flex-column align-items-end">
                 <p class="text-muted m-2">Payé le: <%= cart.updated_at.strftime('%d/%m/%Y') %></p>
                 <p class="m-2">Livraison: <%= cart.show_date %></p>
@@ -48,7 +45,7 @@
                     <% dish = Dish.find_by(id: order_dish.dish_id) %>
                   <div class="text-center mb-3 row d-flex align-items-center flex-wrap">
                     <div class="col-2">
-                      <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
+                      <%= render "dishes/photo", dish: dish, size: "550x330^"%>
                     </div>
                     <p class=" mb-0 col-3">Plat: <%= dish.name %></p>
                     <p class=" mb-0 col-2">X <%= order_dish.quantity %></p>
@@ -78,9 +75,6 @@
           <% @carts.each do |cart|%>
             <% if cart.status == "post_validation" %>
             <div class="text-center mb-3 row d-flex align-items-center">
-              <div class="col-2">
-                <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
-              </div>
               <p class=" mb-0 col-4 ">Id Utilisateur: <%= cart.user_id %></p>
               <p class=" mb-0 col-2 ">Status: <%= cart.status %></p>
               <p class=" mb-0 fs-6  col-4 ">Livraison: <%= cart.show_date %></p>
@@ -101,7 +95,7 @@
                     <% dish = Dish.find_by(id: order_dish.dish_id) %>
                   <div class="text-center mb-3 row d-flex align-items-center flex-wrap">
                     <div class="col-2">
-                      <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
+                      <%= render "dishes/photo", dish: dish, size: "550x330^"%>
                     </div>
                     <p class=" mb-0 col-3">Plat: <%= dish.name %></p>
                     <p class=" mb-0 col-2">X <%= order_dish.quantity %></p>
@@ -130,9 +124,6 @@
           <% @carts.each do |cart|%>
             <% if cart.status == "validation" %>
             <div class="text-center mb-3 row d-flex align-items-center">
-              <div class="col-2">
-                <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
-              </div>
               <p class=" mb-0 col-4 ">Id Utilisateur: <%= cart.user_id %></p>
               <p class=" mb-0 col-2 ">Status: <%= cart.status %></p>
               <p class=" mb-0 fs-6  col-4 ">Livraison: <%= cart.show_date %></p>
@@ -158,7 +149,7 @@
                     <% dish = Dish.find_by(id: order_dish.dish_id) %>
                   <div class="text-center mb-3 row d-flex align-items-center flex-wrap">
                     <div class="col-2">
-                      <img class="img-fluid rounded-5" src="https://p8.storage.canalblog.com/83/02/467618/31300273.jpg">
+                      <%= render "dishes/photo", dish: dish, size: "550x330^"%>
                     </div>
                     <p class=" mb-0 col-3">Plat: <%= dish.name %></p>
                     <p class=" mb-0 col-2">X <%= order_dish.quantity %></p>
