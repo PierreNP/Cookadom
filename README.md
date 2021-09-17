@@ -6,19 +6,37 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
+    * Ruby: ruby '2.7.4'
 
-* System dependencies
+* Rails version
+    * Ruby: rails '5.2.6'
 
-* Configuration
+* Production Heroku
+    * https://cookadom.herokuapp.com/
 
-* Database creation
+* GitHub
+    * https://github.com/PierreNP/Cookadom
 
-* Database initialization
+* Local Installation
+    * Database:
+        * Postgresql version 9 and more...
+    * Steps:
+        * HTTPS: 
+            * git clone https://github.com/PierreNP/Cookadom.git
+        * SSH: 
+            * git clone git@github.com:PierreNP/Cookadom.git
+        * Install Gems:
+            * $ bundle install
+        * Set Local Database:
+            * $ rails db:create
+            * $ rails db:migrate
+            * $ rails db:seed
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
+* Contributors
+    * https://github.com/PierreNP Pierre Noppe.
+    * https://github.com/Wiyap Ludovic Baratier.
+    * https://github.com/antcrn Anthony Cornu.
+    * https://github.com/GXcode95 Xavier Grenouillet.
+    * https://github.com/ecko9 Jean Ferstler.
 * ...
+
