@@ -9,6 +9,3 @@ require 'activerecord-reset-pk-sequence'
 require 'faker'
 
  admin = User.create(email: "admin@ex.ex", password: "password", status: 2, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city_id: rand(1..20), phone: "0#{rand(600000000..699999999)}")
- cook = User.create(email: "cook@ex.ex", password: "password", status: 1, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city_id: rand(1..20), phone: "0#{rand(600000000..699999999)}")
- Cook.create(user_id: cook.id, siren: "#{rand(100000000..999999999)}", business_name: Faker::Restaurant.name, legal_status: ["EI", "EURL", "SNC", "SCA","SARL","SA", "SAS"].sample, headquarter: Faker::Address.street_name, vat_number: "FR#{rand(100000000..999999999)}", commercial_register: "RCS PARIS #{["A", "B"].sample} #{rand(100000000..999999999)}", status: true)
-
