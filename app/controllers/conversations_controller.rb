@@ -41,7 +41,7 @@ class ConversationsController < ApplicationController
   private
 
   def set_conversation
-    @conversation = current_user.mailbox.conversations.find_by(params[:id])
+    @conversation = current_user.mailbox.conversations.find_by(id: params[:id])
   end
   
 end
