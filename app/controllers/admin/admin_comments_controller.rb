@@ -10,10 +10,9 @@ class Admin::AdminCommentsController < ApplicationController
     else
       flash[:error] = "Une erreur est survenue"
     end
-      respond_to do |format|
-        format.html {redirect_to admin_dashboard_admins_path}
-        format.js {}
-      end
+    respond_to do |format|
+      format.html {redirect_to admin_dashboard_admins_path}
+      format.js {}
     end
   end
 
