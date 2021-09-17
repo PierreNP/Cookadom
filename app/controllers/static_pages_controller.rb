@@ -3,6 +3,5 @@ class StaticPagesController < ApplicationController
     @dishes = Dish.pinned.last(4)
   end
 
-  def home_cook
-  end
+  def home_cook;end
 end

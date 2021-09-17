@@ -1,41 +1,41 @@
 <section class="container mt-3">
-    <div class="row">
-      <div class="col-md-6 d-flex">
-        <%= render "cooks/card", cook: @cook%>
-        
-      </div>
-      <div>
-        <%= link_to "Envoyer un message", new_conversation_path(user_id: @cook.user), class: 'btn  btn-primary' %>
-      </div>
-      <div class="my-5">
-        <% list_tags(@cook).each do |tags| %>
-          <span class="btn btn-tag rounded-x btn-secondary"><%= tags %></span>
-        <% end %>
-      </div>
-      <% if @pinned_dish %>
+  <div class="row">
+    <div class="col-md-6 mb-3 d-flex">
+      
+      <%= render "cooks/card", cook: @cook%>
+      
+    </div>
+    <div>
+      <%= link_to "Envoyer un message", new_conversation_path(user_id: @cook.user), class: 'btn  btn-primary' %>
+    </div>
+    <div class="my-5">
+      <% list_tags(@cook).each do |tags| %>
+        <span class="btn btn-tag rounded-x btn-secondary"><%= tags %></span>
+      <% end %>
+    </div>
+    <% if @pinned_dish %>
       <div class="row mt-2">
         <h2 class="">Le plat du Cook</h2>
         <%= render "dishes/card_index", dish: @pinned_dish %>
       </div>
-      <% end %>
-    </div>
+    <% end %>
+  </div>
 
-    <div class="row mt-2">
-        <h2>Ses plats</h2>
-    </div>
-    
+  <div class="row mt-2">
+      <h2>Ses plats</h2>
+  </div>
+  
+  <div class="row" >
+    <% @cook.dishes.each do |dish| %>
+      <%= render "dishes/card_index", dish: dish if dish.available? || dish.pinned? %>
+    <% end %>
+  </div>
 
-
-    <div class="row" >
-      <% @cook.dishes.each do |dish| %>
-        <%= render "dishes/card_index", dish: dish if dish.available? || dish.pinned? %>
-      <% end %>
-    </div>
-    <div class="row">  
-      <% @cook.dishes.each do |dish| %>
-        <%= render "dishes/card_index", dish: dish if dish.unavailable? %>
-      <% end %>
-    </div>
+  <div class="row">  
+    <% @cook.dishes.each do |dish| %>
+      <%= render "dishes/card_index", dish: dish if dish.unavailable? %>
+    <% end %>
+  </div>
 </section>
 <% content_for :title_page do %>
   <title>Cookadom - <%= @cook.business_name %></title>

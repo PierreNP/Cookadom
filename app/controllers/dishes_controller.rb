@@ -23,7 +23,6 @@ class DishesController < ApplicationController
     @comment = Comment.new
     @cook = @dish.cook
     @cook_votes = @cook.count_cook_total_number_of_votes
-
   end
 
   def set_dish
