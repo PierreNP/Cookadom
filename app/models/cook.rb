@@ -17,10 +17,12 @@ class Cook < ApplicationRecord
 
    def rating 
       rating = 0
-      self.dishes.each do |dish|
-         rating += dish.rating
+      if dishes.any?
+         self.dishes.each do |dish|
+            rating += dish.rating
+         end
+         rating / self.dishes.length
       end
-      rating / self.dishes.length
    end
 
    def count_cook_total_number_of_votes
