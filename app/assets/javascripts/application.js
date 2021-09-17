@@ -13,4 +13,5 @@
 //= require rails-ujs
 //= require activestorage
 //= require flash
-//= require modify_dish_quantity
+//= stub modify_dish_quantity
+//= stub new_dish_tags

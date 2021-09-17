@@ -53,15 +53,6 @@
     </div>
 
   <%end%>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7/jquery.min.js" integrity="sha512-Pqx0ZVocHCSzTLK4pm0GhccHtOT6fmZz+tqfYHV/llI60gB9sr9jkiqrqSEwFJIrzpcZEHPJjsq4GcC731UNXg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script>
-          document.addEventListener("DOMContentLoaded", (event) => {
-            $('input[type=checkbox]').change(function(e){
-              if ($('input[type=checkbox]:checked').length > 3) {
-                $(this).prop('checked', false);
-                $('#checkbox_max').removeClass('d-none');
-                $('#checkbox_max').addClass('text-danger', 'fw-bold');
-              }
-            })
-          });
-        </script>
+  <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7/jquery.min.js' %>
+  <%= javascript_include_tag 'new_dish_tags' %>
+  
