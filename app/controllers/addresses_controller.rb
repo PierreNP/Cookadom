@@ -30,7 +30,7 @@ class AddressesController < ApplicationController
         redirect_back(fallback_location: root_path)
       end
     end
-    flash [:error] = "Une erreur est survenue"
+    flash[:error] = "Une erreur est survenue"
   end
 
   private
