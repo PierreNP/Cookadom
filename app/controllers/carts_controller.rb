@@ -28,7 +28,6 @@ class CartsController < ApplicationController
     @dish = Dish.find_by(id: @order_dish.dish_id)
     @cook = Cook.find_by(id: @dish.cook_id)
     @user = User.find_by(id: @cart.user_id)
-    @pre_status = @cart.status
     
     if @cart.update(status: 1)
       flash[:success] = "Panier mis à jour."

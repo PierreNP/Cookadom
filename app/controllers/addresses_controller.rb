@@ -40,7 +40,6 @@ class AddressesController < ApplicationController
   end
 
   def address_hasher(label)
-    puts params
     unless params[:address][:name] && params[:address][:name_select] && params[:address][:search]
       render edit_user_registration_path, error: "Veuillez compléter tout les champs"
       return
@@ -59,8 +58,6 @@ class AddressesController < ApplicationController
       end
     end
     city = label_array[zip_index + 1 .. label_array.length - 1].join(" ")
-    puts "#"* 10000
-    puts label_array
     content = label_array[ 0 .. zip_index - 1].join(" ")
     
     if !City.find_by(zip_code: zip_code, name: city)
