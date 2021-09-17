@@ -1,5 +1,5 @@
 class AddressesController < ApplicationController
-  before_action :set_adress, only: [:destroy, :update]
+  before_action :set_address, only: [:destroy, :update]
   
   def create 
     address_param = address_hasher(params[:address][:name_select])
