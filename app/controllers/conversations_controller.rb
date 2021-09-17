@@ -29,7 +29,8 @@ class ConversationsController < ApplicationController
   end
 
   def destroy
-    if @conversation.mark_as_deleted(current_user)
+ 
+    if @conversation &&  @conversation.mark_as_deleted(current_user)
       flash[:success]="Conversation détruite"
     else
       flash[:success]="Désolé impossible de détruire cette conversation"
@@ -40,7 +41,7 @@ class ConversationsController < ApplicationController
   private
 
   def set_conversation
-    @conversation = current_user.mailbox.conversations.find_by(params[:id])
+    @conversation = current_user.mailbox.conversations.find_by(id: params[:id])
   end
   
 end
