@@ -2,7 +2,7 @@
   <%= link_to dish_path(dish), class:"#{'disabled' if dish.unavailable? }" do %>
     <div class="position-relative <%='unavailable avoid-clicks' if dish.unavailable?%>">
       
-      <%= render "dishes/photo", dish: dish, size: "550x330^"%>
+      <%= render "dishes/photo", dish: dish%>
       
       <% if current_user && !is_a_favorit_dish?(dish)%>
         <div class="d-flex align-items-center justify-content-center p-2 bg-white rounded-circle position-absolute top-0 end-0 m-2">

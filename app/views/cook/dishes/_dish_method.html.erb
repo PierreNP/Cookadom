@@ -6,7 +6,9 @@
           <div class="col-md-12 col-sm-12 col-lg-4 ">
             <div id="atachement-photos" class="my-1 rounded img-fluid">
               <% if dish.photo.attached? %>
-                <%=image_tag(dish.photo.variant(resize: "95x95^", crop: '100x100+0+0'), alt: dish.name)%>
+                <div class="col">
+                  <%= render "dishes/photo", dish: dish%>
+                </div>
               <% else %>
                 <small>Aucune photo.</small>
               <% end %>
