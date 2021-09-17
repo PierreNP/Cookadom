@@ -1,10 +1,20 @@
-function update() {
+function updateTotalPrice() {
+    let total = document.getElementById('total-price')
+    console.log(total)
+    console.log("coucou")
+    total.innerHTML = "Total: <%= @cart.total_price_euro %>"
+}
+
+
+
+function updateOrder() {
   var cards = document.querySelectorAll('div[data-card="<%= @order.id %>"]')
   for(var i = 0; i < cards.length; i++) {
     var card = cards[i]
     var parent = card.parentElement
     parent.innerHTML = "<%= j render 'carts/card_dishes', cart: @cart, order_dish: @order%>"
   }
+  updateTotalPrice()
 }
-window.addEventListener("DOMContentLoaded", update())
+window.addEventListener("DOMContentLoaded", updateOrder())
 

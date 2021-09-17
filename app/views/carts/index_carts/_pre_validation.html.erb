@@ -8,7 +8,7 @@
         <% end %> 
 
         <% if cart.total_price != 0 %>
-          <h5 class="my-3 text-primary"> Total: <%= cart.total_price_euro %></h5>
+          <h5 class="my-3 text-primary" id="total-price"> Total: <%= cart.total_price_euro %></h5>
           <p>Cuisiné par <%= link_to cart.cook.name, cook_path(cart.cook)%></p>
           <% if cart.delivery_date %>
             <p class="my-3 text-muted">Date de livraison : <%= cart.delivery_date.strftime("%m/%d/%Y à %I:%M ")%> </p>

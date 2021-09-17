@@ -1,8 +1,9 @@
-function update_date() {
+function updateDate() {
     
     let form = document.querySelector('.justify-content-around>.col-12')
     
     form.insertAdjacentHTML("beforeend","<%= j render "carts/address_date_form", cart: @cart %>" )
+
 }
 
 update_date()
