@@ -50,7 +50,7 @@ class Cook::DishesController < ApplicationController
     else
       flash[:error] = "Une erreur est survenue"
     end
-    redirect_to cook_dishes_path,
+    redirect_to cook_dishes_path
   end
 
   def require_cook
