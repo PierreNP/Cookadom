@@ -37,11 +37,11 @@
           <div class="my-5">
             <%= form_with model: @order_dishes, url: order_dishes_path(dish_id: @dish.id), local: true, class: " d-flex align-items-center justify-content-evenly" do |form| %>
               <i class="fas fa-minus fs-6 text-white bg-primary p-2 rounded-circle" data-quantity="remove"></i>
-              <%= form.number_field :quantity , value: "1", class: "text-center col-2 fs-4" %>
+              <%= form.number_field :quantity , value: "1", class: "hide-number text-center col-2 fs-4" %>
               <i class="fas fa-plus fs-6 text-white bg-primary p-2 rounded-circle" data-quantity="add"></i>
               <%= form.submit "Ajouter au panier" , class: "btn btn-primary btn-block text-uppercase"%>
           <% end %>
-  </div>
+          </div>
         </div>
       </div>
 
@@ -62,7 +62,6 @@
       <p class="p-3"><%= @dish.ingredients %></p>
     </div>
   </div>
-
 
 
   <br/>
