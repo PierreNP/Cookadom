@@ -4,10 +4,11 @@
     <%= yield :title_page %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <script src="https://js.stripe.com/v3/"></script>
+    <%= javascript_include_tag 'https://js.stripe.com/v3/' %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= favicon_link_tag asset_path('logo.svg') %>
+    <%= content_for :js_script %>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
@@ -24,25 +25,8 @@
     <%= yield %>
     <%= render "layouts/footer" %>
     <% unless current_user %>
-      <script>
-          var myNav = document.getElementById("nav");
-
-          window.onscroll = function() {
-              "use strict";
-              if (document.body.scrollTop >= 58 || document.documentElement.scrollTop >= 58) {
-                  myNav.classList.add("shadow");
-                  myNav.classList.add("bg-light");
-              } else {
-                  myNav.classList.remove("bg-light");
-                  myNav.classList.remove("shadow");
-              }
-          };
-      </script>
+      <%= javascript_include_tag 'navbar' %>
     <% end %>
-
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-  
-  <%# JS pour bouton Tags d'édit et new Dish %>
-
+      <%= javascript_include_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js' %>
   </body>
 </html>
