@@ -73,7 +73,6 @@ gem 'faker'
 gem 'devise'
 gem 'aws-sdk-s3'
 gem 'image_processing', '~> 1.2'
-gem 'mini_magick', '~>4.9'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'letter_opener'
 gem 'money'
