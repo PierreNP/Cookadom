@@ -1,5 +1,5 @@
 class ConversationsController < ApplicationController
-  before_action :set_conversation, only: [:show; :detroy]
+  before_action :set_conversation, only: [:show, :detroy]
 
   def index
     @conversations = current_user.mailbox.conversations
