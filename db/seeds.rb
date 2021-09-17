@@ -8,4 +8,9 @@
 require 'activerecord-reset-pk-sequence'
 require 'faker'
 
- admin = User.create(email: "admin@ex.ex", password: "password", status: 2, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city_id: rand(1..20), phone: "0#{rand(600000000..699999999)}")
+admin = User.create(email: "admin@ex.ex", password: "password", status: 2, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city_id: rand(1..20), phone: "0#{rand(600000000..699999999)}")
+
+tags = ["Colombian", "Asiatique", "Pates", "Viande", "Poisson", "Légumes", "Dessert", "Fruits", "Vegan", "Italien", "Latin", "Gateau", "Volaille", "Bio", "Sucré", "Salé"]
+tags.each do |tag|
+  Tag.create(label: tag)
+end
