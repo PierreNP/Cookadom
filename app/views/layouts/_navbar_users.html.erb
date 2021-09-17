@@ -35,9 +35,9 @@
 			<% if @unread != 0 %>
 				<span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-secondary"><%= @unread %></span>
 			<%end%>
-			<a class="dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+			<span class="dropdown-toggle text-dark" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 				<i class="fas fa-user-circle fa-lg nav-link text-dark px-0"></i>
-			</a>
+			</span>
 			<ul class="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
 				<li>
 					<%= link_to "Profil Utilisateur", edit_user_path(current_user.id), class:"dropdown-item" %>
@@ -59,13 +59,13 @@
 				</li>
 			</ul>
 		</div>
-		<a data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-shopping-bag fa-lg nav-link text-dark"></i>
+		<span data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fas fa-shopping-bag fa-lg nav-link text-dark"></i>
 			<% if @current_user.carts.last.order_dishes.size != 0 %>
 				<span class="translate-middle badge rounded-pill bg-primary">
 					<%= @current_user.carts.last.order_dishes.size  %>                    
 				</span>
 			<%end%>
-		</a>
+		</span>
 	</div>
 </nav>
 
