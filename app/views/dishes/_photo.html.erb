@@ -1,5 +1,5 @@
 <% if dish.photo.attached? %>
-  <%= image_tag dish.photo.variant(resize: size, crop: '500x500+50+50') , width: "100%", height: "99%", alt: dish.name, class: "rounded-top img-fluid #{'unavailable avoid-clicks' if dish.unavailable?}" %>
+  <%= image_tag dish.photo, width: "100%", height: "99%", alt: dish.name, class: "rounded-top img-fluid #{'unavailable avoid-clicks' if dish.unavailable?}" %>
 <% else %>
   <%= image_tag("default_photo.png", width: "100%", height: "99%", alt: dish.name, class:"rounded-top img-fluidl#{'unavailable avoid-clicks' if dish.unavailable? }")%>
 <% end %>
