@@ -5,8 +5,8 @@
       <% @dish.comments.each do |comment| %>
         <% user = User.find(comment.user_id) %>
         <div class="py-5 border-bottom">
-          <div class="col mb-4 text-secondary">
-            <%= user.email %>
+          <div class="col mb-4">
+            <%=image_tag('user-cookadom', alt: "user", size:40, class:"rounded-circle")%>
           </div class="col">
             <%= comment.content %>
           </div>

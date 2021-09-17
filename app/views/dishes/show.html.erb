@@ -1,12 +1,9 @@
-<br />
-<br />
-<br />
 <section class="container p-5">
   
-  <h2 class="card-title text-primary border-bottom border-1 p-3 border-primary"><%= @dish.name %></h2>
+  <h1 class="card-title text-primary border-bottom border-1 p-3 border-primary"><%= @dish.name %></h1>
   <div class="row">
   
-    <div class="col-3 position-relative ">
+    <div class="col-md-4 position-relative ">
       <%= render "dishes/photo", dish: @dish, size: "550x330^"%>
   
       <% if current_user && !is_a_favorit_dish?(@dish)%>
@@ -24,10 +21,10 @@
       <% end %>
     </div>
 
-    <div class="bg-white rounded-right-5 col text-center">
+    <div class="bg-white rounded-right-5 col-md-8 text-left">
       <p class="mt-4"><%= @dish.description %></p>
       <div class="row">
-        <p class="fs-2 col">
+        <p class="col">
           <%= @dish.rating %>/5 (<%= @dish.count_dish_total_number_of_votes %>)
           <% if @dish.count_dish_total_number_of_votes == 0 %>
             <i class="fas fa-star text-muted"></i>
@@ -36,39 +33,37 @@
           <% end %>
         </p>
         <p class="col fs-2 fw-bold text-center"><%= @dish.price_euro %></p>
+        <div class="row">
+          <div class="my-5">
+            <%= form_with model: @order_dishes, url: order_dishes_path(dish_id: @dish.id), local: true, class: " d-flex align-items-center justify-content-evenly" do |form| %>
+              <i class="fas fa-minus fs-6 text-white bg-primary p-2 rounded-circle" data-quantity="remove"></i>
+              <%= form.number_field :quantity , value: "1", class: "hide-number text-center col-2 fs-4" %>
+              <i class="fas fa-plus fs-6 text-white bg-primary p-2 rounded-circle" data-quantity="add"></i>
+              <%= form.submit "Ajouter au panier" , class: "btn btn-primary btn-block text-uppercase"%>
+          <% end %>
+          </div>
+        </div>
       </div>
+
     </div>
 
   </div>
 
-  <div class="grid-2">
-
-
-    <div class="p-2 d-flex align-items-center flex-column">
+  <div class="row">
+    <div class="p-2 col-md-4">
       <%= render "cooks/card", cook: @cook%>
+      <div class="d-flex-center gap-2">
+        <%= render "ratings", dish: @dish %>
+      </div>
     </div>
 
-    <div class="p-2 d-flex align-items-center flex-column ">
+    <div class="p-2 col-md-8">
      <h2 class="card-title text-secondary border-bottom border-1 p-3 border-secondary"> Ingrédients </h2>
       <p class="p-3"><%= @dish.ingredients %></p>
     </div>
   </div>
 
-  <div class="my-5">
-        <%= form_with model: @order_dishes, url: order_dishes_path(dish_id: @dish.id), local: true, class: " d-flex align-items-center justify-content-evenly" do |form| %>
-            <i class="fas fa-minus fs-4 text-white bg-primary p-2 rounded-circle" data-quantity="remove"></i>
-  
-          <%= form.number_field :quantity , value: "1", class: "text-center col-2 fs-4" %>
-            
-            <i class="fas fa-plus fs-4 text-white bg-primary p-2 rounded-circle" data-quantity="add"></i>
 
-          <%= form.submit "Ajouter au panier" , class: "btn btn-primary btn-block text-uppercase"%>
-        <% end %>
-
-  </div>
-  <div class="d-flex-center gap-2">
-    <%= render "ratings", dish: @dish %>
-  </div>
   <br/>
 
  <%= render "comments", comment: @comment%>

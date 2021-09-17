@@ -34,7 +34,7 @@ class Cook < ApplicationRecord
    end
    
    def name
-      self.user.name
+      self.business_name
    end
 
    private
