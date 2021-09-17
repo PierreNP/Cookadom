@@ -1,5 +1,5 @@
 class ConversationsController < ApplicationController
-  before_action: set_conversation, only: [:show; :detroy]
+  before_action :set_conversation, only: [:show, :detroy]
 
   def index
     @conversations = current_user.mailbox.conversations
@@ -23,13 +23,14 @@ class ConversationsController < ApplicationController
   end
 
   def create 
-    recipient = User.find(params[:user_id])
+    recipient = User.find_by(id: params[:user_id])
     receipt = current_user.send_message(recipient, params[:body], params[:subject])
     redirect_to conversation_path(receipt.conversation)
   end
 
   def destroy
-    if @conversation.mark_as_deleted(current_user)
+ 
+    if @conversation &&  @conversation.mark_as_deleted(current_user)
       flash[:success]="Conversation détruite"
     else
       flash[:success]="Désolé impossible de détruire cette conversation"
@@ -40,7 +41,7 @@ class ConversationsController < ApplicationController
   private
 
   def set_conversation
-    @conversation = current_user.mailbox.conversations.find_by(params[:id])
+    @conversation = current_user.mailbox.conversations.find_by(id: params[:id])
   end
   
 end
