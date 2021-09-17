@@ -7,15 +7,12 @@ class Cook::PhotosController < ApplicationController
   end
 
   def destroy
-    @photo = Dish.find(params[:dish_id]).photo
-    if @photo
-      if @photo.destroy
-          redirect_to dishes_path, success: 'Photo supprimée.'
-      else
-          render :show, error: 'Erreur, impossible de supprimer la photo'
-      end
+    @photo = Dish.find_by(id: params[:dish_id]).photo
+    if @photo && @photo.destroy
+      redirect_to dishes_path, success: 'Photo supprimée.'
+    else
+      render :show, error: 'Erreur, impossible de supprimer la photo'
     end
-    flash[:error] = "Une erreur est survenue"
   end
 
 end

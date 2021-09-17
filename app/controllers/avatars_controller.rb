@@ -12,7 +12,6 @@ class AvatarsController < ApplicationController
     else
         render :show, error: 'Erreur, impossible de supprimer l\'avatar'
     end
-    flash[:error] = "Une erreur est survenue"
   end
 
 end

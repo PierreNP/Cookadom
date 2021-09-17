@@ -38,15 +38,15 @@ class CooksController < ApplicationController
   end
 
   def destroy
-    if @cook
-      @cook.destroy
-
-      respond_to do |format|
-        format.html {redirect_to root_path}
-        format.js {}
-      end
+    if @cook.destroy
+      flash[:succes] = "Détruit avec succès"
+    else
+      flash[:error] = "Une erreur est survenue"
     end
-    flash[:error] = "Une erreur est survenue"
+    respond_to do |format|
+      format.html {redirect_to root_path}
+      format.js {}
+    end
   end
 
   private 

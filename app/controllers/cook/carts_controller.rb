@@ -12,6 +12,7 @@ class Cook::CartsController < ApplicationController
     else
       puts @cart.errors.messages
       redirect_to root_path, flash[:error] = "Panier non mis à jour."
+      return
     end
 
     UserMailer.validated_order(@user, @cook).deliver_now

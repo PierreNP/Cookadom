@@ -1,5 +1,3 @@
 class User::DishesController < ApplicationController
-  def index
-    
-  end
+  def index;end
 end

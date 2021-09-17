@@ -26,10 +26,14 @@ class ConversationsController < ApplicationController
     recipient = User.find(params[:user_id])
     receipt = current_user.send_message(recipient, params[:body], params[:subject])
     redirect_to conversation_path(receipt.conversation)
-  end 
+  end
 
   def destroy
-    @conversation.mark_as_deleted(current_user)
+    if @conversation.mark_as_deleted(current_user)
+      flash[:success]="Conversation détruite"
+    else
+      flash[:success]="Désolé impossible de détruire cette conversation"
+    end
     redirect_back(fallback_location: root_path)
   end
 

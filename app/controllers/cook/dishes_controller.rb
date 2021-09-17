@@ -45,11 +45,12 @@ class Cook::DishesController < ApplicationController
   end
 
   def destroy
-    if @dish
-      @dish.destroy
-      redirect_to cook_dishes_path, success: "Plat supprimé."
+    if @dish && @dish.destroy
+      flash[:success] = "Plat supprimé."
+    else
+      flash[:error] = "Une erreur est survenue"
     end
-    flash[:error] = "Une erreur est survenue"
+    redirect_to cook_dishes_path,
   end
 
   def require_cook
