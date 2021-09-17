@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       current_user.update(user_params)
   
       respond_to do |format|
-        format.html {redirect_to user_path(current_user.id)}
+        format.html {redirect_to edit_user_path(current_user.id)}
         format.js {}
       end
     end
