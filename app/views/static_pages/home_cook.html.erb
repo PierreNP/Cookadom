@@ -1,5 +1,5 @@
 <main>
-  <div class="p-5 mb-4 bg_static top-0 start-0 ">
+  <div class="p-5 mb-4 bg_static_pro top-0 start-0 ">
     <div class="container py-5 text-center">
       <div class="row">
         <div class="col-lg-6 col-md-8 mx-auto">
@@ -23,7 +23,7 @@
         </div>
 
         <div class="col-sm-12 col-md-6 col-xs-12">
-          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+          <div id="carouselExampleIndicators" class="carousel slide mt-5" data-bs-ride="carousel">
             <div class="carousel-indicators">
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -31,13 +31,13 @@
             </div>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <%= image_tag("utensils1.jpg", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
+                <%= image_tag("kitchen-slider-1.jpg", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
               </div>
               <div class="carousel-item">
-                <%= image_tag("utensils2.jpg", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
+                <%= image_tag("kitchen-slider-2.jpg", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
               </div>
               <div class="carousel-item">
-                <%= image_tag("utensils3.jpg", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
+                <%= image_tag("kitchen-slider-3.jpg", :alt => "photo de plat", class:"d-block w-100 bg-transparent") %>
               </div>
             </div>
           </div>
@@ -78,12 +78,10 @@
             <span class="fw-normal">et recevez votre paiement !</span>
           </p>
         </div>
- 
-      </div>
+       </div>
     </div>
-    
-    <div class="container mt-5 pb-5">
-      <div class="row d-flex justify-content-center">
+    <div class="container w-25 pb-5">
+      <div class="row text-center">
         <%= render "cook_call_to_action" %>
       </div>
     </div>
