@@ -65,7 +65,7 @@
               <% @invalid_cooks.each do |cook|%>
               <div class="text-center mb-3 row d-flex align-items-center">
                 <div class="col-2">
-                  <%= render "dishes/photo", dish: dish, size: "550x330^"%>
+                    <%= render "avatars/cook", cook: cook %>
                 </div>
                 <p class=" mb-0 col-1 "><%= cook.user_id %></p>
                 <p class=" mb-0 col-5 "><%= cook.business_name %></p>
@@ -98,7 +98,7 @@
                 <% @valid_cooks.each do |cook|%>
                 <div class="text-center mb-3 row d-flex align-items-center">
                   <div class="col-2">
-                    <%= render "dishes/photo", dish: dish, size: "550x330^"%>
+                    <%= render "avatars/cook", cook: cook %>
                   </div>
                   <p class=" mb-0 col-1 "><%= cook.user_id %></p>
                   <p class=" mb-0 col-5 "><%= cook.business_name %></p>
