@@ -15,8 +15,11 @@ class FavoritsController < ApplicationController
 
   def destroy
     @favorit = Favorit.find_by(favorit_user_id: current_user.id, favorit_dish_id: params[:id])
-    if @favorit.destroy
-    redirect_back(fallback_location: root_path)
+    if @favorit
+      if @favorit.destroy
+      redirect_back(fallback_location: root_path)
+      end
     end
+    flash [:error] = "Une erreur est survenue"
   end
 end

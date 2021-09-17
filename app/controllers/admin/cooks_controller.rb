@@ -27,12 +27,15 @@ class Admin::CooksController < ApplicationController
 
   def destroy
     User.find_by(id: @cook.user_id).update(status: "user")
-    @cook.destroy
+    if @cook
+      @cook.destroy
 
-    respond_to do |format|
-      format.html {redirect_to admin_dashboard_admins_path}
-      format.js {}
+      respond_to do |format|
+        format.html {redirect_to admin_dashboard_admins_path}
+        format.js {}
+      end
     end
+    flash [:error] = "Une erreur est survenue"
   end
 
   def require_admin

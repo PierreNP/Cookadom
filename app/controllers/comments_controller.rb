@@ -12,12 +12,14 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find_by(comment_params)
-
-    if @comment.destroy
-      flash[:success] = "Le commentaire a bien été supprimé !"
-    else
-      flash[:error] = "Impossible de supprimer le commentaire."
+    if @comment
+      if @comment.destroy
+        flash[:success] = "Le commentaire a bien été supprimé !"
+      else
+        flash[:error] = "Impossible de supprimer le commentaire."
+      end
     end
+    flash [:error] = "Une erreur est survenue"
   end
 
   def update

@@ -15,13 +15,16 @@ class Admin::UsersController < ApplicationController
     end
  
     def destroy
-      @cart.destroy
-      @user.destroy
-      
-      respond_to do |format|
-        format.html {redirect_to admin_dashboard_admins_path}
-        format.js {}
+      if @cart && @user
+        @cart.destroy
+        @user.destroy
+        
+        respond_to do |format|
+          format.html {redirect_to admin_dashboard_admins_path}
+          format.js {}
+        end
       end
+      flash [:error] = "Une erreur est survenue"
     end
 
   def require_admin

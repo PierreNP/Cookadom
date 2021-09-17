@@ -25,12 +25,17 @@ class UsersController < ApplicationController
     end
  
     def destroy
-      @cart.destroy
-      current_user.destroy
-      
-      respond_to do |format|
-        format.html {redirect_to root_path}
-        format.js {}
+      if @cart && current_user
+        @cart.destroy
+        current_user.destroy
+        
+        respond_to do |format|
+          format.html {redirect_to root_path}
+          format.js {}
+        end
+      end
+      flash [:error] = "Une erreur est survenue"
+      redirect_back(fallback_location: root_path)
       end
     end
       
