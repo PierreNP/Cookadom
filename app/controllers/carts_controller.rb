@@ -50,10 +50,6 @@ class CartsController < ApplicationController
 
   private
 
-  def delivery_date_and_address
-
-  end
-
   def set_cart
     @cart = Cart.find_by(id: params[:id])
   end

@@ -12,7 +12,6 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find_by(comment_params)
-    if @comment
       if @comment.destroy
         flash[:success] = "Le commentaire a bien été supprimé !"
       else
@@ -35,6 +34,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    return {:user_id => current_user.id, :dish_id => params[:format], :content => params[:comment][:content]}
-  end
+    {:user_id => current_user.id, :dish_id => params[:format], :content => params[:comment][:content]}
+  end 
 end

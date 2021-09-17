@@ -1,4 +1,6 @@
 class AddressesController < ApplicationController
+  before_action :set_adress, only: [:destroy, :update]
+  
   def create 
     address_param = address_hasher(params[:address][:name_select])
     @address = Address.new()
@@ -16,24 +18,24 @@ class AddressesController < ApplicationController
   end
 
   def update
-    @address = Address.find(params[:id])
-
     if @address.update(address_params)
       redirect_back(fallback_location: root_path)
     end
   end
 
   def destroy
-    @address = Address.find(params[:id])
-    if @address
       if @address.destroy
         redirect_back(fallback_location: root_path)
+      else
+        flash[:error] = "Une erreur est survenue"
       end
-    end
-    flash[:error] = "Une erreur est survenue"
   end
 
   private
+
+  def set_address
+    @address = Address.find_by(id: params[:id])
+  end 
 
   def address_params
     params.require(:address).permit!
