@@ -18,14 +18,27 @@ div.result {
     max-width: 100% !important;
 }
 
-.rate-color:hover {
-    background: var(--bs-primary) !important;
-}
-
 .unavailable {
     filter: grayscale(1);
 }
 
 .avoid-clicks {
     pointer-events: none;
+}
+
+//STARS RATING
+.rating-list a {
+    float: right;
+    color: #ddd;
+    padding: 10px 5px;
+}
+
+.rating-list a:hover,
+.rating-list a:hover~a {
+    color: var(--bs-primary);
+}
+
+.rating-list {
+    display: inline-block;
+    list-style: none;
 }

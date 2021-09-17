@@ -42,6 +42,7 @@ City.destroy_all
 City.reset_pk_sequence
 
 
+<<<<<<< HEAD
 20.times do 
   City.create(name: Faker::Address.city, zip_code: Faker::Address.zip_code)
 end
@@ -98,4 +99,66 @@ puts "Rating create"
   OrderDish.create(quantity: rand(1..3).to_s, cart_id: rand(1..15), dish_id: rand(1..20))
 end
 puts "OrderDish create"
+=======
+ admin = User.create(email: "admin@ex.ex", password: "password", status: 2, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city_id: rand(1..20), phone: "0#{rand(600000000..699999999)}")
+ cook = User.create(email: "cook@ex.ex", password: "password", status: 1, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city_id: rand(1..20), phone: "0#{rand(600000000..699999999)}")
+ Cook.create(user_id: cook.id, siren: "#{rand(100000000..999999999)}", business_name: Faker::Restaurant.name, legal_status: ["EI", "EURL", "SNC", "SCA","SARL","SA", "SAS"].sample, headquarter: Faker::Address.street_name, vat_number: "FR#{rand(100000000..999999999)}", commercial_register: "RCS PARIS #{["A", "B"].sample} #{rand(100000000..999999999)}", status: true)
+ user = User.create(email: Faker::Internet.safe_email, password: "password", status: 0, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city_id: rand(1..20), phone: "0#{rand(600000000..699999999)}")
+
+
+# 20.times do 
+#   City.create(name: Faker::Address.city, zip_code: Faker::Address.zip_code)
+# end
+# puts "City create"
+
+# 20.times do 
+#   Tag.create(label: Faker::Food.ethnic_category)
+# end
+# puts "Tag create"
+
+# admin = User.create(email: "admin@ex.ex", password: "password", status: 2, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city_id: rand(1..20), phone: "0#{rand(600000000..699999999)}")
+# cook = User.create(email: "cook@ex.ex", password: "password", status: 1, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city_id: rand(1..20), phone: "0#{rand(600000000..699999999)}")
+# Cook.create(user_id: cook.id, siren: "#{rand(100000000..999999999)}", business_name: Faker::Restaurant.name, legal_status: ["EI", "EURL", "SNC", "SCA","SARL","SA", "SAS"].sample, headquarter: Faker::Address.street_name, vat_number: "FR#{rand(100000000..999999999)}", commercial_register: "RCS PARIS #{["A", "B"].sample} #{rand(100000000..999999999)}", status: true)
+
+# puts "admin@ex.ex + cook@ex.ex created"
+
+# 20.times do 
+#   user = User.create(email: Faker::Internet.safe_email, password: "password", status: rand(0..2), first_name: Faker::Name.first_name, last_name: Faker::Name.last_name , city_id: rand(1..20), phone: "0#{rand(600000000..699999999)}")
+#   puts user.errors.messages
+#   if user.status == "cook"
+#     Cook.create(user_id: user.id, siren: "#{rand(100000000..999999999)}", business_name: Faker::Restaurant.name, legal_status: ["EI", "EURL", "SNC", "SCA","SARL","SA", "SAS"].sample, headquarter: Faker::Address.street_name, vat_number: "FR#{rand(100000000..999999999)}", commercial_register: "RCS PARIS #{["A", "B"].sample} #{rand(100000000..999999999)}", status: false)
+#     puts "Cook create"
+#   end
+#   Address.create(name: ["home","friend 1", "work", "friend 2", "mummy the best mom"].sample, content: "JEAN NE DOIT PAS DONNER D'ORDRE" , additional_info: "blabla", user_id: user.id)
+#   puts "Address create"
+# end
+# puts "User create"
+
+
+# 20.times do 
+#   Dish.create(name: Faker::Food.dish.to_s, description: Faker::Lorem.sentence(word_count: rand(1..10)).to_s, price: rand(500..20000), ingredients: Faker::Food.description.to_s, cook_id: rand(1..Cook.all.length), status: rand(0..2))
+# end
+# puts "Dish create"
+
+# 25.times do 
+#   TagDish.create(tag_id: rand(1..20), dish_id: rand(1..20))
+# end
+# puts "TagDish create"
+
+# 15.times do 
+#   Comment.create(content: Faker::Lorem.sentence(word_count: rand(1..10)).to_s, user_id: rand(1..20), dish_id: rand(1..20))
+# end
+# puts "Rating create"
+
+# 15.times do 
+#   Rating.create(value: rand(1..5), user_id: rand(1..20), dish_id: rand(1..20))
+# end
+# puts "Rating create"
+
+
+# 15.times do 
+#   OrderDish.create(quantity: rand(1..3).to_s, cart_id: rand(1..15), dish_id: rand(1..20))
+# end
+# puts "OrderDish create"
+>>>>>>> master
 

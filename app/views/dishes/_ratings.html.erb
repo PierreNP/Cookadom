@@ -1,7 +1,10 @@
-<% if current_user && current_user.past_dishes.include?(dish) %>    
-  <% (1..5).each do |rate| %>
-    <%= link_to dish_ratings_path(dish, value: rate) , method: :post do %>
-      <i class="fas fa-star rate-color btn btn-secondary"></i>
+<% if current_user && current_user.past_dishes.include?(dish) %>   
+  <span>Vous avez aimez ce plat ?</span> 
+  <div class="rating-list">
+    <% (1..5).each do |rate| %>
+      <%= link_to dish_ratings_path(dish, value: rate) , method: :post do %>
+        <i class="fas fa-star s<%= rate %>"></i>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 <% end %>

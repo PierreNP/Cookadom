@@ -60,10 +60,17 @@ span:hover:before {
 
 <ul class="chart">
   <% mounth_stats.each do |mounth| %>
+    <%if max == 0%>
+    <li>
+      <span style="height:0%" title="<%= mounth[0] %>" order_number="<%= mounth[1] %> commandes" ></span>
+      <p class="text-center"><%= mounth[1] %></p>
+    </li>
+    <% else %>
     <li>
       <span style="height:<%= mounth[1] * 100 / max %>%" title="<%= mounth[0] %>" order_number="<%= mounth[1] %> commandes" ></span>
       <p class="text-center"><%= mounth[1] %></p>
     </li>
+    <% end %>
   <% end %>
 </ul> 
 
