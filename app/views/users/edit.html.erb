@@ -82,9 +82,9 @@
             <p><%= address.name %></p>
             <div class="text-muted mb-2">Détails de l'adresse : </div>
             <p><%= "#{address.content} #{city.zip_code} #{city.name}" %></p>
-            <div class="text-muted mb-2"> Informations supplémentaires: </p>
+            <div class="text-muted mb-2"> Informations supplémentaires: </div>
             <p><%= "#{address.additional_info}" %></p>
-            <%= link_to "Supprimer l'adresse", user_address_path(current_user.id, address.id), method: :delete, class:"btn btn-danger"%>
+            <p><%= link_to "Supprimer l'adresse", user_address_path(current_user.id, address.id), method: :delete, class:"btn btn-danger"%></p>
           </div>
         <% end %>
       <% end %>
