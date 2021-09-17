@@ -30,7 +30,8 @@
               <%= f.submit "Confirmer l'inscription", class:"actions btn btn-primary col-10 col-md-6 mt-3 p-3 rounded-6" %>
             </div>
             <div class="mt-4 mx-1">
-                Vous avez déjà un compte? Cliquez ici : <%= render "devise/shared/links" %>
+              Vous avez déjà un compte? Cliquez ici : <%= render "devise/shared/links" %>
+              Vous avez oublié votre mot de passe? Cliquez ici : <%= link_to "Nouveau mot de passe", new_user_password_path %>
             </div>
           <% end %>
         </div>

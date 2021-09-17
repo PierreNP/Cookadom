@@ -1,0 +1,15 @@
+<h2 class="my-4">Détails de livraison:</h2>
+<%= form_with model: cart, url: cart_path(cart), method: :put, local: true do |form| %>
+  <div class="row">
+    <div class="col-12 my-2">
+      <%= form.label :Date_de_livraison %>:
+      <%= form.date_field :date, min: Date.tomorrow %>
+      <%= form.time_field :time %>
+    </div>
+    <div class="col-12 my-2">
+      <%= form.label :Adresse_de_livraison %>:
+      <%= form.select :address, user_addresses%>
+    </div>
+    <%= form.submit "Valider la date et l'adresse de livraison", class: "col-6 mt-3 offset-3 btn btn-primary" %>
+  </div>
+<% end %>
